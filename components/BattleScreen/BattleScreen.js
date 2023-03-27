@@ -1,9 +1,8 @@
 import Image from "next/image";
 import styles from "./battlescreen.module.css";
-import Menu from "../Menu/Menu";
-import Mewtwo from "../Pokemon/Enemy/Mewtwo";
-import Glurak from "../Pokemon/Starter/Glurak";
 import PlayerState from "./PlayerState/PlayerState";
+import Mewtwo from "./Pokemon/Mewtwo";
+import Glurak from "./Pokemon/Glurak";
 
 function BattleScreen() {
 	return (
@@ -16,7 +15,6 @@ function BattleScreen() {
 				<div className={styles["playerPokemon"]}>
 					<Glurak />
 				</div>
-				<Menu />
 			</div>
 		</div>
 	);
