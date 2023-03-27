@@ -1,5 +1,5 @@
 .gameboyOverlay {
-	background-image: url("/gameboy-overlay-image.png");
+	background-image: url("/gameboy-overlay-image2.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	height: 100vh;
@@ -9,12 +9,13 @@
 }
 
 .gameboyScreen {
-	width: 300px;
-	height: 144px;
+	z-index: -1;
+	width: 436px;
+	height: 325px;
 	overflow: hidden;
 	border: 2px solid red;
 	position: relative; /* Positionierung relativ zum Elternelement */
-	top: -200px; /* verschieben */
+	top: -300px; /* verschieben */
 	display: flex;
 	justify-content: center;
 	align-items: center;

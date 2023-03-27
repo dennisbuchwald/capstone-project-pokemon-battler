@@ -1,0 +1,13 @@
+.player--state-box {
+	background-attachment: scroll;
+	background-clip: border-box;
+	z-index: 1;
+	background-origin: contain;
+	display: block;
+	font-size: 10px;
+	height: 68px;
+	width: 200px;
+	position: absolute;
+	right: 0px;
+	top: 165px;
+}
