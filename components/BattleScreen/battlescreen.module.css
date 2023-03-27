@@ -1,13 +1,13 @@
 .screen {
-	background-image: url("/background/background-middle.png");
-	background-size: contain;
-	display: block;
-	font-size: 10px;
-	height: 325px;
-	width: 426px;
-	left: 282px;
-	top: 112px;
-	position: relative;
+  background-image: url("/background/background-middle.png");
+  background-size: contain;
+  display: block;
+  font-size: 10px;
+  height: 325px;
+  width: 426px;
+  left: 282px;
+  top: 112px;
+  position: relative;
 
-	border: 3px solid red;
+  border: 3px solid red;
 }

@@ -1,23 +1,19 @@
 import Image from "next/image";
 import styles from "./battlescreen.module.css";
 import PlayerState from "./PlayerState/PlayerState";
-import Mewtwo from "./Pokemon/Mewtwo";
-import Glurak from "./Pokemon/Glurak";
+import Mewtwo from "./Pokemon/EnemyPokemon";
+import Glurak from "./Pokemon/PlayerPokemon";
+import PlayerPokemon from "./Pokemon/PlayerPokemon";
+import EnemyPokemon from "./Pokemon/EnemyPokemon";
 
 function BattleScreen() {
-	return (
-		<div className={[styles.screen]}>
-			<PlayerState />
-			<div className={styles["enemyPokemon"]}>
-				<div className="mr-4">
-					<Mewtwo />
-				</div>
-				<div className={styles["playerPokemon"]}>
-					<Glurak />
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <div className={[styles.screen]}>
+      <PlayerState />
+      <PlayerPokemon />
+      <EnemyPokemon />
+    </div>
+  );
 }
 
 export default BattleScreen;
