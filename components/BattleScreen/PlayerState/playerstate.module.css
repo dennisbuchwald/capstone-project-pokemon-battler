@@ -1,67 +1,93 @@
+@font-face {
+	font-family: "Pokemon Fire Red";
+	src: url("/public/Font/pokemon-fire-red-regular/pokemon-fire-red-regular.ttf")
+		format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
 .player--state-box {
-  position: absolute;
-  top: 165px;
-  right: 0px;
-  background-image: url("/sprites/statusbar-player.png");
-  width: 200px;
-  height: 68px;
-  background-repeat: no-repeat;
-  background-size: contain;
+	position: absolute;
+	top: 165px;
+	right: 0px;
+	background-image: url("/sprites/statusbar-player.png");
+	width: 200px;
+	height: 68px;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 .player--stats-wrapper {
-  position: relative;
+	position: relative;
 }
 
 .player--stats-img {
-  position: absolute;
-  bottom: 95px;
-  right: 0;
-  width: 200px;
+	position: absolute;
+	bottom: 95px;
+	right: 0;
+	width: 200px;
 }
 
 .player--pokemon-health {
-  position: absolute;
-  top: 34px;
-  right: 52px;
-  z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
+	position: absolute;
+	top: 26px;
+	right: 50px;
+	z-index: 11;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-family: "Pokemon Fire Red", sans-serif;
+	font-size: 15px;
 }
 
 .player--pokemon-health-bar {
-  position: absolute;
-  height: 5px;
-  width: 80px;
-  left: 111px;
-  top: 21px;
-  z-index: 10;
-  background-color: #25b527;
-  /* background: rgb(42,106,37);
+	position: absolute;
+	height: 5px;
+	width: 80px;
+	left: 111px;
+	top: 21px;
+	z-index: 10;
+	background-color: #25b527;
+	/* background: rgb(42,106,37);
 	background: linear-gradient(180deg, rgba(42,106,37,1) 0%, rgba(37,183,40,1) 39%); */
-  transition: all 0.4s linear;
+	transition: all 0.4s linear;
+}
+
+.player--pokemon-slash-health {
+	position: absolute;
+	top: 26px;
+	right: 42px;
+	z-index: 1;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-family: "Pokemon Fire Red", sans-serif;
+	font-size: 15px;
 }
 
 .player--pokemon-max-health {
-  position: absolute;
-  top: 34px;
-  right: 9px;
-  z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
+	position: absolute;
+	top: 26px;
+	right: 25px;
+	z-index: 1;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-family: "Pokemon Fire Red", sans-serif;
+	font-size: 15px;
 }
 
 .player--pokemon-name {
-  position: absolute;
-  top: 3px;
-  left: 30px;
-  z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
-  font-size: 9px;
+	position: absolute;
+	top: -13px;
+	left: 30px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 20px;
+	text-transform: uppercase;
+	font-family: "Pokemon Fire Red", sans-serif;
 }
 
 .player--pokemon-level {
-  position: absolute;
-  top: 2px;
-  right: 43px;
-  z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
+	position: absolute;
+	top: -13px;
+	right: 19px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-family: "Pokemon Fire Red", sans-serif;
+	font-size: 20px;
 }
