@@ -1,8 +1,9 @@
 import styles from "./battlescreen.module.css";
-import PlayerState from "./PlayerState/PlayerState";
 
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
+import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
+import EnemyState from "./EnemyState/EnemyState";
 
 function BattleScreen() {
 	return (
@@ -10,6 +11,7 @@ function BattleScreen() {
 			<PlayerState />
 			<PlayerPokemon />
 			<EnemyPokemon />
+			<EnemyState />
 		</div>
 	);
 }
