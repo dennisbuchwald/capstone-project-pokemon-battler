@@ -1,21 +1,30 @@
-import styles from "./battlescreen.module.css";
-
+import styled from "styled-components";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 
-function BattleScreen() {
+const ScreenContainer = styled.div`
+	background-image: url("/background/background-middle.png");
+	background-size: 426px 250px;
+	display: block;
+	font-size: 10px;
+	height: 325px;
+	width: 426px;
+	left: 282px;
+	top: 112px;
+	position: relative;
+`;
+
+export default function BattleScreen() {
 	return (
-		<div className={styles.screen}>
+		<ScreenContainer>
 			<PlayerState />
 			<PlayerPokemon />
 			<EnemyPokemon />
 			<EnemyState />
 			<Menu />
-		</div>
+		</ScreenContainer>
 	);
 }
-
-export default BattleScreen;

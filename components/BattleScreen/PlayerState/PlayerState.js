@@ -1,22 +1,96 @@
-import styles from "./playerstate.module.css";
+import styled from "styled-components";
+
+const StateBox = styled.div`
+	position: absolute;
+	top: 165px;
+	right: 0px;
+	background-image: url("/sprites/statusbar-player2.png");
+	width: 200px;
+	height: 68px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: 1;
+`;
+
+const StateWrapper = styled.div`
+	position: relative;
+`;
+
+const PokemonName = styled.p`
+	position: absolute;
+	top: -12px;
+	left: 30px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 20px;
+	text-transform: uppercase;
+`;
+
+const PokemonLevel = styled.p`
+	position: absolute;
+	top: -12px;
+	right: 29px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 20px;
+`;
+
+const PokemonHealth = styled.p`
+	position: absolute;
+	top: 27px;
+	right: 55px;
+	z-index: 11;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 15px;
+`;
+
+const PokemonHealthBar = styled.p`
+	position: absolute;
+	height: 6px;
+	width: 89px;
+	left: 88px;
+	top: 21px;
+	z-index: 1;
+	background-color: #25b527;
+	transition: all 0.4s linear;
+	border-radius: 2.5px;
+`;
+
+const PokemonSlashHealth = styled.p`
+	position: absolute;
+	top: 27px;
+	right: 45px;
+	z-index: 1;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 15px;
+`;
+
+const PokemonMaxHealth = styled.p`
+	position: absolute;
+	top: 27px;
+	right: 25px;
+	z-index: 1;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 15px;
+`;
 
 export default function PlayerState() {
 	return (
-		<div className={styles["player--state-box"]}>
-			<div className={styles["player--state-wrapper"]}>
-				<p className={styles["player--pokemon-name"]}>Glurak</p>
-				<p className={styles["player--pokemon-level"]}>52</p>
-				<p className={styles["player--pokemon-health"]}>120</p>
-				<p
+		<StateBox>
+			<StateWrapper>
+				<PokemonName>Glurak</PokemonName>
+				<PokemonLevel>52</PokemonLevel>
+				<PokemonHealth>120</PokemonHealth>
+				<PokemonHealthBar
 					class="player--pokemon-health-bar"
 					role="progressbar"
 					aria-valuenow="80"
 					aria-valuemin="0"
 					aria-valuemax="80"
-				></p>
-				<p className={styles["player--pokemon-slash-health"]}>/</p>
-				<p class={styles["player--pokemon-max-health"]}>120</p>
-			</div>
-		</div>
+				></PokemonHealthBar>
+				<PokemonSlashHealth>/</PokemonSlashHealth>
+				<PokemonMaxHealth>120</PokemonMaxHealth>
+			</StateWrapper>
+		</StateBox>
 	);
 }
