@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
-const EnemyStateBox = styled.div`
+const EnemyStateSection = styled.section`
 	position: absolute;
 	top: 20px;
 	left: 0px;
-	background-image: url("/sprites/statusbar-opponent2.png");
+	background-image: url("/sprites/statusbar-opponent3.png");
 	width: 200px;
 	height: 68px;
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 1;
-`;
-
-const EnemyStateWrapper = styled.div`
-	position: relative;
 `;
 
 const EnemyPokemonName = styled.p`
@@ -29,7 +25,16 @@ const EnemyPokemonName = styled.p`
 const EnemyPokemonLevel = styled.p`
 	position: absolute;
 	top: -11px;
-	right: 21px;
+	right: 29px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 20px;
+`;
+
+const EnemyPokemonLevelTitel = styled.p`
+	position: absolute;
+	top: -11px;
+	right: 50px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
@@ -81,18 +86,17 @@ const EnemyPokemonSlashHealth = styled.p`
 
 export default function EnemyState() {
 	return (
-		<EnemyStateBox>
-			<EnemyStateWrapper>
-				<EnemyPokemonName>Mewtwo</EnemyPokemonName>
-				<EnemyPokemonLevel>75</EnemyPokemonLevel>
-				<EnemyPokemonHealthBar
-					class="enemy--pokemon-health-bar"
-					role="progressbar"
-					aria-valuenow="80"
-					aria-valuemin="0"
-					aria-valuemax="80"
-				></EnemyPokemonHealthBar>
-			</EnemyStateWrapper>
-		</EnemyStateBox>
+		<EnemyStateSection>
+			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
+			<EnemyPokemonLevelTitel>Lv.</EnemyPokemonLevelTitel>
+			<EnemyPokemonLevel>75</EnemyPokemonLevel>
+			<EnemyPokemonHealthBar
+				class="enemy--pokemon-health-bar"
+				role="progressbar"
+				aria-valuenow="80"
+				aria-valuemin="0"
+				aria-valuemax="80"
+			/>
+		</EnemyStateSection>
 	);
 }

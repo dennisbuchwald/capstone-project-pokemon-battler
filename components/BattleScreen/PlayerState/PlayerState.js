@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
-const StateBox = styled.div`
+const PlayerStateSection = styled.section`
 	position: absolute;
 	top: 165px;
 	right: 0px;
-	background-image: url("/sprites/statusbar-player2.png");
+	background-image: url("/sprites/statusbar-player3.png");
 	width: 200px;
 	height: 68px;
 	background-repeat: no-repeat;
 	background-size: contain;
 	z-index: 1;
-`;
-
-const StateWrapper = styled.div`
-	position: relative;
 `;
 
 const PokemonName = styled.p`
@@ -30,6 +26,15 @@ const PokemonLevel = styled.p`
 	position: absolute;
 	top: -12px;
 	right: 29px;
+	z-index: 10;
+	text-shadow: 1px 1px 0px #b7b7b7;
+	font-size: 20px;
+`;
+
+const PokemonLevelTitel = styled.p`
+	position: absolute;
+	top: -12px;
+	right: 50px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
@@ -76,21 +81,20 @@ const PokemonMaxHealth = styled.p`
 
 export default function PlayerState() {
 	return (
-		<StateBox>
-			<StateWrapper>
-				<PokemonName>Glurak</PokemonName>
-				<PokemonLevel>52</PokemonLevel>
-				<PokemonHealth>120</PokemonHealth>
-				<PokemonHealthBar
-					class="player--pokemon-health-bar"
-					role="progressbar"
-					aria-valuenow="80"
-					aria-valuemin="0"
-					aria-valuemax="80"
-				></PokemonHealthBar>
-				<PokemonSlashHealth>/</PokemonSlashHealth>
-				<PokemonMaxHealth>120</PokemonMaxHealth>
-			</StateWrapper>
-		</StateBox>
+		<PlayerStateSection>
+			<PokemonName>Glurak</PokemonName>
+			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
+			<PokemonLevel>69</PokemonLevel>
+			<PokemonHealth>120</PokemonHealth>
+			<PokemonHealthBar
+				class="player--pokemon-health-bar"
+				role="progressbar"
+				aria-valuenow="80"
+				aria-valuemin="0"
+				aria-valuemax="80"
+			/>
+			<PokemonSlashHealth>/</PokemonSlashHealth>
+			<PokemonMaxHealth>120</PokemonMaxHealth>
+		</PlayerStateSection>
 	);
 }
