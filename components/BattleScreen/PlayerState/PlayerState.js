@@ -49,10 +49,10 @@ const PokemonHealth = styled.p`
 	font-size: 15px;
 `;
 
-const PokemonHealthBar = styled.p`
+const PokemonHealthBar = styled.div`
 	position: absolute;
 	height: 6px;
-	width: 89px;
+	width: ${(props) => `${props.width}px`};
 	left: 88px;
 	top: 21px;
 	z-index: 1;
