@@ -15,11 +15,11 @@
 	position: relative;
 }
 
-.enemy--stats-wrapper:after {
+/* .enemy--stats-wrapper:after {
 	content: "";
 	clear: both;
 	display: table;
-}
+} */
 
 .enemy--stats-img {
 	position: absolute;
@@ -31,7 +31,7 @@
 .enemy--pokemon-health {
 	position: absolute;
 	top: 34px;
-	right: 17px;
+	right: 20px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-family: "Press Start 2P", cursive;
@@ -57,7 +57,7 @@
 .enemy--pokemon-max-health {
 	position: absolute;
 	top: 34px;
-	right: 53px;
+	right: 60px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-family: "Press Start 2P", cursive;
@@ -67,7 +67,7 @@
 .enemy--pokemon-slash-health {
 	position: absolute;
 	top: 34px;
-	right: 46px;
+	right: 50px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-family: "Press Start 2P", cursive;
@@ -76,20 +76,21 @@
 
 .enemy--pokemon-name {
 	position: absolute;
-	top: 2px;
+	top: 0px;
 	left: 25px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-family: "Press Start 2P", cursive;
-	font-size: 10px;
+	font-size: 12px;
+	text-transform: uppercase;
 }
 
 .enemy--pokemon-level {
 	position: absolute;
-	top: 1px;
+	top: 0px;
 	right: 24px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-family: "Press Start 2P", cursive;
-	font-size: 10px;
+	font-size: 12px;
 }

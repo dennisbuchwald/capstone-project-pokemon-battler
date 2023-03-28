@@ -1,6 +1,6 @@
 .enemy-pokemon {
-  position: absolute;
-  right: 40px;
-  top: 20px;
-  transform: scale(0.8);
+	position: absolute;
+	right: 35px;
+	top: 50px;
+	transform: scale(1);
 }

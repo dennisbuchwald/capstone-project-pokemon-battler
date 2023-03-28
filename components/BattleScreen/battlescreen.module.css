@@ -1,6 +1,7 @@
 .screen {
 	background-image: url("/background/background-middle.png");
-	background-size: contain;
+	background-size: 426px 250px; /* Breite und Höhe des Hintergrunds */
+
 	display: block;
 	font-size: 10px;
 	height: 325px;
@@ -8,5 +9,5 @@
 	left: 282px;
 	top: 112px;
 	position: relative;
-	border: 3px solid red;
+	/* border: 3px solid red; */
 }

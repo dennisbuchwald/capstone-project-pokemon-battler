@@ -1,5 +1,6 @@
 .player-pokemon {
 	position: absolute;
-	bottom: 110px;
-	transform: scale(0.8);
+	bottom: 70px;
+	left: 10px;
+	transform: scale(1.1);
 }
