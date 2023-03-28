@@ -4,6 +4,7 @@ import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
+import Menu from "./Menu/Menu";
 
 function BattleScreen() {
 	return (
@@ -12,6 +13,7 @@ function BattleScreen() {
 			<PlayerPokemon />
 			<EnemyPokemon />
 			<EnemyState />
+			<Menu />
 		</div>
 	);
 }
