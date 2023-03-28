@@ -8,7 +8,7 @@ import Menu from "./Menu/Menu";
 
 function BattleScreen() {
 	return (
-		<div className={[styles.screen]}>
+		<div className={styles.screen}>
 			<PlayerState />
 			<PlayerPokemon />
 			<EnemyPokemon />
