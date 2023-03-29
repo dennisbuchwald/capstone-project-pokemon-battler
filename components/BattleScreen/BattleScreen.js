@@ -5,7 +5,7 @@ import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 
-const ScreenContainer = styled.div`
+const ScreenContainer = styled.section`
 	background-image: url("/background/background-middle.png");
 	background-size: 426px 250px;
 	display: block;
