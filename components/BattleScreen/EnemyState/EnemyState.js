@@ -91,11 +91,11 @@ export default function EnemyState() {
 			<EnemyPokemonLevelTitel>Lv.</EnemyPokemonLevelTitel>
 			<EnemyPokemonLevel>75</EnemyPokemonLevel>
 			<EnemyPokemonHealthBar
-				class="enemy--pokemon-health-bar"
-				role="progressbar"
-				aria-valuenow="80"
-				aria-valuemin="0"
-				aria-valuemax="80"
+			// class="enemy--pokemon-health-bar"
+			// role="progressbar"
+			// aria-valuenow="80"
+			// aria-valuemin="0"
+			// aria-valuemax="80"
 			/>
 		</EnemyStateSection>
 	);

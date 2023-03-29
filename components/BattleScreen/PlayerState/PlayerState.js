@@ -52,9 +52,9 @@ const PokemonHealth = styled.p`
 const PokemonHealthBar = styled.div`
 	position: absolute;
 	height: 6px;
-	width: ${(props) => `${props.width}px`};
+	width: 89px;
 	left: 88px;
-	top: 21px;
+	top: 31px;
 	z-index: 1;
 	background-color: #25b527;
 	transition: all 0.4s linear;
@@ -87,11 +87,11 @@ export default function PlayerState() {
 			<PokemonLevel>69</PokemonLevel>
 			<PokemonHealth>120</PokemonHealth>
 			<PokemonHealthBar
-				class="player--pokemon-health-bar"
-				role="progressbar"
-				aria-valuenow="80"
-				aria-valuemin="0"
-				aria-valuemax="80"
+			// class="player--pokemon-health-bar"
+			// role="progressbar"
+			// aria-valuenow="80"
+			// aria-valuemin="0"
+			// aria-valuemax="80"
 			/>
 			<PokemonSlashHealth>/</PokemonSlashHealth>
 			<PokemonMaxHealth>120</PokemonMaxHealth>
