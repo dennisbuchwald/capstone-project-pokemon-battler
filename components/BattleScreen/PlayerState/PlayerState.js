@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const PlayerStateSection = styled.section`
@@ -14,42 +15,50 @@ const PlayerStateSection = styled.section`
 
 const PokemonName = styled.p`
 	position: absolute;
-	top: -12px;
+	top: 5px;
 	left: 30px;
-	z-index: 10;
+	z-index: 1;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
 	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
 `;
 
-const PokemonLevel = styled.p`
+const PokemonLevel = styled.span`
 	position: absolute;
-	top: -12px;
+	top: 5px;
 	right: 29px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
+	margin: 0;
+	padding: 0;
 `;
 
-const PokemonLevelTitel = styled.p`
+const PokemonLevelTitel = styled.span`
 	position: absolute;
-	top: -12px;
+	top: 5px;
 	right: 50px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
+	margin: 0;
+	padding: 0;
 `;
 
-const PokemonHealth = styled.p`
+const PokemonHealth = styled.span`
 	position: absolute;
-	top: 27px;
+	top: 40px;
 	right: 55px;
 	z-index: 11;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 15px;
+	margin: 0;
+	padding: 0;
 `;
 
-const PokemonHealthBar = styled.div`
+const PokemonHealthBarContainer = styled.progress`
 	position: absolute;
 	height: 6px;
 	width: 89px;
@@ -59,42 +68,63 @@ const PokemonHealthBar = styled.div`
 	background-color: #25b527;
 	transition: all 0.4s linear;
 	border-radius: 2.5px;
+	appearance: none;
 `;
 
-const PokemonSlashHealth = styled.p`
+const PokemonHealthBar = styled.span`
 	position: absolute;
-	top: 27px;
+	height: 6px;
+	width: ${(props) => props.percent}%;
+	left: 0;
+	top: 0;
+	background-color: #25b527;
+	transition: all 0.4s linear;
+	border-radius: 2.5px;
+`;
+
+const PokemonSlashHealth = styled.span`
+	position: absolute;
+	top: 40px;
 	right: 45px;
 	z-index: 1;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 15px;
+	margin: 0;
+	padding: 0;
 `;
 
-const PokemonMaxHealth = styled.p`
+const PokemonMaxHealth = styled.span`
 	position: absolute;
-	top: 27px;
+	top: 40px;
 	right: 25px;
 	z-index: 1;
-	text-shadow: 1px 1px 0px #b7b7b7;
+	text-shadow: 1px b7b7b7;
 	font-size: 15px;
+	margin: 0;
+	padding: 0;
 `;
 
 export default function PlayerState() {
+	const [currentHealth, setCurrentHealth] = useState(120);
+	const maxHealth = 120;
+	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
+
+	// Funktion für das updaten der Healthbar
+	const handleHealthUpdate = (newHealth) => {
+		setCurrentHealth(newHealth);
+	};
+
 	return (
 		<PlayerStateSection>
 			<PokemonName>Glurak</PokemonName>
 			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
 			<PokemonLevel>69</PokemonLevel>
-			<PokemonHealth>120</PokemonHealth>
-			<PokemonHealthBar
-			// class="player--pokemon-health-bar"
-			// role="progressbar"
-			// aria-valuenow="80"
-			// aria-valuemin="0"
-			// aria-valuemax="80"
-			/>
+			<PokemonHealth>{currentHealth}</PokemonHealth>
+			<PokemonHealthBarContainer value={healthPercent} max="100">
+				<PokemonHealthBar percent={healthPercent} />
+			</PokemonHealthBarContainer>
 			<PokemonSlashHealth>/</PokemonSlashHealth>
-			<PokemonMaxHealth>120</PokemonMaxHealth>
+			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
 		</PlayerStateSection>
 	);
 }

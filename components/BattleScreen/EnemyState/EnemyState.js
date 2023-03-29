@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 const EnemyStateSection = styled.section`
 	position: absolute;
@@ -14,47 +15,44 @@ const EnemyStateSection = styled.section`
 
 const EnemyPokemonName = styled.p`
 	position: absolute;
-	top: -11px;
+	top: 5px;
 	left: 15px;
-	z-index: 10;
+	z-index: 1;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
 	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
 `;
 
-const EnemyPokemonLevel = styled.p`
+const EnemyPokemonLevel = styled.span`
 	position: absolute;
-	top: -11px;
+	top: 5px;
 	right: 29px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
+	margin: 0;
+	padding: 0;
 `;
 
-const EnemyPokemonLevelTitel = styled.p`
+const EnemyPokemonLevelTitle = styled.span`
 	position: absolute;
-	top: -11px;
+	top: 5px;
 	right: 50px;
 	z-index: 10;
 	text-shadow: 1px 1px 0px #b7b7b7;
 	font-size: 20px;
+	margin: 0;
+	padding: 0;
 `;
 
-const EnemyPokemonHealth = styled.p`
-	position: absolute;
-	top: 27px;
-	right: 25px;
-	z-index: 10;
-	text-shadow: 1px 1px 0px #b7b7b7;
-	font-size: 15px;
-`;
-
-const EnemyPokemonHealthBar = styled.p`
+const EnemyPokemonHealthBarContainer = styled.progress`
 	position: absolute;
 	height: 6px;
 	width: 96px;
 	left: 78px;
-	top: 24px;
+	top: 34px;
 	z-index: 10;
 	background: rgb(42, 106, 37);
 	background: linear-gradient(
@@ -64,39 +62,38 @@ const EnemyPokemonHealthBar = styled.p`
 	);
 	transition: all 0.4s linear;
 	border-radius: 2.5px;
+	appearance: none;
 `;
 
-const EnemyPokemonMaxHealth = styled.p`
+const EnemyPokemonHealthBar = styled.span`
 	position: absolute;
-	top: 27px;
-	right: 55px;
-	z-index: 10;
-	text-shadow: 1px 1px 0px #b7b7b7;
-	font-size: 15px;
-`;
-
-const EnemyPokemonSlashHealth = styled.p`
-	position: absolute;
-	top: 27px;
-	right: 45px;
-	z-index: 10;
-	text-shadow: 1px 1px 0px #b7b7b7;
-	font-size: 15px;
+	height: 6px;
+	width: ${(props) => props.percent}%;
+	left: 0;
+	top: 0;
+	background-color: #25b527;
+	transition: all 0.4s linear;
+	border-radius: 2.5px;
 `;
 
 export default function EnemyState() {
+	const [currentHealth, setCurrentHealth] = useState(120);
+	const maxHealth = 120;
+	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
+
+	// Funktion für das updaten der Healthbar
+	const handleHealthUpdate = (newHealth) => {
+		setCurrentHealth(newHealth);
+	};
+
 	return (
 		<EnemyStateSection>
 			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
-			<EnemyPokemonLevelTitel>Lv.</EnemyPokemonLevelTitel>
+			<EnemyPokemonLevelTitle>Lv.</EnemyPokemonLevelTitle>
 			<EnemyPokemonLevel>75</EnemyPokemonLevel>
-			<EnemyPokemonHealthBar
-			// class="enemy--pokemon-health-bar"
-			// role="progressbar"
-			// aria-valuenow="80"
-			// aria-valuemin="0"
-			// aria-valuemax="80"
-			/>
+			<EnemyPokemonHealthBarContainer value={healthPercent} max="100">
+				<EnemyPokemonHealthBar percent={healthPercent} />
+			</EnemyPokemonHealthBarContainer>
 		</EnemyStateSection>
 	);
 }
