@@ -5,15 +5,15 @@ import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 
-const ScreenContainer = styled.section`
+const ScreenContainer = styled.div`
 	background-image: url("/background/background-middle.png");
 	background-size: 426px 250px;
 	display: block;
 	font-size: 10px;
 	height: 325px;
 	width: 426px;
-	left: 282px;
-	top: 112px;
+	left: 0;
+	top: 100px;
 	position: relative;
 `;
 

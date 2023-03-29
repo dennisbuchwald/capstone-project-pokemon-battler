@@ -81,7 +81,6 @@ export default function EnemyState() {
 	const maxHealth = 120;
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
 
-	// Funktion für das updaten der Healthbar
 	const handleHealthUpdate = (newHealth) => {
 		setCurrentHealth(newHealth);
 	};
