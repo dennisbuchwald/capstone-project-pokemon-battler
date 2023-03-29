@@ -24,7 +24,7 @@ export default createGlobalStyle`
   
   html,
   body {
-    padding: 10;
+    padding: 0;
     margin: 0;
     font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
   }
