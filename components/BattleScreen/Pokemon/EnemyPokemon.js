@@ -1,20 +1,29 @@
 import styled from "styled-components";
+import Image from "next/image";
 
-const EnemyPokemonContainer = styled.div`
+const EnemyPokemonContainer = styled.figure`
 	position: absolute;
-	right: 35px;
-	top: 50px;
-	transform: scale(1);
+	right: -10px;
+	top: 20px;
+	transform: scale(0.6);
+	margin: 0;
 `;
 
-const EnemyPokemonImage = styled.img`
-	z-index: 1;
+const EnemyPokemonCaption = styled.figcaption`
+	font-size: 20px;
 `;
 
 export default function EnemyPokemon() {
 	return (
 		<EnemyPokemonContainer>
-			<EnemyPokemonImage src="/sprites/opponent/hard/mewtwo.gif" alt="mewtwo" />
+			<Image
+				src="/sprites/opponent/hard/mewtwo.gif"
+				alt="mewtwo"
+				layout="intrinsic"
+				width={240}
+				height={240}
+			/>
+			{/* <EnemyPokemonCaption>Mewtwo</EnemyPokemonCaption> */}
 		</EnemyPokemonContainer>
 	);
 }

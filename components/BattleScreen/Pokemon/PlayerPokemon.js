@@ -1,23 +1,29 @@
 import styled from "styled-components";
+import Image from "next/image";
 
-const PlayerPokemonContainer = styled.div`
+const PlayerPokemonContainer = styled.figure`
 	position: absolute;
-	bottom: 70px;
-	left: 10px;
-	transform: scale(1.1);
+	bottom: 10px;
+	left: -20px;
+	transform: scale(0.8);
+	margin: 0;
 `;
 
-const PlayerPokemonImage = styled.img`
-	z-index: 1;
+const PlayerPokemonCaption = styled.figcaption`
+	font-size: 14px;
 `;
 
 export default function PlayerPokemon() {
 	return (
 		<PlayerPokemonContainer>
-			<PlayerPokemonImage
+			<Image
 				src="/sprites/starter/charizard-back.gif"
 				alt="glurak"
+				layout="intrinsic"
+				width={240}
+				height={240}
 			/>
+			<PlayerPokemonCaption>Glurak</PlayerPokemonCaption>
 		</PlayerPokemonContainer>
 	);
 }
