@@ -19,6 +19,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: "PokemonFireRed", system-ui;
+    // background-color: #3a464d;
   }
   
   html,
