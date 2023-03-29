@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
-const MenuContainer = styled.div`
+const MenuContainer = styled.nav`
 	position: absolute;
 	width: 100%;
 	height: 80px;
 	z-index: 2;
 	bottom: 0;
 	background-image: url("/sprites/menu-box.png");
-	background-size: cover;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	color: white;
+	border: solid green;
 `;
 
-const MenuOverviewBox = styled.div`
+const MenuOverviewBox = styled.section`
 	display: flex;
 	justify-content: space-between;
 	flex-basis: 50%;
@@ -23,39 +24,52 @@ const MenuOverviewBox = styled.div`
 	padding: 10px 25px;
 `;
 
-const MenuOverviewBoxLeft = styled.div`
+const MenuOverviewBoxLeft = styled.article`
 	width: 50%;
 	line-height: 16px;
 	position: relative;
-	left: -10px;
+	left: 0px;
 	top: 0px;
 `;
 
-const MenuOverviewBoxRight = styled.div`
+const MenuOverviewBoxRight = styled.article`
 	width: 50%;
 	right: 0px;
 	position: relative;
 	top: 0px;
-	left: 15px;
+	left: 0px;
 `;
 
-const MenuButton = styled.div`
+const MenuButton = styled.button`
 	position: absolute;
-	width: 101px;
-	height: 30px;
+	width: 80px;
+	height: 20px;
 	border-radius: 13px;
 	color: black;
 	text-align: left;
-	opacity: 0.8;
+	background-color: transparent;
 	cursor: pointer;
-	text-transform: uppercase;
+	left: 10px;
+	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
+	text-align: left;
+	border: none;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+		color: black;
+	}
+
+	&:active {
+		position: relative;
+		top: 6px;
+	}
 `;
 
 const MenuButtonFight = styled(MenuButton)`
 	color: black;
-	left: 0px;
-	top: 5px;
-	text-transform: uppercase;
+	left: 20px;
+	top: 6px;
 `;
 
 const MenuButtonBag = styled(MenuButton)`
@@ -67,34 +81,31 @@ const MenuButtonBag = styled(MenuButton)`
 
 const MenuButtonPokemon = styled(MenuButton)`
 	color: black;
-	left: 0px;
-	top: 20px;
-	text-transform: uppercase;
+	left: 20px;
+	top: 30px;
 `;
 
 const MenuButtonRun = styled(MenuButton)`
 	color: black;
 	left: 100px;
-	top: 20px;
+	top: 30px;
 	text-transform: uppercase;
 `;
 
 export default function Menu() {
 	return (
-		<MenuContainer className="menu">
-			<div className="menu--overview-box">
-				<MenuOverviewBoxLeft className="menu--overview-box-left">
-					{/* <p>Klicke auf Kampf um anzugreifen</p> */}
+		<MenuContainer>
+			<MenuOverviewBox>
+				<MenuOverviewBoxLeft>
+					<p>Klicke auf Kampf um anzugreifen</p>
 				</MenuOverviewBoxLeft>
-				{/* <MenuOverviewBoxRight className="menu--overview-box-right">
-					<MenuButtonFight className="btn btn--fight">Kampf</MenuButtonFight>
-					<MenuButtonBag className="btn btn--bag">Beutel</MenuButtonBag>
-					<MenuButtonPokemon className="btn btn--pokemon">
-						POKéMON
-					</MenuButtonPokemon>
-					<MenuButtonRun className="btn btn--run">Flucht</MenuButtonRun>
-				</MenuOverviewBoxRight> */}
-			</div>
+				<MenuOverviewBoxRight>
+					<MenuButtonFight>Kampf</MenuButtonFight>
+					<MenuButtonBag>Beutel</MenuButtonBag>
+					<MenuButtonPokemon>POKéMON</MenuButtonPokemon>
+					<MenuButtonRun>Flucht</MenuButtonRun>
+				</MenuOverviewBoxRight>
+			</MenuOverviewBox>
 		</MenuContainer>
 	);
 }
