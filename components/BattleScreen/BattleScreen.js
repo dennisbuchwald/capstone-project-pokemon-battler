@@ -1,11 +1,13 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
+import VictoryMessage from "./VictoryMessage/VictoryMessage";
 
-const ScreenContainer = styled.div`
+const ScreenContainer = styled.main`
 	background-image: url("/background/background-middle.png");
 	background-size: 426px 250px;
 	display: block;
@@ -22,13 +24,30 @@ const ScreenContainer = styled.div`
 `;
 
 export default function BattleScreen() {
+	const [enemyHealth, setEnemyHealth] = useState(120);
+	const [victory, setVictory] = useState(false);
+
+	const handleAttack = () => {
+		if (enemyHealth - 20 <= 0) {
+			setVictory(true);
+		} else {
+			setEnemyHealth(enemyHealth - 20);
+		}
+	};
+
 	return (
-		<ScreenContainer>
-			<PlayerState />
-			<PlayerPokemon />
-			<EnemyPokemon />
-			<EnemyState />
-			<Menu />
-		</ScreenContainer>
+		<>
+			{victory ? (
+				<VictoryMessage />
+			) : (
+				<ScreenContainer>
+					<PlayerState />
+					<PlayerPokemon />
+					<EnemyPokemon />
+					<EnemyState currentHealth={enemyHealth} />
+					<Menu onAttack={handleAttack} />
+				</ScreenContainer>
+			)}
+		</>
 	);
 }

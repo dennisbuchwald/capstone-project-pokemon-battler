@@ -60,7 +60,6 @@ const EnemyPokemonHealthBarContainer = styled.progress`
 		rgba(42, 106, 37, 1) 0%,
 		rgba(37, 183, 40, 1) 39%
 	);
-	transition: all 0.4s linear;
 	border-radius: 2.5px;
 	appearance: none;
 `;
@@ -69,21 +68,14 @@ const EnemyPokemonHealthBar = styled.span`
 	position: absolute;
 	height: 6px;
 	width: ${(props) => props.percent}%;
-	left: 0;
 	top: 0;
 	background-color: #25b527;
-	transition: all 0.4s linear;
 	border-radius: 2.5px;
 `;
 
-export default function EnemyState() {
-	const [currentHealth, setCurrentHealth] = useState(120);
+export default function EnemyState({ currentHealth }) {
 	const maxHealth = 120;
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
-
-	const handleHealthUpdate = (newHealth) => {
-		setCurrentHealth(newHealth);
-	};
 
 	return (
 		<EnemyStateSection>

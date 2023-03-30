@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const MenuContainer = styled.nav`
 	position: absolute;
@@ -92,7 +93,11 @@ const MenuButtonRun = styled(MenuButton)`
 	text-transform: uppercase;
 `;
 
-export default function Menu() {
+export default function Menu({ onAttack }) {
+	const handleAttackClick = () => {
+		onAttack();
+	};
+
 	return (
 		<MenuContainer>
 			<MenuOverviewBox>
@@ -100,7 +105,7 @@ export default function Menu() {
 					<p>Klicke auf Kampf um anzugreifen</p>
 				</MenuOverviewBoxLeft>
 				<MenuOverviewBoxRight>
-					<MenuButtonFight>Kampf</MenuButtonFight>
+					<MenuButtonFight onClick={handleAttackClick}>Kampf</MenuButtonFight>
 					<MenuButtonBag>Beutel</MenuButtonBag>
 					<MenuButtonPokemon>POKéMON</MenuButtonPokemon>
 					<MenuButtonRun>Flucht</MenuButtonRun>
