@@ -72,6 +72,7 @@ const EnemyPokemonHealthBar = styled.span`
 	top: 0;
 	background-color: #25b527;
 	border-radius: 2.5px;
+	transition: all 0.4s linear;
 `;
 
 export default function EnemyState({ currentHealth }) {

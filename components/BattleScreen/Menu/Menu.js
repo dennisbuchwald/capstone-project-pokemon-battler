@@ -30,7 +30,8 @@ const MenuOverviewBoxLeft = styled.article`
 	line-height: 16px;
 	position: relative;
 	left: 0px;
-	top: 0px;
+	top: -10px;
+	font-size: 20px;
 `;
 
 const MenuOverviewBoxRight = styled.article`
@@ -54,6 +55,10 @@ const MenuButton = styled.button`
 	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
 	text-align: left;
 	border: none;
+	font-size: 20px;
+	line-height: 14px; /* hier 14px statt 20px, weil die Schriftgröße 20px ist und der Button eine Höhe von 20px hat */
+	display: flex;
+
 	transition: all 0.2s ease-in-out;
 
 	&:hover {
