@@ -106,9 +106,6 @@ export default function Menu({ onAttack }) {
 				</MenuOverviewBoxLeft>
 				<MenuOverviewBoxRight>
 					<MenuButtonFight onClick={handleAttackClick}>Kampf</MenuButtonFight>
-					<MenuButtonBag>Beutel</MenuButtonBag>
-					<MenuButtonPokemon>POKéMON</MenuButtonPokemon>
-					<MenuButtonRun>Flucht</MenuButtonRun>
 				</MenuOverviewBoxRight>
 			</MenuOverviewBox>
 		</MenuContainer>
