@@ -60,6 +60,7 @@ const EnemyPokemonHealthBarContainer = styled.progress`
 		rgba(42, 106, 37, 1) 0%,
 		rgba(37, 183, 40, 1) 39%
 	);
+	transition: all 0.4s linear;
 	border-radius: 2.5px;
 	appearance: none;
 `;
