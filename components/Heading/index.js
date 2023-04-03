@@ -1,6 +1,30 @@
 import styled from "styled-components";
+import Image from "next/image";
 
-const Heading = styled.h1`
+export default function Heading() {
+	return (
+		<Wrapper>
+			<HeadingTitel>My Capstone Project:</HeadingTitel>
+			<StyledImage
+				src="/pokemon-battler-logo.png"
+				alt="mewtwo"
+				layout="intrinsic"
+				width={240}
+				height={240}
+			/>
+		</Wrapper>
+	);
+}
+
+const Wrapper = styled.header`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+`;
+
+const HeadingTitel = styled.h1`
 	text-align: center;
 `;
-export default Heading;
+
+const StyledImage = styled(Image)``;
