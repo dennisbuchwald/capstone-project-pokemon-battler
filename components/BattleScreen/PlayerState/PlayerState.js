@@ -1,5 +1,21 @@
-import React, { useState } from "react";
 import styled from "styled-components";
+
+export default function PlayerState({ currentHealth }) {
+	const maxHealth = 120;
+	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
+
+	return (
+		<PlayerStateSection>
+			<PokemonName>Glurak</PokemonName>
+			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
+			<PokemonLevel>69</PokemonLevel>
+			<PokemonHealth>{currentHealth}</PokemonHealth>
+			<PokemonHealthBar value={healthPercent} max="100"></PokemonHealthBar>
+			<PokemonSlashHealth>/</PokemonSlashHealth>
+			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
+		</PlayerStateSection>
+	);
+}
 
 const PlayerStateSection = styled.section`
 	position: absolute;
@@ -58,30 +74,6 @@ const PokemonHealth = styled.span`
 	padding: 0;
 `;
 
-const PokemonHealthBarContainer = styled.progress`
-	position: absolute;
-	height: 6px;
-	width: 89px;
-	left: 88px;
-	top: 31px;
-	z-index: 1;
-	background-color: #25b527;
-	transition: all 0.4s linear;
-	border-radius: 2.5px;
-	appearance: none;
-`;
-
-const PokemonHealthBar = styled.span`
-	position: absolute;
-	height: 6px;
-	width: ${(props) => props.percent}%;
-	left: 0;
-	top: 0;
-	background-color: #25b527;
-	transition: all 0.4s linear;
-	border-radius: 2.5px;
-`;
-
 const PokemonSlashHealth = styled.span`
 	position: absolute;
 	top: 40px;
@@ -104,26 +96,24 @@ const PokemonMaxHealth = styled.span`
 	padding: 0;
 `;
 
-export default function PlayerState() {
-	const [currentHealth, setCurrentHealth] = useState(120);
-	const maxHealth = 120;
-	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
-
-	const handleHealthUpdate = (newHealth) => {
-		setCurrentHealth(newHealth);
-	};
-
-	return (
-		<PlayerStateSection>
-			<PokemonName>Glurak</PokemonName>
-			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
-			<PokemonLevel>69</PokemonLevel>
-			<PokemonHealth>{currentHealth}</PokemonHealth>
-			<PokemonHealthBarContainer value={healthPercent} max="100">
-				<PokemonHealthBar percent={healthPercent} />
-			</PokemonHealthBarContainer>
-			<PokemonSlashHealth>/</PokemonSlashHealth>
-			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
-		</PlayerStateSection>
-	);
-}
+const PokemonHealthBar = styled.progress`
+	position: absolute;
+	height: 6px;
+	width: 89px;
+	left: 88px;
+	top: 31px;
+	z-index: 1;
+	appearance: none;
+	&::-webkit-progress-bar {
+		border-radius: 2.5px;
+	}
+	&::-webkit-progress-value {
+		background: linear-gradient(
+			180deg,
+			rgba(42, 106, 37, 1) 0%,
+			rgba(37, 183, 40, 1) 39%
+		);
+		border-radius: 2.5px;
+		transition: all 0.1s linear;
+	}
+`;

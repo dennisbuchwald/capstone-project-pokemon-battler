@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export default function VictoryMessage() {
+	return (
+		<VictoryMessageContainer>
+			<VictoryTitle>Du hast gewonnen!</VictoryTitle>
+		</VictoryMessageContainer>
+	);
+}
+
 const VictoryMessageContainer = styled.section`
 	background-color: #fff;
 	color: #000;
@@ -14,11 +22,3 @@ const VictoryMessageContainer = styled.section`
 const VictoryTitle = styled.h1`
 	color: red;
 `;
-
-export default function VictoryMessage() {
-	return (
-		<VictoryMessageContainer>
-			<VictoryTitle>Du hast gewonnen!</VictoryTitle>
-		</VictoryMessageContainer>
-	);
-}
