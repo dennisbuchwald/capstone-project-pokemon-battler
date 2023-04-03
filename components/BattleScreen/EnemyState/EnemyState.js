@@ -47,52 +47,38 @@ const EnemyPokemonLevelTitle = styled.span`
 	padding: 0;
 `;
 
-const EnemyPokemonHealthBarContainer = styled.progress`
+const EnemyPokemonHealthBar = styled.progress`
 	position: absolute;
 	height: 6px;
 	width: 96px;
 	left: 78px;
 	top: 34px;
-	z-index: 10;
-	background: rgb(42, 106, 37);
-	background: linear-gradient(
-		180deg,
-		rgba(42, 106, 37, 1) 0%,
-		rgba(37, 183, 40, 1) 39%
-	);
-	transition: all 0.4s linear;
-	border-radius: 2.5px;
+	z-index: 1;
 	appearance: none;
+	&::-webkit-progress-bar {
+		border-radius: 2.5px;
+	}
+	&::-webkit-progress-value {
+		background: linear-gradient(
+			180deg,
+			rgba(42, 106, 37, 1) 0%,
+			rgba(37, 183, 40, 1) 39%
+		);
+		border-radius: 2.5px;
+		transition: all 0.1s linear;
+	}
 `;
 
-const EnemyPokemonHealthBar = styled.span`
-	position: absolute;
-	height: 6px;
-	width: ${(props) => props.percent}%;
-	left: 0;
-	top: 0;
-	background-color: #25b527;
-	transition: all 0.4s linear;
-	border-radius: 2.5px;
-`;
-
-export default function EnemyState() {
-	const [currentHealth, setCurrentHealth] = useState(120);
+export default function EnemyState({ currentHealth }) {
 	const maxHealth = 120;
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
-
-	const handleHealthUpdate = (newHealth) => {
-		setCurrentHealth(newHealth);
-	};
 
 	return (
 		<EnemyStateSection>
 			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
 			<EnemyPokemonLevelTitle>Lv.</EnemyPokemonLevelTitle>
 			<EnemyPokemonLevel>75</EnemyPokemonLevel>
-			<EnemyPokemonHealthBarContainer value={healthPercent} max="100">
-				<EnemyPokemonHealthBar percent={healthPercent} />
-			</EnemyPokemonHealthBarContainer>
+			<EnemyPokemonHealthBar value={healthPercent} max="100" />
 		</EnemyStateSection>
 	);
 }
