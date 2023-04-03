@@ -1,27 +1,121 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function Menu({ onAttack, disabled }) {
+	const [showAttackMenu, setShowAttackMenu] = useState(false);
+
 	const handleAttackClick = () => {
 		if (!disabled) {
-			onAttack();
+			setShowAttackMenu(true);
 		}
+	};
+
+	const handleAttackSelection = (damage) => {
+		setShowAttackMenu(false);
+		onAttack(damage);
+	};
+
+	const handleBackButtonClick = () => {
+		setShowAttackMenu(false);
 	};
 
 	return (
 		<MenuContainer>
-			<MenuOverviewBox>
-				<MenuOverviewBoxLeft>
-					<p>Klicke auf Kampf um anzugreifen</p>
-				</MenuOverviewBoxLeft>
-				<MenuOverviewBoxRight>
-					<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
-						Kampf
-					</MenuButtonFight>
-				</MenuOverviewBoxRight>
-			</MenuOverviewBox>
+			{showAttackMenu ? (
+				<AttackMenu
+					onAttackSelection={handleAttackSelection}
+					onBackButtonClick={handleBackButtonClick}
+				/>
+			) : (
+				<MenuOverviewBox>
+					<MenuOverviewBoxLeft>
+						<p>Klicke auf Kampf um anzugreifen</p>
+					</MenuOverviewBoxLeft>
+					<MenuOverviewBoxRight>
+						<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
+							Kampf
+						</MenuButtonFight>
+					</MenuOverviewBoxRight>
+				</MenuOverviewBox>
+			)}
 		</MenuContainer>
 	);
 }
+
+const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
+	const attacks = [
+		{ name: "Flammenwurf", damage: 60 },
+		{ name: "Feuersturm", damage: 40 },
+		{ name: "Drachenklaue", damage: 30 },
+	];
+
+	const handleAttackClick = (damage) => {
+		onAttackSelection(damage);
+	};
+
+	return (
+		<AttackMenuContainer>
+			<AttackButton1 onClick={() => handleAttackClick(attacks[0].damage)}>
+				{attacks[0].name}
+			</AttackButton1>
+			<AttackButton2 onClick={() => handleAttackClick(attacks[1].damage)}>
+				{attacks[1].name}
+			</AttackButton2>
+			<AttackButton3 onClick={() => handleAttackClick(attacks[2].damage)}>
+				{attacks[2].name}
+			</AttackButton3>
+			<AttackButtonBack onClick={onBackButtonClick}>Zurueck</AttackButtonBack>
+		</AttackMenuContainer>
+	);
+};
+
+const AttackMenuContainer = styled.section`
+	position: absolute;
+	width: 60%;
+	height: 100%;
+	z-index: 2;
+	bottom: 0;
+`;
+
+const AttackButton = styled.button`
+	position: absolute;
+
+	background-color: transparent;
+	border: none;
+	border: solid yellow;
+	background-color: transparent;
+	border: none;
+	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
+	font-size: 20px;
+	cursor: pointer;
+`;
+
+const AttackButton1 = styled(AttackButton)`
+	left: 8%;
+	top: 15%;
+	color: white;
+`;
+
+const AttackButton2 = styled(AttackButton)`
+	top: 15%;
+	left: 45%;
+	color: white;
+`;
+
+const AttackButton3 = styled(AttackButton)`
+	left: 8%;
+	top: 45%;
+	color: white;
+`;
+
+const AttackButtonBack = styled(AttackButton)`
+	position: absolute;
+	top: 45%;
+	left: 45%;
+	color: white;
+	background-color: transparent;
+	border: none;
+`;
 
 const MenuContainer = styled.nav`
 	position: absolute;
@@ -62,6 +156,7 @@ const MenuOverviewBoxRight = styled.article`
 	position: relative;
 	top: 0px;
 	left: 0px;
+	border: solid green;
 `;
 
 const MenuButton = styled.button`

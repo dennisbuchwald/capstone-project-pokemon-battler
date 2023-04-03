@@ -1,21 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-const EnemyPokemonContainer = styled.figure`
-	position: absolute;
-	right: -10px;
-	top: 20px;
-	transform: scale(0.6);
-	margin: 0;
-`;
-
-const EnemyPokemonCaption = styled.figcaption`
-	font-size: 20px;
-`;
-
-export default function EnemyPokemon() {
+export default function EnemyPokemon(props) {
 	return (
-		<EnemyPokemonContainer>
+		<EnemyPokemonContainer attacking={props.attacking}>
+			{" "}
 			<Image
 				src="/sprites/opponent/hard/mewtwo.gif"
 				alt="mewtwo"
@@ -27,3 +16,28 @@ export default function EnemyPokemon() {
 		</EnemyPokemonContainer>
 	);
 }
+
+const attackAnimation = keyframes`
+    0% {
+        transform: translate(0, 0) scale(0.6);
+    }
+    50% {
+        transform: translate(-30px, 30px) scale(0.6);
+    }
+    100% {
+        transform: translate(0, 0) scale(0.6);
+    }
+`;
+
+const EnemyPokemonContainer = styled.figure`
+	position: absolute;
+	right: -10px;
+	top: 20px;
+	transform: scale(0.6);
+	margin: 0;
+	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 1s;
+`;
+
+const EnemyPokemonCaption = styled.figcaption`
+	font-size: 20px;
+`;
