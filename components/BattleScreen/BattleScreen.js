@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import styled from "styled-components";
+
+import React, { useState } from "react";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
@@ -9,14 +10,25 @@ import VictoryMessage from "./VictoryMessage/VictoryMessage";
 
 export default function BattleScreen() {
 	const [enemyHealth, setEnemyHealth] = useState(120);
+	const [playerHealth, setPlayerHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
 
 	const handleAttack = () => {
-		if (enemyHealth - 20 <= 0) {
-			setVictory(true);
-		} else {
-			setEnemyHealth(enemyHealth - 20);
-		}
+		// Ich greife an
+		const damageDealt = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+		setEnemyHealth(enemyHealth - damageDealt);
+
+		// Gegner greift zurück an
+		setTimeout(() => {
+			const damageTaken = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+			setPlayerHealth(playerHealth - damageTaken);
+
+			if (playerHealth - damageTaken <= 0) {
+				setVictory(false);
+			} else if (enemyHealth - damageDealt <= 0) {
+				setVictory(true);
+			}
+		}, 1000);
 	};
 
 	return (
@@ -25,7 +37,7 @@ export default function BattleScreen() {
 				<VictoryMessage />
 			) : (
 				<ScreenContainer>
-					<PlayerState />
+					<PlayerState currentHealth={playerHealth} />
 					<PlayerPokemon />
 					<EnemyPokemon />
 					<EnemyState currentHealth={enemyHealth} />
