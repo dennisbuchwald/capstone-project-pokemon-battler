@@ -18,7 +18,7 @@ export default function BattleScreen() {
 
 	const handleAttack = () => {
 		// Ich greife an
-		const damageDealt = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+		const damageDealt = Math.floor(Math.random() * (50 - 1 + 1) + 1);
 		setEnemyHealth(enemyHealth - damageDealt);
 
 		if (enemyHealth - damageDealt <= 0) {
@@ -35,7 +35,7 @@ export default function BattleScreen() {
 				return;
 			}
 
-			const damageTaken = Math.floor(Math.random() * (20 - 10 + 1) + 10);
+			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
 			setPlayerHealth(playerHealth - damageTaken);
 			setIsDisabled(false); // Button wird wieder aktiviert
 
