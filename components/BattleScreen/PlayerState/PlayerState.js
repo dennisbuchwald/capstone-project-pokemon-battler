@@ -103,8 +103,8 @@ const PokemonHealthBar = styled.progress`
 	left: 88px;
 	top: 31px;
 	z-index: 1;
-	apperance: none;
-	&::webkit-progressbar-bar {
+	appearance: none;
+	&::-webkit-progress-bar {
 		border-radius: 2.5px;
 	}
 	&::-webkit-progress-value {

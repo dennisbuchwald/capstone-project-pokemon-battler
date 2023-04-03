@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-export default function Menu({ onAttack }) {
+export default function Menu({ onAttack, disabled }) {
 	const handleAttackClick = () => {
-		onAttack();
+		if (!disabled) {
+			onAttack();
+		}
 	};
 
 	return (
@@ -12,7 +14,9 @@ export default function Menu({ onAttack }) {
 					<p>Klicke auf Kampf um anzugreifen</p>
 				</MenuOverviewBoxLeft>
 				<MenuOverviewBoxRight>
-					<MenuButtonFight onClick={handleAttackClick}>Kampf</MenuButtonFight>
+					<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
+						Kampf
+					</MenuButtonFight>
 				</MenuOverviewBoxRight>
 			</MenuOverviewBox>
 		</MenuContainer>

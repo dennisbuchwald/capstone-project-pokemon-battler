@@ -12,6 +12,7 @@ export default function BattleScreen() {
 	const [enemyHealth, setEnemyHealth] = useState(120);
 	const [playerHealth, setPlayerHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
+	const [isDisabled, setIsDisabled] = useState(false);
 
 	const handleAttack = () => {
 		// Ich greife an
@@ -19,9 +20,11 @@ export default function BattleScreen() {
 		setEnemyHealth(enemyHealth - damageDealt);
 
 		// Gegner greift zurück an
+		setIsDisabled(true); // Button wird deaktiviert
 		setTimeout(() => {
 			const damageTaken = Math.floor(Math.random() * (20 - 10 + 1) + 10);
 			setPlayerHealth(playerHealth - damageTaken);
+			setIsDisabled(false); // Button wird wieder aktiviert
 
 			if (playerHealth - damageTaken <= 0) {
 				setVictory(false);
@@ -41,13 +44,12 @@ export default function BattleScreen() {
 					<PlayerPokemon />
 					<EnemyPokemon />
 					<EnemyState currentHealth={enemyHealth} />
-					<Menu onAttack={handleAttack} />
+					<Menu onAttack={handleAttack} disabled={isDisabled} />
 				</ScreenContainer>
 			)}
 		</>
 	);
 }
-
 const ScreenContainer = styled.main`
 	background-image: url("/background/background-middle.png");
 	background-size: 426px 250px;
