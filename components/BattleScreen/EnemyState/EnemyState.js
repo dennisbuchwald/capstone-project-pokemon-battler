@@ -1,5 +1,18 @@
 import styled from "styled-components";
-import { useState } from "react";
+
+export default function EnemyState({ currentHealth }) {
+	const maxHealth = 120;
+	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
+
+	return (
+		<EnemyStateSection>
+			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
+			<EnemyPokemonLevelTitle>Lv.</EnemyPokemonLevelTitle>
+			<EnemyPokemonLevel>75</EnemyPokemonLevel>
+			<EnemyPokemonHealthBar value={healthPercent} max="100" />
+		</EnemyStateSection>
+	);
+}
 
 const EnemyStateSection = styled.section`
 	position: absolute;
@@ -68,17 +81,3 @@ const EnemyPokemonHealthBar = styled.progress`
 		transition: all 0.1s linear;
 	}
 `;
-
-export default function EnemyState({ currentHealth }) {
-	const maxHealth = 120;
-	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
-
-	return (
-		<EnemyStateSection>
-			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
-			<EnemyPokemonLevelTitle>Lv.</EnemyPokemonLevelTitle>
-			<EnemyPokemonLevel>75</EnemyPokemonLevel>
-			<EnemyPokemonHealthBar value={healthPercent} max="100" />
-		</EnemyStateSection>
-	);
-}

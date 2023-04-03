@@ -7,22 +7,6 @@ import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./VictoryMessage/VictoryMessage";
 
-const ScreenContainer = styled.main`
-	background-image: url("/background/background-middle.png");
-	background-size: 426px 250px;
-	display: block;
-	font-size: 10px;
-	max-height: 325px;
-	max-width: 426px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	border: solid red;
-	width: 100%;
-	height: 100%;
-`;
-
 export default function BattleScreen() {
 	const [enemyHealth, setEnemyHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
@@ -51,3 +35,19 @@ export default function BattleScreen() {
 		</>
 	);
 }
+
+const ScreenContainer = styled.main`
+	background-image: url("/background/background-middle.png");
+	background-size: 426px 250px;
+	display: block;
+	font-size: 10px;
+	max-height: 325px;
+	max-width: 426px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: solid red;
+	width: 100%;
+	height: 100%;
+`;

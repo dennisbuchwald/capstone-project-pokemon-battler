@@ -1,6 +1,30 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+export default function PlayerState() {
+	const [currentHealth, setCurrentHealth] = useState(120);
+	const maxHealth = 120;
+	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
+
+	const handleHealthUpdate = (newHealth) => {
+		setCurrentHealth(newHealth);
+	};
+
+	return (
+		<PlayerStateSection>
+			<PokemonName>Glurak</PokemonName>
+			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
+			<PokemonLevel>69</PokemonLevel>
+			<PokemonHealth>{currentHealth}</PokemonHealth>
+			<PokemonHealthBarContainer value={healthPercent} max="100">
+				<PokemonHealthBar percent={healthPercent} />
+			</PokemonHealthBarContainer>
+			<PokemonSlashHealth>/</PokemonSlashHealth>
+			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
+		</PlayerStateSection>
+	);
+}
+
 const PlayerStateSection = styled.section`
 	position: absolute;
 	top: 165px;
@@ -103,27 +127,3 @@ const PokemonMaxHealth = styled.span`
 	margin: 0;
 	padding: 0;
 `;
-
-export default function PlayerState() {
-	const [currentHealth, setCurrentHealth] = useState(120);
-	const maxHealth = 120;
-	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
-
-	const handleHealthUpdate = (newHealth) => {
-		setCurrentHealth(newHealth);
-	};
-
-	return (
-		<PlayerStateSection>
-			<PokemonName>Glurak</PokemonName>
-			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
-			<PokemonLevel>69</PokemonLevel>
-			<PokemonHealth>{currentHealth}</PokemonHealth>
-			<PokemonHealthBarContainer value={healthPercent} max="100">
-				<PokemonHealthBar percent={healthPercent} />
-			</PokemonHealthBarContainer>
-			<PokemonSlashHealth>/</PokemonSlashHealth>
-			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
-		</PlayerStateSection>
-	);
-}

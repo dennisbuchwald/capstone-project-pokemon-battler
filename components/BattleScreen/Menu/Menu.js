@@ -1,5 +1,23 @@
 import styled from "styled-components";
-import React from "react";
+
+export default function Menu({ onAttack }) {
+	const handleAttackClick = () => {
+		onAttack();
+	};
+
+	return (
+		<MenuContainer>
+			<MenuOverviewBox>
+				<MenuOverviewBoxLeft>
+					<p>Klicke auf Kampf um anzugreifen</p>
+				</MenuOverviewBoxLeft>
+				<MenuOverviewBoxRight>
+					<MenuButtonFight onClick={handleAttackClick}>Kampf</MenuButtonFight>
+				</MenuOverviewBoxRight>
+			</MenuOverviewBox>
+		</MenuContainer>
+	);
+}
 
 const MenuContainer = styled.nav`
 	position: absolute;
@@ -97,22 +115,3 @@ const MenuButtonRun = styled(MenuButton)`
 	top: 30px;
 	text-transform: uppercase;
 `;
-
-export default function Menu({ onAttack }) {
-	const handleAttackClick = () => {
-		onAttack();
-	};
-
-	return (
-		<MenuContainer>
-			<MenuOverviewBox>
-				<MenuOverviewBoxLeft>
-					<p>Klicke auf Kampf um anzugreifen</p>
-				</MenuOverviewBoxLeft>
-				<MenuOverviewBoxRight>
-					<MenuButtonFight onClick={handleAttackClick}>Kampf</MenuButtonFight>
-				</MenuOverviewBoxRight>
-			</MenuOverviewBox>
-		</MenuContainer>
-	);
-}
