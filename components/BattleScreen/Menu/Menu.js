@@ -86,6 +86,8 @@ const AttackButton = styled.button`
 	position: relative;
 	background-color: transparent;
 	color: white;
+	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
+		BlinkMacSystemFont, Segoe UI;
 	font-size: 20px;
 	cursor: pointer;
 	text-align: left;
@@ -164,6 +166,7 @@ const MenuButton = styled.button`
 	background-color: transparent;
 	cursor: pointer;
 	left: 10px;
+	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
 	text-align: left;
 	border: none;
 	font-size: 20px;
