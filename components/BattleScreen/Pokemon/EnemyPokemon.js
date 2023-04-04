@@ -7,24 +7,18 @@ export const enemyPokemonArray = [
 		level: 75,
 		maxHealth: 120,
 		currentHealth: 120,
-		width: 240,
-		height: 240,
 	},
 	{
 		name: "Gengar",
 		level: 80,
 		maxHealth: 130,
 		currentHealth: 130,
-		width: 180,
-		height: 180,
 	},
 	{
 		name: "Garados",
 		level: 85,
 		maxHealth: 140,
 		currentHealth: 140,
-		width: 200,
-		height: 200,
 	},
 ];
 
