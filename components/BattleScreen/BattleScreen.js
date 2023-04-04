@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useBattleLogic } from "../../hooks/useBattleLogic";
+import React, { useState } from "react";
 
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
@@ -13,7 +14,6 @@ export default function BattleScreen() {
 	const {
 		playerHealth,
 		victory,
-		isDisabled,
 		isEnemyDefeated,
 		playerAttacking,
 		enemyAttacking,
@@ -21,19 +21,29 @@ export default function BattleScreen() {
 		handleAttack,
 	} = useBattleLogic();
 
+	const [selectedPlayerPokemonIndex, setSelectedPlayerPokemonIndex] =
+		useState(2);
+
 	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
-	} else if (victory) {
+	}
+
+	if (victory) {
 		return <VictoryMessage />;
 	}
 
 	return (
 		<ScreenContainer>
-			<PlayerState currentHealth={playerHealth} />
-			<PlayerPokemon attacking={playerAttacking} />
-
+			<PlayerState
+				currentHealth={playerHealth}
+				selectedPlayerPokemonIndex={selectedPlayerPokemonIndex}
+			/>
+			<PlayerPokemon
+				attacking={playerAttacking}
+				selectedPlayerPokemonIndex={selectedPlayerPokemonIndex}
+			/>
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
@@ -45,7 +55,11 @@ export default function BattleScreen() {
 				pokemon={enemyPokemon.name}
 				level={enemyPokemon.level}
 			/>
-			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
+			<Menu
+				onAttack={handleAttack}
+				disabled={false}
+				selectedPlayerPokemonIndex={selectedPlayerPokemonIndex}
+			/>
 		</ScreenContainer>
 	);
 }

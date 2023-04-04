@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { useState } from "react";
 import AttackMenu from "./AttackMenu";
+import { playerPokemonArray } from "../Pokemon/PlayerPokemon";
 
-export default function Menu({ onAttack, disabled }) {
+export default function Menu({
+	onAttack,
+	disabled,
+	selectedPlayerPokemonIndex,
+}) {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
-
+	const selectedPokemon = playerPokemonArray[selectedPlayerPokemonIndex];
 	const handleAttackClick = () => {
 		if (!disabled) {
 			setShowAttackMenu(true);
@@ -26,6 +31,7 @@ export default function Menu({ onAttack, disabled }) {
 				<AttackMenu
 					onAttackSelection={handleAttackSelection}
 					onBackButtonClick={handleCloseMenu}
+					selectedPokemon={selectedPokemon}
 				/>
 			) : (
 				<MenuOverviewBox>

@@ -1,30 +1,31 @@
 import styled from "styled-components";
 
-const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
-	const attacks = [
-		{ name: "Flammenwurf", damage: 40 },
-		{ name: "Feuersturm", damage: 50 },
-		{ name: "Drachenklaue", damage: 130 },
-	];
+const AttackMenu = ({
+	onAttackSelection,
+	onBackButtonClick,
+	selectedPokemon,
+}) => {
+	const attacks = selectedPokemon.attacks;
+
 	const handleAttackClick = (damage) => {
 		onAttackSelection(damage);
 	};
 
 	return (
 		<AttackMenuContainer>
-			<AttackButtonOne onClick={() => handleAttackClick(attacks[0].damage)}>
-				{attacks[0].name}
-			</AttackButtonOne>
-			<AttackButtonTwo onClick={() => handleAttackClick(attacks[1].damage)}>
-				{attacks[1].name}
-			</AttackButtonTwo>
-			<AttackButtonThree onClick={() => handleAttackClick(attacks[2].damage)}>
-				{attacks[2].name}
-			</AttackButtonThree>
+			{attacks.map((attack, index) => (
+				<AttackButton
+					key={index}
+					onClick={() => handleAttackClick(attack.damage)}
+				>
+					{attack.name}
+				</AttackButton>
+			))}
 			<AttackButtonBack onClick={onBackButtonClick}>Zurueck</AttackButtonBack>
 		</AttackMenuContainer>
 	);
 };
+export default AttackMenu;
 
 const AttackMenuContainer = styled.section`
 	position: absolute;
@@ -72,4 +73,3 @@ const AttackButtonBack = styled(AttackButton)`
 	background-color: transparent;
 	border: none;
 `;
-export default AttackMenu;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function EnemyState({
 	currentHealth,
-	maxHealth, // Remove the duplicate declaration and pass it as a prop
+	maxHealth,
 	pokemon,
 	level,
 }) {
