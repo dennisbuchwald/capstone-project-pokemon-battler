@@ -1,14 +1,18 @@
 import styled from "styled-components";
 
-export default function EnemyState({ currentHealth }) {
-	const maxHealth = 120;
+export default function EnemyState({
+	currentHealth,
+	maxHealth, // Remove the duplicate declaration and pass it as a prop
+	pokemon,
+	level,
+}) {
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
 
 	return (
 		<EnemyStateSection>
-			<EnemyPokemonName>Mewtwo</EnemyPokemonName>
+			<EnemyPokemonName>{pokemon}</EnemyPokemonName>
 			<EnemyPokemonLevelTitle>Lv.</EnemyPokemonLevelTitle>
-			<EnemyPokemonLevel>75</EnemyPokemonLevel>
+			<EnemyPokemonLevel>{level}</EnemyPokemonLevel>
 			<EnemyPokemonHealthBar value={healthPercent} max="100" />
 		</EnemyStateSection>
 	);

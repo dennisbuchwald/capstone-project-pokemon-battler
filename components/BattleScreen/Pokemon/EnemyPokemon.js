@@ -1,16 +1,17 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-export default function EnemyPokemon({ attacking }) {
+export default function EnemyPokemon({ attacking, pokemon, level }) {
 	return (
 		<EnemyPokemonContainer attacking={attacking}>
 			<Image
-				src="/sprites/opponent/hard/mewtwo.gif"
-				alt="mewtwo"
+				src={`/sprites/opponent/hard/${pokemon}.gif`} // Use curly braces instead of forward slashes
+				alt={pokemon}
 				layout="intrinsic"
 				width={240}
 				height={240}
 			/>
+			<EnemyPokemonCaption>{`${pokemon} Lv. ${level}`}</EnemyPokemonCaption>
 		</EnemyPokemonContainer>
 	);
 }
@@ -36,6 +37,5 @@ const EnemyPokemonContainer = styled.figure`
 	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 1s;
 `;
 
-const EnemyPokemonCaption = styled.figcaption`
-	font-size: 20px;
+const EnemyPokemonCaption = styled.figcaption` font-size: 20px; position: absolute; bottom: 0px; left: 0px; z - index: 1; text - shadow: 1px 1px 0px #b7b7b7; background - color: rgba(0, 0, 0, 0.8); color: #ffffff; padding: 2px 5px;
 `;

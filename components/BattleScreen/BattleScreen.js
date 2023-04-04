@@ -17,14 +17,60 @@ export default function BattleScreen() {
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
 
+	// Array für Pokemons
+	//----------------------------------------------------------------
+	const enemyPokemonArray = [
+		{
+			name: "Mewtwo",
+			level: 75,
+			maxHealth: 120,
+			currentHealth: 120,
+			gifUrl: "/sprites/opponent/hard/mewtwo.gif",
+		},
+		{
+			name: "Gengar",
+			level: 80,
+			maxHealth: 130,
+			currentHealth: 130,
+			gifUrl: "/sprites/opponent/hard/gengar.gif",
+		},
+		{
+			name: "Garados",
+			level: 85,
+			maxHealth: 140,
+			currentHealth: 140,
+			gifUrl: "/sprites/opponent/hard/gyarados.gif",
+		},
+	];
+
+	const [enemyPokemonIndex, setEnemyPokemonIndex] = useState(0); // Initialize enemyPokemonIndex state
+	const [enemyPokemon, setEnemyPokemon] = useState(
+		enemyPokemonArray[enemyPokemonIndex]
+	); // Initialize enemyPokemon state
+
+	//----------------------------------------------------------------
+
 	const handleAttack = (damage) => {
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(damage * (Math.random() * 0.2 + 0.8));
-		setEnemyHealth(Math.max(enemyHealth - actualDamage, 0));
+		setEnemyPokemon((prevPokemon) => {
+			const newPokemon = {
+				...prevPokemon,
+				currentHealth: Math.max(prevPokemon.currentHealth - actualDamage, 0),
+			};
+			if (newPokemon.currentHealth === 0) {
+				setIsEnemyDefeated(true);
+				if (enemyPokemonIndex === enemyPokemonArray.length - 1) {
+					setVictory(true);
+				} else {
+					setEnemyPokemonIndex(enemyPokemonIndex + 1);
+					setEnemyPokemon(enemyPokemonArray[enemyPokemonIndex + 1]); // Update the enemyPokemon state
+				}
+			}
+			return newPokemon;
+		});
 
-		if (enemyHealth - actualDamage <= 0) {
-			setIsEnemyDefeated(true);
-			setVictory(true);
+		if (enemyPokemon.currentHealth - actualDamage <= 0) {
 			return;
 		}
 
@@ -35,11 +81,10 @@ export default function BattleScreen() {
 				return;
 			}
 
-			const damageTaken = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
 			setPlayerHealth(Math.max(playerHealth - damageTaken, 0));
 			setIsDisabled(false);
 			setEnemyAttacking(true);
-
 			if (playerHealth - damageTaken <= 0) {
 				setVictory(false);
 			}
@@ -71,8 +116,17 @@ export default function BattleScreen() {
 			<PlayerState currentHealth={playerHealth} />
 			<PlayerPokemon attacking={playerAttacking} />
 
-			<EnemyPokemon attacking={enemyAttacking} />
-			<EnemyState currentHealth={enemyHealth} />
+			<EnemyPokemon
+				attacking={enemyAttacking}
+				pokemon={enemyPokemon.name}
+				level={enemyPokemon.level}
+			/>
+			<EnemyState
+				currentHealth={enemyPokemon.currentHealth}
+				maxHealth={enemyPokemon.maxHealth}
+				pokemon={enemyPokemon.name}
+				level={enemyPokemon.level}
+			/>
 			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
 		</ScreenContainer>
 	);
