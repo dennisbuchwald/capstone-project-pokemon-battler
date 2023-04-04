@@ -32,8 +32,8 @@ export default function EnemyPokemon({ attacking, selectedPokemonIndex }) {
 				src={`/sprites/opponent/hard/${name}.gif`}
 				alt={name}
 				layout="responsive"
-				width={100} // Dieser Wert wird verwendet, um das Seitenverhältnis des Bildes beizubehalten.
-				height={100} // Setzen Sie die gewünschte Höhe für alle Pokémon.
+				width={100}
+				height={100}
 			/>
 		</EnemyPokemonContainer>
 	);
