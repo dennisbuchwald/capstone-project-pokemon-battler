@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 export default function LoserMessage() {
+	const handleRestart = () => {
+		window.location.reload();
+	};
 	return (
 		<LoserMessageMessageContainer>
 			<LoserTitle>Du hast verloren!</LoserTitle>
+			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</LoserMessageMessageContainer>
 	);
 }
 
 const LoserMessageMessageContainer = styled.section`
-	background-color: #fff;
 	color: #000;
 	width: 100%;
 	height: 100%;
@@ -21,4 +24,19 @@ const LoserMessageMessageContainer = styled.section`
 
 const LoserTitle = styled.h1`
 	color: red;
+`;
+
+const RestartButton = styled.button`
+	margin-top: 30px;
+	background-color: red;
+	color: white;
+	padding: 10px 20px;
+	font-size: 18px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: darkred;
+	}
 `;
