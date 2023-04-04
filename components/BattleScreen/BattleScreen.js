@@ -35,7 +35,7 @@ export default function BattleScreen() {
 				return;
 			}
 
-			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+			const damageTaken = Math.floor(Math.random() * (100 - 1 + 1) + 1);
 			setPlayerHealth(Math.max(playerHealth - damageTaken, 0));
 			setIsDisabled(false);
 			setEnemyAttacking(true);
