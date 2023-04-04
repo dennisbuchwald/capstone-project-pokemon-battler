@@ -11,7 +11,7 @@ export default createGlobalStyle`
 
 @font-face {
   font-family: 'Press Start 2P';
-  src: url('fonts/PressStart2P.ttf') format('truetype');
+  src: url('fonts/PressStart2P-Regular.ttf.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
