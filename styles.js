@@ -9,6 +9,13 @@ export default createGlobalStyle`
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('fonts/PressStart2P.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
   
   *,
   *::before,
@@ -18,14 +25,14 @@ export default createGlobalStyle`
   
   body {
     margin: 0;
-    font-family: "PokemonFireRed", system-ui;
-    // background-color: #3a464d;
+  font-family: 'PokemonFireRed', 'Press Start 2P', -apple-system, BlinkMacSystemFont, Segoe UI;
+    background-color: #3a464d;
   }
   
   html,
   body {
     padding: 0;
     margin: 0;
-    font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
+  font-family: 'PokemonFireRed', 'Press Start 2P', -apple-system, BlinkMacSystemFont, Segoe UI;
   }
 `;

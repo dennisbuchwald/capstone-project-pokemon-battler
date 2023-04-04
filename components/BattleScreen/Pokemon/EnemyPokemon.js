@@ -1,10 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-export default function EnemyPokemon(props) {
+export default function EnemyPokemon({ attacking }) {
 	return (
-		<EnemyPokemonContainer attacking={props.attacking}>
-			{" "}
+		<EnemyPokemonContainer attacking={attacking}>
 			<Image
 				src="/sprites/opponent/hard/mewtwo.gif"
 				alt="mewtwo"
@@ -12,7 +11,6 @@ export default function EnemyPokemon(props) {
 				width={240}
 				height={240}
 			/>
-			{/* <EnemyPokemonCaption>Mewtwo</EnemyPokemonCaption> */}
 		</EnemyPokemonContainer>
 	);
 }

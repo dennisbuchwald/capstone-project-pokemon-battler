@@ -11,7 +11,6 @@ export default function PlayerPokemon({ attacking }) {
 				width={240}
 				height={240}
 			/>
-			{/* <EnemyPokemonCaption>Glurak</EnemyPokemonCaption> */}
 		</PlayerPokemonContainer>
 	);
 }

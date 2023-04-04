@@ -71,48 +71,45 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 
 const AttackMenuContainer = styled.section`
 	position: absolute;
-	width: 60%;
-	height: 100%;
+	width: 50%;
+	height: 89%%;
+	left: 3%;
+	bottom: 18%;
 	z-index: 2;
-	bottom: 0;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 0px;
 `;
 
 const AttackButton = styled.button`
-	position: absolute;
-
+	position: relative;
 	background-color: transparent;
-	border: none;
-	border: solid yellow;
-	background-color: transparent;
-	border: none;
-	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
+	color: white;
 	font-size: 20px;
 	cursor: pointer;
+	text-align: left;
+	border: none;
 `;
 
 const AttackButton1 = styled(AttackButton)`
-	left: 8%;
-	top: 15%;
-	color: white;
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
 `;
 
 const AttackButton2 = styled(AttackButton)`
-	top: 15%;
-	left: 45%;
-	color: white;
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
 `;
 
 const AttackButton3 = styled(AttackButton)`
-	left: 8%;
-	top: 45%;
-	color: white;
+	grid-column: 1 / 2;
+	grid-row: 2 / 3;
 `;
 
 const AttackButtonBack = styled(AttackButton)`
-	position: absolute;
-	top: 45%;
-	left: 45%;
-	color: white;
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
 	background-color: transparent;
 	border: none;
 `;
@@ -127,7 +124,6 @@ const MenuContainer = styled.nav`
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	color: white;
-	border: solid green;
 `;
 
 const MenuOverviewBox = styled.section`
@@ -156,7 +152,6 @@ const MenuOverviewBoxRight = styled.article`
 	position: relative;
 	top: 0px;
 	left: 0px;
-	border: solid green;
 `;
 
 const MenuButton = styled.button`
@@ -169,11 +164,10 @@ const MenuButton = styled.button`
 	background-color: transparent;
 	cursor: pointer;
 	left: 10px;
-	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
 	text-align: left;
 	border: none;
 	font-size: 20px;
-	line-height: 14px; /* hier 14px statt 20px, weil die Schriftgröße 20px ist und der Button eine Höhe von 20px hat */
+	line-height: 14px;
 	display: flex;
 
 	transition: all 0.2s ease-in-out;
