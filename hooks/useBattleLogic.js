@@ -37,12 +37,14 @@ export function useBattleLogic() {
 		if (newCurrentHealth === 0) {
 			setIsEnemyDefeated(true);
 			if (selectedEnemyPokemonIndex === enemyPokemonArray.length - 1) {
-				setVictory(true);
-			} else {
-				setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);
 				setTimeout(() => {
+					setVictory(true);
+				}, 1500);
+			} else {
+				setTimeout(() => {
+					setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);
 					setIsEnemyDefeated(false);
-				}, 500);
+				}, 1000);
 			}
 		}
 
