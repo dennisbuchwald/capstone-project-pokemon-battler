@@ -43,7 +43,7 @@ export default function PlayerPokemon({
 }) {
 	const selectedPokemon = playerPokemonArray[selectedPlayerPokemonIndex];
 
-	const scaleFactor = getScaleFactor(selectedPokemon.name); // Diese Zeile sollte hier platziert werden
+	const scaleFactor = getScaleFactor(selectedPokemon.name);
 
 	return (
 		<PlayerPokemonContainer attacking={attacking}>
