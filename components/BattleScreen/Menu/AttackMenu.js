@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 	const attacks = [
-		{ name: "Flammenwurf", damage: 60 },
-		{ name: "Feuersturm", damage: 40 },
-		{ name: "Drachenklaue", damage: 30 },
+		{ name: "Flammenwurf", damage: 40 },
+		{ name: "Feuersturm", damage: 50 },
+		{ name: "Drachenklaue", damage: 130 },
 	];
 	const handleAttackClick = (damage) => {
 		onAttackSelection(damage);
