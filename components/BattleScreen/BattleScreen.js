@@ -37,6 +37,7 @@ export default function BattleScreen() {
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
+				defeated={isEnemyDefeated}
 			/>
 			<EnemyState
 				currentHealth={enemyPokemon.currentHealth}
