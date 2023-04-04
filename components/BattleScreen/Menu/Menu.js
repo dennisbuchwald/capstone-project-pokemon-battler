@@ -1,24 +1,44 @@
 import styled from "styled-components";
+import { useState } from "react";
+import AttackMenu from "./AttackMenu";
 
 export default function Menu({ onAttack, disabled }) {
+	const [showAttackMenu, setShowAttackMenu] = useState(false);
+
 	const handleAttackClick = () => {
 		if (!disabled) {
-			onAttack();
+			setShowAttackMenu(true);
 		}
+	};
+
+	const handleAttackSelection = (damage) => {
+		setShowAttackMenu(false);
+		onAttack(damage);
+	};
+
+	const handleCloseMenu = () => {
+		setShowAttackMenu(false);
 	};
 
 	return (
 		<MenuContainer>
-			<MenuOverviewBox>
-				<MenuOverviewBoxLeft>
-					<p>Klicke auf Kampf um anzugreifen</p>
-				</MenuOverviewBoxLeft>
-				<MenuOverviewBoxRight>
-					<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
-						Kampf
-					</MenuButtonFight>
-				</MenuOverviewBoxRight>
-			</MenuOverviewBox>
+			{showAttackMenu ? (
+				<AttackMenu
+					onAttackSelection={handleAttackSelection}
+					onBackButtonClick={handleCloseMenu}
+				/>
+			) : (
+				<MenuOverviewBox>
+					<MenuOverviewBoxLeft>
+						<p>Klicke auf Kampf um anzugreifen</p>
+					</MenuOverviewBoxLeft>
+					<MenuOverviewBoxRight>
+						<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
+							Kampf
+						</MenuButtonFight>
+					</MenuOverviewBoxRight>
+				</MenuOverviewBox>
+			)}
 		</MenuContainer>
 	);
 }
@@ -33,7 +53,6 @@ const MenuContainer = styled.nav`
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	color: white;
-	border: solid green;
 `;
 
 const MenuOverviewBox = styled.section`
@@ -78,7 +97,7 @@ const MenuButton = styled.button`
 	text-align: left;
 	border: none;
 	font-size: 20px;
-	line-height: 14px; /* hier 14px statt 20px, weil die Schriftgröße 20px ist und der Button eine Höhe von 20px hat */
+	line-height: 14px;
 	display: flex;
 
 	transition: all 0.2s ease-in-out;
