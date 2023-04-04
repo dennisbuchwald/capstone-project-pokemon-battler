@@ -30,8 +30,8 @@ const AttackMenuContainer = styled.section`
 	position: absolute;
 	width: 50%;
 	height: 89%%;
-	left: 3%;
-	bottom: 18%;
+	left: 4%;
+	bottom: 25%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);

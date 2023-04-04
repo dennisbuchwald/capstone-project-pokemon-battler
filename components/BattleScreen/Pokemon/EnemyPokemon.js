@@ -31,8 +31,7 @@ export default function EnemyPokemon({ attacking, selectedPokemonIndex }) {
 			<StyledImage
 				src={`/sprites/opponent/hard/${name}.gif`}
 				alt={name}
-				layout="responsive"
-				width={100}
+				width={150}
 				height={100}
 			/>
 		</EnemyPokemonContainer>
@@ -57,9 +56,7 @@ const attackAnimation = keyframes`
 
 const EnemyPokemonContainer = styled.figure`
 	position: absolute;
-	right: 0%;
+	right: -8%;
 	top: 15%;
-	border: solid red;
-
 	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 1s;
 `;

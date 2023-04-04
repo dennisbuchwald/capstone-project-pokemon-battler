@@ -30,7 +30,7 @@ const attackAnimation = keyframes`
 const PlayerPokemonContainer = styled.figure`
 	position: absolute;
 	bottom: 10px;
-	left: -20px;
+	left: -5%;
 	transform: scale(0.8);
 	margin: 0;
 	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.5s;

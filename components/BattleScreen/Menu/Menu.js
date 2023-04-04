@@ -70,7 +70,7 @@ const MenuOverviewBoxLeft = styled.article`
 	width: 50%;
 	line-height: 16px;
 	position: relative;
-	left: 0px;
+	left: -1%;
 	top: -10px;
 	font-size: 20px;
 `;
