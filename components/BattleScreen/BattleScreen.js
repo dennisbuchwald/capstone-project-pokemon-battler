@@ -52,15 +52,13 @@ export default function BattleScreen() {
 				setPlayerAttacking(false);
 			}, 500);
 		}
-	}, [playerAttacking]);
 
-	useEffect(() => {
 		if (enemyAttacking) {
 			setTimeout(() => {
 				setEnemyAttacking(false);
 			}, 500);
 		}
-	}, [enemyAttacking]);
+	}, [playerAttacking, enemyAttacking]);
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
