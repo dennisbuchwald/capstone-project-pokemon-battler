@@ -4,7 +4,7 @@ export default createGlobalStyle`
 
 @font-face {
   font-family: 'PokemonFireRed';
-  src: url('/fonts/pokemon_fire_red.woff2') format('woff2'),
+  src: 
        url('/fonts/pokemon_fire_red.woff') format('woff'),
        url('/fonts/pokemon_fire_red.ttf') format('truetype');
   font-weight: normal;
