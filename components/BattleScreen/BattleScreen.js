@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useBattleLogic } from "../../hooks/useBattleLogic";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
@@ -14,7 +14,7 @@ export default function BattleScreen() {
 	const [playSound] = SoundEffect();
 
 	useEffect(() => {
-		playSound("backgroundMusic"); // Ersetze 'effect1' durch den gewünschten Effektnamen
+		playSound("backgroundMusic");
 	}, [playSound]);
 
 	const {
@@ -42,6 +42,7 @@ export default function BattleScreen() {
 			<PlayerPokemon attacking={playerAttacking} />
 			<EnemyPokemon
 				attacking={enemyAttacking}
+				wasAttacked={playerAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
 			/>
 			<EnemyState

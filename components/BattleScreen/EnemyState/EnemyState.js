@@ -72,9 +72,11 @@ const EnemyPokemonHealthBar = styled.progress`
 	top: 34px;
 	z-index: 1;
 	appearance: none;
+
 	&::-webkit-progress-bar {
 		border-radius: 2.5px;
 	}
+
 	&::-webkit-progress-value {
 		background: linear-gradient(
 			180deg,
