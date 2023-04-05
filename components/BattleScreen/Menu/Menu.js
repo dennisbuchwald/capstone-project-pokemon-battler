@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import { useState } from "react";
 import AttackMenu from "./AttackMenu";
+import SoundEffects from "../SoundEffect/SoundEffect";
 
 export default function Menu({ onAttack, disabled }) {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
+	const [playSound, stopSound] = SoundEffects();
 
 	const handleAttackClick = () => {
 		if (!disabled) {
@@ -33,7 +35,12 @@ export default function Menu({ onAttack, disabled }) {
 						<p>Klicke auf Kampf um anzugreifen</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
-						<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
+						<MenuButtonFight
+							onMouseEnter={() => playSound("menuSound")}
+							onMouseLeave={() => stopSound("menuSound")}
+							onClick={handleAttackClick}
+							disabled={disabled}
+						>
 							Kampf
 						</MenuButtonFight>
 					</MenuOverviewBoxRight>

@@ -1,8 +1,10 @@
+import React from "react";
 import styled from "styled-components";
+import SoundEffects from "../SoundEffect/SoundEffect";
 
 const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 	const attacks = [
-		{ name: "Flammenwurf", damage: 160 },
+		{ name: "Flammenwurf", damage: 60 },
 		{ name: "Feuersturm", damage: 40 },
 		{ name: "Drachenklaue", damage: 30 },
 	];
@@ -10,18 +12,47 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 		onAttackSelection(damage);
 	};
 
+	const [playSound, stopSound] = SoundEffects();
+
 	return (
 		<AttackMenuContainer>
-			<AttackButtonOne onClick={() => handleAttackClick(attacks[0].damage)}>
+			<AttackButtonOne
+				onClick={() => {
+					handleAttackClick(attacks[0].damage);
+					playSound("menuSound");
+				}}
+				onMouseEnter={() => playSound("menuSound")}
+				onMouseLeave={() => stopSound("menuSound")}
+			>
 				{attacks[0].name}
 			</AttackButtonOne>
-			<AttackButtonTwo onClick={() => handleAttackClick(attacks[1].damage)}>
+			<AttackButtonTwo
+				onClick={() => {
+					handleAttackClick(attacks[1].damage);
+					playSound("menuSound");
+				}}
+				onMouseEnter={() => playSound("menuSound")}
+				onMouseLeave={() => stopSound("menuSound")}
+			>
 				{attacks[1].name}
 			</AttackButtonTwo>
-			<AttackButtonThree onClick={() => handleAttackClick(attacks[2].damage)}>
+			<AttackButtonThree
+				onClick={() => {
+					handleAttackClick(attacks[2].damage);
+					playSound("menuSound");
+				}}
+				onMouseEnter={() => playSound("menuSound")}
+				onMouseLeave={() => stopSound("menuSound")}
+			>
 				{attacks[2].name}
 			</AttackButtonThree>
-			<AttackButtonBack onClick={onBackButtonClick}>Zurueck</AttackButtonBack>
+			<AttackButtonBack
+				onMouseEnter={() => playSound("menuSound")}
+				onMouseLeave={() => stopSound("menuSound")}
+				onClick={onBackButtonClick}
+			>
+				Zurueck
+			</AttackButtonBack>
 		</AttackMenuContainer>
 	);
 };
