@@ -4,7 +4,7 @@ import { useBattleLogic } from "../../hooks/useBattleLogic";
 
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
-import EnemyPokemon from "./Pokemon/EnemyPokemon";
+import EnemyPokemon, { enemyPokemonArray } from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
@@ -12,15 +12,17 @@ import LoserMessage from "./Message/LoserMessage";
 
 export default function BattleScreen() {
 	const {
-		enemyHealth,
 		playerHealth,
 		victory,
 		isDisabled,
 		isEnemyDefeated,
 		playerAttacking,
 		enemyAttacking,
+		selectedEnemyPokemonIndex,
 		handleAttack,
 	} = useBattleLogic();
+
+	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
@@ -32,9 +34,16 @@ export default function BattleScreen() {
 		<ScreenContainer>
 			<PlayerState currentHealth={playerHealth} />
 			<PlayerPokemon attacking={playerAttacking} />
-
-			<EnemyPokemon attacking={enemyAttacking} />
-			<EnemyState currentHealth={enemyHealth} />
+			<EnemyPokemon
+				attacking={enemyAttacking}
+				selectedPokemonIndex={selectedEnemyPokemonIndex}
+			/>
+			<EnemyState
+				currentHealth={enemyPokemon.currentHealth}
+				maxHealth={enemyPokemon.maxHealth}
+				pokemon={enemyPokemon.name}
+				level={enemyPokemon.level}
+			/>{" "}
 			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
 		</ScreenContainer>
 	);

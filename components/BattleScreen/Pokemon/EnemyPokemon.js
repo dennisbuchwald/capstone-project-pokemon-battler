@@ -1,11 +1,35 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-export default function EnemyPokemon({ attacking }) {
+export const enemyPokemonArray = [
+	{
+		name: "Mewtwo",
+		level: 75,
+		maxHealth: 120,
+		currentHealth: 120,
+	},
+	{
+		name: "Gengar",
+		level: 80,
+		maxHealth: 130,
+		currentHealth: 130,
+	},
+	{
+		name: "Garados",
+		level: 85,
+		maxHealth: 140,
+		currentHealth: 140,
+	},
+];
+
+export default function EnemyPokemon({ attacking, selectedPokemonIndex }) {
+	const selectedPokemon = enemyPokemonArray[selectedPokemonIndex];
+	const { name, level } = selectedPokemon;
+
 	return (
 		<EnemyPokemonContainer attacking={attacking}>
 			<Image
-				src="/sprites/opponent/hard/mewtwo.gif"
+				src={`/sprites/opponent/hard/${name}.gif`}
 				alt="mewtwo"
 				layout="intrinsic"
 				width={240}

@@ -9,6 +9,7 @@ export function useBattleLogic() {
 	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
+	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
 
 	useEffect(() => {
 		if (playerAttacking) {
@@ -27,14 +28,28 @@ export function useBattleLogic() {
 	const handleAttack = (damage) => {
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(damage * (Math.random() * 0.2 + 0.8));
-		setEnemyHealth(Math.max(enemyHealth - actualDamage, 0));
+		const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
+		const newCurrentHealth = Math.max(
+			enemyPokemon.currentHealth - actualDamage,
+			0
+		);
+		enemyPokemon.currentHealth = newCurrentHealth;
 
-		if (enemyHealth - actualDamage <= 0) {
+		if (newCurrentHealth === 0) {
 			setIsEnemyDefeated(true);
-			setVictory(true);
-			return;
+			setTimeout(() => {
+				setIsEnemyDefeated(false);
+				if (selectedEnemyPokemonIndex === enemyPokemonArray.length - 1) {
+					setVictory(true);
+				} else {
+					setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);
+				}
+			}, 1000);
 		}
 
+		if (newCurrentHealth <= 0) {
+			return;
+		}
 		setIsDisabled(true);
 		setTimeout(() => {
 			if (isEnemyDefeated) {
@@ -61,6 +76,7 @@ export function useBattleLogic() {
 		isEnemyDefeated,
 		playerAttacking,
 		enemyAttacking,
+		selectedEnemyPokemonIndex,
 		handleAttack,
 	};
 }
