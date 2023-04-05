@@ -1,64 +1,27 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import { useBattleLogic } from "../../hooks/useBattleLogic";
+
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
-import EnemyPokemon from "./Pokemon/EnemyPokemon";
+import EnemyPokemon, { enemyPokemonArray } from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
 
 export default function BattleScreen() {
-	const [enemyHealth, setEnemyHealth] = useState(120);
-	const [playerHealth, setPlayerHealth] = useState(120);
-	const [victory, setVictory] = useState(false);
-	const [isDisabled, setIsDisabled] = useState(false);
-	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
-	const [playerAttacking, setPlayerAttacking] = useState(false);
-	const [enemyAttacking, setEnemyAttacking] = useState(false);
+	const {
+		playerHealth,
+		victory,
+		isDisabled,
+		isEnemyDefeated,
+		playerAttacking,
+		enemyAttacking,
+		selectedEnemyPokemonIndex,
+		handleAttack,
+	} = useBattleLogic();
 
-	const handleAttack = (damage) => {
-		setPlayerAttacking(true);
-		const actualDamage = Math.floor(damage * (Math.random() * 0.2 + 0.8));
-		setEnemyHealth(Math.max(enemyHealth - actualDamage, 0));
-
-		if (enemyHealth - actualDamage <= 0) {
-			setIsEnemyDefeated(true);
-			setVictory(true);
-			return;
-		}
-
-		setIsDisabled(true);
-		setTimeout(() => {
-			if (isEnemyDefeated) {
-				setIsDisabled(false);
-				return;
-			}
-
-			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-			setPlayerHealth(Math.max(playerHealth - damageTaken, 0));
-			setIsDisabled(false);
-			setEnemyAttacking(true);
-
-			if (playerHealth - damageTaken <= 0) {
-				setVictory(false);
-			}
-		}, 1000);
-	};
-
-	useEffect(() => {
-		if (playerAttacking) {
-			setTimeout(() => {
-				setPlayerAttacking(false);
-			}, 500);
-		}
-
-		if (enemyAttacking) {
-			setTimeout(() => {
-				setEnemyAttacking(false);
-			}, 500);
-		}
-	}, [playerAttacking, enemyAttacking]);
+	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
@@ -70,9 +33,16 @@ export default function BattleScreen() {
 		<ScreenContainer>
 			<PlayerState currentHealth={playerHealth} />
 			<PlayerPokemon attacking={playerAttacking} />
-
-			<EnemyPokemon attacking={enemyAttacking} />
-			<EnemyState currentHealth={enemyHealth} />
+			<EnemyPokemon
+				attacking={enemyAttacking}
+				selectedPokemonIndex={selectedEnemyPokemonIndex}
+			/>
+			<EnemyState
+				currentHealth={enemyPokemon.currentHealth}
+				maxHealth={enemyPokemon.maxHealth}
+				pokemon={enemyPokemon.name}
+				level={enemyPokemon.level}
+			/>
 			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
 		</ScreenContainer>
 	);

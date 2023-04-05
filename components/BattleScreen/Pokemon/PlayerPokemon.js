@@ -35,7 +35,3 @@ const PlayerPokemonContainer = styled.figure`
 	margin: 0;
 	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.5s;
 `;
-
-const PlayerPokemonCaption = styled.figcaption`
-	font-size: 14px;
-`;

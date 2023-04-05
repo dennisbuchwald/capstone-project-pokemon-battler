@@ -1,41 +1,62 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-export default function EnemyPokemon({ attacking }) {
+export const enemyPokemonArray = [
+	{
+		name: "mewtwo",
+		level: 75,
+		maxHealth: 120,
+		currentHealth: 120,
+	},
+	{
+		name: "gengar",
+		level: 80,
+		maxHealth: 130,
+		currentHealth: 130,
+	},
+	{
+		name: "garados",
+		level: 85,
+		maxHealth: 140,
+		currentHealth: 140,
+	},
+];
+
+export default function EnemyPokemon({ attacking, selectedPokemonIndex }) {
+	const selectedPokemon = enemyPokemonArray[selectedPokemonIndex];
+	const { name, level } = selectedPokemon;
+
 	return (
 		<EnemyPokemonContainer attacking={attacking}>
-			<Image
-				src="/sprites/opponent/hard/mewtwo.gif"
-				alt="mewtwo"
-				layout="intrinsic"
-				width={240}
-				height={240}
+			<StyledImage
+				src={`/sprites/opponent/hard/${name}.gif`}
+				alt={`${name}`}
+				width={150}
+				height={100}
 			/>
 		</EnemyPokemonContainer>
 	);
 }
 
+const StyledImage = styled(Image)`
+	object-fit: contain;
+`;
+
 const attackAnimation = keyframes`
     0% {
-        transform: translate(0, 0) scale(0.6);
+        transform: translate(0, 0) scale(1);
     }
     50% {
-        transform: translate(-30px, 30px) scale(0.6);
+        transform: translate(-30px, 30px) scale(1);
     }
     100% {
-        transform: translate(0, 0) scale(0.6);
+        transform: translate(0, 0) scale(1);
     }
 `;
 
 const EnemyPokemonContainer = styled.figure`
 	position: absolute;
-	right: -10px;
-	top: 20px;
-	transform: scale(0.6);
-	margin: 0;
-	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 1s;
-`;
-
-const EnemyPokemonCaption = styled.figcaption`
-	font-size: 20px;
+	right: -8%;
+	top: 15%;
+	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.4s;
 `;
