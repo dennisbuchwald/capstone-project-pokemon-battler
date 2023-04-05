@@ -28,38 +28,35 @@ export default function EnemyPokemon({ attacking, selectedPokemonIndex }) {
 
 	return (
 		<EnemyPokemonContainer attacking={attacking}>
-			<Image
+			<StyledImage
 				src={`/sprites/opponent/hard/${name}.gif`}
-				alt="mewtwo"
-				layout="intrinsic"
-				width={240}
-				height={240}
+				alt={`${name}`}
+				width={150}
+				height={100}
 			/>
 		</EnemyPokemonContainer>
 	);
 }
 
+const StyledImage = styled(Image)`
+	object-fit: contain;
+`;
+
 const attackAnimation = keyframes`
     0% {
-        transform: translate(0, 0) scale(0.6);
+        transform: translate(0, 0) scale(1);
     }
     50% {
-        transform: translate(-30px, 30px) scale(0.6);
+        transform: translate(-30px, 30px) scale(1);
     }
     100% {
-        transform: translate(0, 0) scale(0.6);
+        transform: translate(0, 0) scale(1);
     }
 `;
 
 const EnemyPokemonContainer = styled.figure`
 	position: absolute;
-	right: -10px;
-	top: 20px;
-	transform: scale(0.6);
-	margin: 0;
-	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 1s;
-`;
-
-const EnemyPokemonCaption = styled.figcaption`
-	font-size: 20px;
+	right: -8%;
+	top: 15%;
+	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.4s;
 `;
