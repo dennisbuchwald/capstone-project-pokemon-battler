@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { enemyPokemonArray } from "../components/BattleScreen/Pokemon/EnemyPokemon";
 
-export function useBattleLogic() {
-	const [enemyHealth, setEnemyHealth] = useState(120);
+export const useBattleLogic = () => {
 	const [playerHealth, setPlayerHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -10,6 +9,10 @@ export function useBattleLogic() {
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
 	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
+
+	const handlePlayerDamage = (damage) => {
+		setPlayerHealth((prevHealth) => prevHealth - damage);
+	};
 
 	useEffect(() => {
 		if (playerAttacking) {
@@ -58,7 +61,7 @@ export function useBattleLogic() {
 			}
 
 			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-			setPlayerHealth(Math.max(playerHealth - damageTaken, 0));
+			handlePlayerDamage(damageTaken);
 			setIsDisabled(false);
 			setEnemyAttacking(true);
 
@@ -69,7 +72,6 @@ export function useBattleLogic() {
 	};
 
 	return {
-		enemyHealth,
 		playerHealth,
 		victory,
 		isDisabled,
@@ -78,5 +80,6 @@ export function useBattleLogic() {
 		enemyAttacking,
 		selectedEnemyPokemonIndex,
 		handleAttack,
+		handlePlayerDamage,
 	};
-}
+};

@@ -26,6 +26,7 @@ export default function BattleScreen() {
 		enemyAttacking,
 		selectedEnemyPokemonIndex,
 		handleAttack,
+		handlePlayerDamage,
 	} = useBattleLogic();
 
 	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
@@ -39,7 +40,7 @@ export default function BattleScreen() {
 	return (
 		<ScreenContainer>
 			<PlayerState currentHealth={playerHealth} />
-			<PlayerPokemon attacking={playerAttacking} />
+			<PlayerPokemon attacking={playerAttacking} isDamaged={enemyAttacking} />
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				wasAttacked={playerAttacking}
