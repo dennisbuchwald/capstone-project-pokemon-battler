@@ -3,19 +3,19 @@ import Image from "next/image";
 
 export const enemyPokemonArray = [
 	{
-		name: "Mewtwo",
+		name: "mewtwo",
 		level: 75,
 		maxHealth: 120,
 		currentHealth: 120,
 	},
 	{
-		name: "Gengar",
+		name: "gengar",
 		level: 80,
 		maxHealth: 130,
 		currentHealth: 130,
 	},
 	{
-		name: "Garados",
+		name: "garados",
 		level: 85,
 		maxHealth: 140,
 		currentHealth: 140,

@@ -43,7 +43,7 @@ export default function BattleScreen() {
 				maxHealth={enemyPokemon.maxHealth}
 				pokemon={enemyPokemon.name}
 				level={enemyPokemon.level}
-			/>{" "}
+			/>
 			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
 		</ScreenContainer>
 	);
