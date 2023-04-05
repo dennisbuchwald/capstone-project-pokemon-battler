@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
 import { useBattleLogic } from "../../hooks/useBattleLogic";
 
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
