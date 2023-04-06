@@ -138,8 +138,6 @@ const AttackButtonThree = styled(AttackButton)`
 const AttackButtonBack = styled(AttackButton)`
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
-	background-color: transparent;
-	border: none;
 `;
 
 export default AttackMenu;
