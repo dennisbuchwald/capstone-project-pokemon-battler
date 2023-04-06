@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
+import cursorImage from "../../../public/sprites/cursor.png";
 
 export default function Menu({ onAttack, disabled }) {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
@@ -106,14 +107,10 @@ const MenuButton = styled.button`
 	font-size: 20px;
 	line-height: 14px;
 	display: flex;
-
-	transition: all 0.2s ease-in-out;
-
 	&:hover {
 		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 		color: black;
 	}
-
 	&:active {
 		position: relative;
 		top: 6px;
@@ -124,6 +121,10 @@ const MenuButtonFight = styled(MenuButton)`
 	color: black;
 	left: 20px;
 	top: 6px;
+	background-image: url(${cursorImage});
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: 18px;
 `;
 
 const MenuButtonBag = styled(MenuButton)`

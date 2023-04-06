@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import SoundEffects from "../SoundEffect/SoundEffect";
 
 const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
@@ -13,6 +13,7 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 	};
 
 	const [playSound, stopSound] = SoundEffects();
+	const [hoveredButton, setHoveredButton] = React.useState(null);
 
 	return (
 		<AttackMenuContainer>
@@ -21,9 +22,16 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 					handleAttackClick(attacks[0].damage);
 					playSound("menuSound");
 				}}
-				onMouseEnter={() => playSound("menuSound")}
-				onMouseLeave={() => stopSound("menuSound")}
+				onMouseEnter={() => {
+					playSound("menuSound");
+					setHoveredButton(1);
+				}}
+				onMouseLeave={() => {
+					stopSound("menuSound");
+					setHoveredButton(null);
+				}}
 			>
+				{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
 				{attacks[0].name}
 			</AttackButtonOne>
 			<AttackButtonTwo
@@ -31,9 +39,16 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 					handleAttackClick(attacks[1].damage);
 					playSound("menuSound");
 				}}
-				onMouseEnter={() => playSound("menuSound")}
-				onMouseLeave={() => stopSound("menuSound")}
+				onMouseEnter={() => {
+					playSound("menuSound");
+					setHoveredButton(2);
+				}}
+				onMouseLeave={() => {
+					stopSound("menuSound");
+					setHoveredButton(null);
+				}}
 			>
+				{hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
 				{attacks[1].name}
 			</AttackButtonTwo>
 			<AttackButtonThree
@@ -41,16 +56,30 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 					handleAttackClick(attacks[2].damage);
 					playSound("menuSound");
 				}}
-				onMouseEnter={() => playSound("menuSound")}
-				onMouseLeave={() => stopSound("menuSound")}
+				onMouseEnter={() => {
+					playSound("menuSound");
+					setHoveredButton(3);
+				}}
+				onMouseLeave={() => {
+					stopSound("menuSound");
+					setHoveredButton(null);
+				}}
 			>
+				{hoveredButton === 3 && <CursorImage src="/sprites/cursor.png" />}
 				{attacks[2].name}
 			</AttackButtonThree>
 			<AttackButtonBack
-				onMouseEnter={() => playSound("menuSound")}
-				onMouseLeave={() => stopSound("menuSound")}
+				onMouseEnter={() => {
+					playSound("menuSound");
+					setHoveredButton(4);
+				}}
+				onMouseLeave={() => {
+					stopSound("menuSound");
+					setHoveredButton(null);
+				}}
 				onClick={onBackButtonClick}
 			>
+				{hoveredButton === 4 && <CursorImage src="/sprites/cursor.png" />}
 				Zurueck
 			</AttackButtonBack>
 		</AttackMenuContainer>
@@ -61,13 +90,22 @@ const AttackMenuContainer = styled.section`
 	position: absolute;
 	width: 50%;
 	height: 89%%;
-	left: 3%;
-	bottom: 18%;
+	left: 6%;
+	bottom: 24%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	grid-gap: 0px;
+`;
+
+const CursorImage = styled.img`
+	position: absolute;
+	left: -7px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 10px;
+	height: auto;
 `;
 
 const AttackButton = styled.button`
@@ -103,4 +141,5 @@ const AttackButtonBack = styled(AttackButton)`
 	background-color: transparent;
 	border: none;
 `;
+
 export default AttackMenu;
