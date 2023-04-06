@@ -1,7 +1,17 @@
+import { useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Image from "next/image";
+import SoundEffect from "../SoundEffect/SoundEffect";
 
 export default function PlayerPokemon({ attacking, isDamaged }) {
+	const [playSound] = SoundEffect();
+
+	useEffect(() => {
+		if (isDamaged) {
+			playSound("attackedSound");
+		}
+	}, [isDamaged, playSound]);
+
 	return (
 		<BlinkingPokemonContainer isDamaged={isDamaged}>
 			<PlayerPokemonContainer attacking={attacking}>

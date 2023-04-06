@@ -3,6 +3,7 @@ import useSound from "use-sound";
 
 import backgroundMusic from "/public/audio/battle_music.mp3";
 import menuSound from "/public/audio/menu.mp3";
+import attackedSound from "/public/audio/attacked.mp3";
 
 const SoundEffects = () => {
 	const [playBackgroundMusic, { stop: stopBackgroundMusic }] = useSound(
@@ -14,6 +15,8 @@ const SoundEffects = () => {
 		volume: 0.1,
 	});
 
+	const [playAttackedSound] = useSound(attackedSound, { volume: 1 });
+
 	const playSound = useCallback(
 		(effect) => {
 			switch (effect) {
@@ -23,12 +26,15 @@ const SoundEffects = () => {
 				case "menuSound":
 					playMenuSound();
 					break;
+				case "attackedSound":
+					playAttackedSound();
+					break;
 				default:
 					console.log("Unknown sound effect");
 					break;
 			}
 		},
-		[playBackgroundMusic, playMenuSound]
+		[playBackgroundMusic, playMenuSound, playAttackedSound]
 	);
 
 	const stopSound = useCallback(

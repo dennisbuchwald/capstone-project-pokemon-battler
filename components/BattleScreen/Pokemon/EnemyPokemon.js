@@ -1,6 +1,7 @@
 import styled, { keyframes, css } from "styled-components";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import SoundEffect from "../SoundEffect/SoundEffect";
 
 export const enemyPokemonArray = [
 	{ name: "mewtwo", level: 75, maxHealth: 120, currentHealth: 120 },
@@ -26,6 +27,14 @@ export default function EnemyPokemon({
 			}, 500);
 		}
 	}, [wasAttacked]);
+
+	const [playSound] = SoundEffect();
+
+	useEffect(() => {
+		if (isDamaged) {
+			playSound("attackedSound");
+		}
+	}, [isDamaged, playSound]);
 
 	return (
 		<BlinkingEnemyPokemonContainer isDamaged={isDamaged}>
