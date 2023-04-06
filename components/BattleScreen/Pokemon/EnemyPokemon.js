@@ -75,15 +75,15 @@ const EnemyPokemonContainer = styled.figure`
 
 const damageAnimation = keyframes`
 	0% { opacity: 1; }
-	10% { opacity: 0.5; }
+	10% { opacity: 0.1; }
 	20% { opacity: 1; }
-	30% { opacity: 0.5; }
+	30% { opacity: 0.1; }
 	40% { opacity: 1; }
-	50% { opacity: 0.5; }
+	50% { opacity: 0.1; }
 	60% { opacity: 1; }
-	70% { opacity: 0.5; }
+	70% { opacity: 0.1; }
 	80% { opacity: 1; }
-	90% { opacity: 0.5; }
+	90% { opacity: 0.1; }
 	100% { opacity: 1; }
 `;
 
