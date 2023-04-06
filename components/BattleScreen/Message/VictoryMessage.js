@@ -1,22 +1,10 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
-import SoundEffects from "../SoundEffect/SoundEffect";
 
 export default function VictoryMessage() {
-	const [playSound, stopSound] = SoundEffects();
-
-	useEffect(() => {
-		stopSound("backgroundMusic"); // Stop the background music
-	}, [stopSound]);
-
-	const handleRestart = () => {
-		window.location.reload();
-	};
-
 	return (
 		<VictoryMessageContainer>
-			<VictoryTitle>You won!</VictoryTitle>
-			<RestartButton onClick={handleRestart}>Restart</RestartButton>
+			<VictoryTitle>Du hast Gewonnen!</VictoryTitle>
+			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</VictoryMessageContainer>
 	);
 }
