@@ -4,7 +4,7 @@ import SoundEffects from "../SoundEffect/SoundEffect";
 
 const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 	const attacks = [
-		{ name: "Flammenwurf", damage: 60 },
+		{ name: "Flammenwurf", damage: 160 },
 		{ name: "Feuersturm", damage: 40 },
 		{ name: "Drachenklaue", damage: 30 },
 	];

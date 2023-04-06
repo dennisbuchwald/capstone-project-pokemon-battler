@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
 export default function VictoryMessage() {
+	const handleRestart = () => {
+		window.location.reload();
+	};
+
 	return (
 		<VictoryMessageContainer>
-			<VictoryTitle>Du hast Gewonnen!</VictoryTitle>
+			<VictoryTitle>Du hast Gewonnen</VictoryTitle>
 			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</VictoryMessageContainer>
 	);
