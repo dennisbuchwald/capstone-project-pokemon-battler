@@ -85,7 +85,6 @@ const MenuContainer = styled.section`
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	color: white;
-	border: solid red;
 `;
 
 const MenuOverviewBox = styled.section`
@@ -112,7 +111,6 @@ const MenuOverviewBoxRight = styled.section`
 	width: 50%;
 	right: -5%;
 	position: relative;
-	border: solid green;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
