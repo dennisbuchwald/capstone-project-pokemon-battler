@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { useState } from "react";
 import AttackMenu from "./AttackMenu";
+import SoundEffects from "../SoundEffect/SoundEffect";
 
 export default function Menu({ onAttack, disabled }) {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
+	const [playSound, stopSound] = SoundEffects();
+	const [hoveredButton, setHoveredButton] = useState(null);
 
 	const handleAttackClick = () => {
 		if (!disabled) {
@@ -30,12 +33,41 @@ export default function Menu({ onAttack, disabled }) {
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Klicke auf Kampf um anzugreifen</p>
+						<p>Was soll Glurak tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
-						<MenuButtonFight onClick={handleAttackClick} disabled={disabled}>
+						<MenuButtonFight
+							onMouseEnter={() => {
+								playSound("menuSound");
+								setHoveredButton(1);
+							}}
+							onMouseLeave={() => {
+								stopSound("menuSound");
+								setHoveredButton(null);
+							}}
+							onClick={handleAttackClick}
+							disabled={disabled}
+						>
+							{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
 							Kampf
 						</MenuButtonFight>
+						<MenuButtonRun
+							onMouseEnter={() => {
+								playSound("menuSound");
+								setHoveredButton(4);
+							}}
+							onMouseLeave={() => {
+								stopSound("menuSound");
+								setHoveredButton(null);
+							}}
+							onClick={() => {
+								window.location.reload();
+							}}
+							disabled={disabled}
+						>
+							{hoveredButton === 4 && <CursorImage src="/sprites/cursor.png" />}
+							Flucht
+						</MenuButtonRun>
 					</MenuOverviewBoxRight>
 				</MenuOverviewBox>
 			)}
@@ -43,7 +75,7 @@ export default function Menu({ onAttack, disabled }) {
 	);
 }
 
-const MenuContainer = styled.nav`
+const MenuContainer = styled.section`
 	position: absolute;
 	width: 100%;
 	height: 80px;
@@ -75,66 +107,53 @@ const MenuOverviewBoxLeft = styled.article`
 	font-size: 20px;
 `;
 
-const MenuOverviewBoxRight = styled.article`
+const MenuOverviewBoxRight = styled.section`
 	width: 50%;
-	right: 0px;
+	right: -5%;
 	position: relative;
-	top: 0px;
-	left: 0px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 0px;
+`;
+
+const CursorImage = styled.img`
+	position: absolute;
+	left: -7px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 10px;
+	height: auto;
 `;
 
 const MenuButton = styled.button`
-	position: absolute;
-	width: 80px;
-	height: 20px;
-	border-radius: 13px;
-	color: black;
-	text-align: left;
+	position: relative;
 	background-color: transparent;
+	color: black;
+	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
+		BlinkMacSystemFont, Segoe UI;
+	font-size: 20px;
 	cursor: pointer;
-	left: 10px;
-	font-family: "PokemonFireRed", -apple-system, BlinkMacSystemFont, Segoe UI;
 	text-align: left;
 	border: none;
-	font-size: 20px;
-	line-height: 14px;
-	display: flex;
-
-	transition: all 0.2s ease-in-out;
-
-	&:hover {
-		box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-		color: black;
-	}
-
-	&:active {
-		position: relative;
-		top: 6px;
-	}
 `;
 
 const MenuButtonFight = styled(MenuButton)`
-	color: black;
-	left: 20px;
-	top: 6px;
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
 `;
 
 const MenuButtonBag = styled(MenuButton)`
-	color: black;
-	left: 100px;
-	top: 5px;
-	text-transform: uppercase;
+	grid-column: 2 / 3;
+	grid-row: 1 / 2;
 `;
 
 const MenuButtonPokemon = styled(MenuButton)`
-	color: black;
-	left: 20px;
-	top: 30px;
+	grid-column: 1 / 2;
+	grid-row: 2 / 3;
 `;
 
 const MenuButtonRun = styled(MenuButton)`
-	color: black;
-	left: 100px;
-	top: 30px;
-	text-transform: uppercase;
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
 `;

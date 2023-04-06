@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { useBattleLogic } from "../../hooks/useBattleLogic";
-
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon, { enemyPokemonArray } from "./Pokemon/EnemyPokemon";
@@ -8,8 +8,15 @@ import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
+import SoundEffect from "./SoundEffect/SoundEffect";
 
 export default function BattleScreen() {
+	const [playSound] = SoundEffect();
+
+	useEffect(() => {
+		playSound("backgroundMusic");
+	}, [playSound]);
+
 	const {
 		playerHealth,
 		victory,
@@ -19,6 +26,7 @@ export default function BattleScreen() {
 		enemyAttacking,
 		selectedEnemyPokemonIndex,
 		handleAttack,
+		handlePlayerDamage,
 	} = useBattleLogic();
 
 	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
@@ -32,9 +40,10 @@ export default function BattleScreen() {
 	return (
 		<ScreenContainer>
 			<PlayerState currentHealth={playerHealth} />
-			<PlayerPokemon attacking={playerAttacking} />
+			<PlayerPokemon attacking={playerAttacking} isDamaged={enemyAttacking} />
 			<EnemyPokemon
 				attacking={enemyAttacking}
+				wasAttacked={playerAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
 			/>
 			<EnemyState

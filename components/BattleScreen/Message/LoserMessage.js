@@ -6,7 +6,7 @@ export default function LoserMessage() {
 	};
 	return (
 		<LoserMessageMessageContainer>
-			<LoserTitle>Du hast verloren!</LoserTitle>
+			<LoserTitle>Du hast Verloren!</LoserTitle>
 			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</LoserMessageMessageContainer>
 	);
