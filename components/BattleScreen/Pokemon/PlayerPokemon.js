@@ -58,3 +58,17 @@ const attackAnimation = keyframes`
 		transform: translate(0, 0) scale(1);
 	}
 `;
+
+const damageAnimation = keyframes`
+	0% { opacity: 1; }
+	10% { opacity: 0.1; }
+	20% { opacity: 1; }
+	30% { opacity: 0.1; }
+	40% { opacity: 1; }
+	50% { opacity: 0.1; }
+	60% { opacity: 1; }
+	70% { opacity: 0.1; }
+	80% { opacity: 1; }
+	90% { opacity: 0.1; }
+	100% { opacity: 1; }
+`;
