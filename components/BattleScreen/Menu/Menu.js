@@ -33,7 +33,7 @@ export default function Menu({ onAttack, disabled }) {
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Klicke auf Kampf um anzugreifen</p>
+						<p>Was soll Glurak tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
 						<MenuButtonFight
