@@ -29,7 +29,7 @@ const Menu = ({ onAttack, disabled, attacks }) => {
 				<AttackMenu
 					onAttackSelection={handleAttackSelection}
 					onBackButtonClick={handleCloseMenu}
-					attacks={attacks} // Pass the attacks prop to AttackMenu
+					attacks={attacks}
 				/>
 			) : (
 				<MenuOverviewBox>
