@@ -7,6 +7,7 @@ export default function PokemonSelection({ onSelect }) {
 			name: "Bisaflor",
 			image: "/sprites/starter/venusaur-back.gif",
 			maxHealth: 120,
+			currentHealth: 120,
 			level: 55,
 			attacks: [
 				{ name: "Rasierblatt", damage: 55 },
@@ -18,6 +19,7 @@ export default function PokemonSelection({ onSelect }) {
 			name: "Glurak",
 			image: "/sprites/starter/charizard-back.gif",
 			maxHealth: 120,
+			currentHealth: 120,
 			level: 63,
 			attacks: [
 				{ name: "Flammenwurf", damage: 90 },
@@ -29,6 +31,7 @@ export default function PokemonSelection({ onSelect }) {
 			name: "Turtok",
 			image: "/sprites/starter/blastoise-back.gif",
 			maxHealth: 120,
+			currentHealth: 120,
 			level: 59,
 			attacks: [
 				{ name: "Aquaknarre", damage: 40 },
