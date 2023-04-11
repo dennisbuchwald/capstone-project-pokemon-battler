@@ -34,7 +34,7 @@ const Menu = ({ onAttack, disabled, attacks }) => {
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Was soll Glurak tun?</p>
+						<p>Was soll dein Pokemon tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
 						<MenuButtonFight
