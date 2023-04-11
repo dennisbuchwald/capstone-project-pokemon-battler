@@ -3,7 +3,7 @@ import { useState } from "react";
 import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
 
-export default function Menu({ onAttack, disabled }) {
+const Menu = ({ onAttack, disabled, attacks }) => {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
 	const [playSound, stopSound] = SoundEffects();
 	const [hoveredButton, setHoveredButton] = useState(null);
@@ -29,11 +29,12 @@ export default function Menu({ onAttack, disabled }) {
 				<AttackMenu
 					onAttackSelection={handleAttackSelection}
 					onBackButtonClick={handleCloseMenu}
+					attacks={attacks}
 				/>
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Was soll Glurak tun?</p>
+						<p>Was soll dein Pokemon tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
 						<MenuButtonFight
@@ -73,7 +74,9 @@ export default function Menu({ onAttack, disabled }) {
 			)}
 		</MenuContainer>
 	);
-}
+};
+
+export default Menu;
 
 const MenuContainer = styled.section`
 	position: absolute;

@@ -9,14 +9,19 @@ import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
+import PokemonSelection from "../PokemonSelection/PokemonSelection";
 
-export default function BattleScreen() {
+function BackgroundMusic() {
 	const [playSound] = SoundEffect();
 
 	useEffect(() => {
 		playSound("backgroundMusic");
 	}, [playSound]);
 
+	return null;
+}
+
+function Battle({ selectedPokemon }) {
 	const {
 		playerHealth,
 		victory,
@@ -27,7 +32,7 @@ export default function BattleScreen() {
 		selectedEnemyPokemonIndex,
 		handleAttack,
 		handlePlayerDamage,
-	} = useBattleLogic();
+	} = useBattleLogic(selectedPokemon);
 
 	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
@@ -39,8 +44,15 @@ export default function BattleScreen() {
 
 	return (
 		<ScreenContainer>
-			<PlayerState currentHealth={playerHealth} />
-			<PlayerPokemon attacking={playerAttacking} isDamaged={enemyAttacking} />
+			<PlayerState
+				currentHealth={playerHealth}
+				selectedPokemon={selectedPokemon}
+			/>
+			<PlayerPokemon
+				attacking={playerAttacking}
+				isDamaged={enemyAttacking}
+				selectedPokemon={selectedPokemon}
+			/>
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				wasAttacked={playerAttacking}
@@ -52,8 +64,36 @@ export default function BattleScreen() {
 				pokemon={enemyPokemon.name}
 				level={enemyPokemon.level}
 			/>
-			<Menu onAttack={handleAttack} disabled={isDisabled || isEnemyDefeated} />
+			<Menu
+				onAttack={handleAttack}
+				disabled={isDisabled || isEnemyDefeated}
+				attacks={selectedPokemon.attacks}
+			/>
 		</ScreenContainer>
+	);
+}
+
+export default function BattleScreen() {
+	const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+	const handlePokemonSelection = (pokemon) => {
+		setSelectedPokemon(pokemon);
+	};
+
+	if (!selectedPokemon) {
+		return (
+			<>
+				<BackgroundMusic />
+				<PokemonSelection onSelect={handlePokemonSelection} />
+			</>
+		);
+	}
+
+	return (
+		<>
+			<BackgroundMusic />
+			<Battle selectedPokemon={selectedPokemon} />
+		</>
 	);
 }
 

@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Image from "next/image";
-import SoundEffect from "../SoundEffect/SoundEffect";
+import useAttackedSound from "../SoundEffect/useAttackedSound";
 
-export default function PlayerPokemon({ attacking, isDamaged }) {
-	const [playSound] = SoundEffect();
+export default function PlayerPokemon({
+	attacking,
+	isDamaged,
+	selectedPokemon,
+}) {
+	const [playSound] = useAttackedSound();
 
 	useEffect(() => {
 		if (isDamaged) {
@@ -12,26 +16,46 @@ export default function PlayerPokemon({ attacking, isDamaged }) {
 		}
 	}, [isDamaged, playSound]);
 
+	const scaleFactor = getScaleFactor(selectedPokemon.name);
+
 	return (
 		<BlinkingPokemonContainer isDamaged={isDamaged}>
 			<PlayerPokemonContainer attacking={attacking}>
-				<Image
-					src="/sprites/starter/charizard-back.gif"
-					alt="glurak"
+				<StyledImage
+					src={selectedPokemon.image}
+					alt={selectedPokemon.name}
 					layout="intrinsic"
-					width={240}
-					height={240}
+					width={200 * scaleFactor}
+					height={200 * scaleFactor}
 				/>
 			</PlayerPokemonContainer>
 		</BlinkingPokemonContainer>
 	);
 }
 
+function getScaleFactor(pokemonName) {
+	switch (pokemonName) {
+		case "Bisaflor":
+			return 0.65;
+		case "Turtok":
+			return 0.65;
+		case "Glurak":
+			return 0.8;
+		default:
+			return 1;
+	}
+}
+
+const StyledImage = styled(Image)`
+	object-fit: contain;
+`;
+
 const BlinkingPokemonContainer = styled.figure`
 	position: absolute;
-	bottom: 10px;
-	left: -20px;
-	transform: scale(0.8);
+	bottom: 15%;
+	left: 5%;
+	transform: scale(1);
+
 	margin: 0;
 	animation: ${({ isDamaged }) =>
 		isDamaged

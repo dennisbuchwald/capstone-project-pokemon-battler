@@ -2,14 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import SoundEffects from "../SoundEffect/SoundEffect";
 
-const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
-	const attacks = [
-		{ name: "Flammenwurf", damage: 160 },
-		{ name: "Feuersturm", damage: 40 },
-		{ name: "Drachenklaue", damage: 30 },
-	];
-	const handleAttackClick = (damage) => {
-		onAttackSelection(damage);
+const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
+	const handleAttackClick = (index) => {
+		onAttackSelection(index);
+		playSound("menuSound");
 	};
 
 	const [playSound, stopSound] = SoundEffects();
@@ -17,61 +13,32 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 
 	return (
 		<AttackMenuContainer>
-			<AttackButtonOne
-				onClick={() => {
-					handleAttackClick(attacks[0].damage);
-					playSound("menuSound");
-				}}
-				onMouseEnter={() => {
-					playSound("menuSound");
-					setHoveredButton(1);
-				}}
-				onMouseLeave={() => {
-					stopSound("menuSound");
-					setHoveredButton(null);
-				}}
-			>
-				{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
-				{attacks[0].name}
-			</AttackButtonOne>
-			<AttackButtonTwo
-				onClick={() => {
-					handleAttackClick(attacks[1].damage);
-					playSound("menuSound");
-				}}
-				onMouseEnter={() => {
-					playSound("menuSound");
-					setHoveredButton(2);
-				}}
-				onMouseLeave={() => {
-					stopSound("menuSound");
-					setHoveredButton(null);
-				}}
-			>
-				{hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
-				{attacks[1].name}
-			</AttackButtonTwo>
-			<AttackButtonThree
-				onClick={() => {
-					handleAttackClick(attacks[2].damage);
-					playSound("menuSound");
-				}}
-				onMouseEnter={() => {
-					playSound("menuSound");
-					setHoveredButton(3);
-				}}
-				onMouseLeave={() => {
-					stopSound("menuSound");
-					setHoveredButton(null);
-				}}
-			>
-				{hoveredButton === 3 && <CursorImage src="/sprites/cursor.png" />}
-				{attacks[2].name}
-			</AttackButtonThree>
+			{attacks.map((attack, index) => (
+				<AttackButton
+					key={index}
+					onClick={() => {
+						handleAttackClick(index);
+						playSound("menuSound");
+					}}
+					onMouseEnter={() => {
+						playSound("menuSound");
+						setHoveredButton(index + 1);
+					}}
+					onMouseLeave={() => {
+						stopSound("menuSound");
+						setHoveredButton(null);
+					}}
+				>
+					{hoveredButton === index + 1 && (
+						<CursorImage src="/sprites/cursor.png" />
+					)}
+					{attack.name}
+				</AttackButton>
+			))}
 			<AttackButtonBack
 				onMouseEnter={() => {
 					playSound("menuSound");
-					setHoveredButton(4);
+					setHoveredButton(attacks.length + 1);
 				}}
 				onMouseLeave={() => {
 					stopSound("menuSound");
@@ -79,7 +46,9 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick }) => {
 				}}
 				onClick={onBackButtonClick}
 			>
-				{hoveredButton === 4 && <CursorImage src="/sprites/cursor.png" />}
+				{hoveredButton === attacks.length + 1 && (
+					<CursorImage src="/sprites/cursor.png" />
+				)}
 				Zurueck
 			</AttackButtonBack>
 		</AttackMenuContainer>
