@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import styled, { css, keyframes } from "styled-components";
 import Image from "next/image";
-import SoundEffect from "../SoundEffect/SoundEffect";
+import useAttackedSound from "../SoundEffect/useAttackedSound";
 
-export default function PlayerPokemon({ attacking, isDamaged }) {
-	const [playSound] = SoundEffect();
+export default function PlayerPokemon({
+	attacking,
+	isDamaged,
+	selectedPokemon,
+}) {
+	const [playSound] = useAttackedSound();
 
 	useEffect(() => {
 		if (isDamaged) {
@@ -16,8 +20,8 @@ export default function PlayerPokemon({ attacking, isDamaged }) {
 		<BlinkingPokemonContainer isDamaged={isDamaged}>
 			<PlayerPokemonContainer attacking={attacking}>
 				<Image
-					src="/sprites/starter/charizard-back.gif"
-					alt="glurak"
+					src={selectedPokemon.image}
+					alt={selectedPokemon.name}
 					layout="intrinsic"
 					width={240}
 					height={240}

@@ -3,9 +3,33 @@ import Image from "next/image";
 
 export default function PokemonSelection({ onSelect }) {
 	const pokemons = [
-		{ name: "Bisaflor" },
-		{ name: "Glurak" },
-		{ name: "Turtok" },
+		{
+			name: "Bisaflor",
+			image: "/sprites/starter/venusaur-back.gif",
+			attacks: [
+				{ name: "Rasierblatt", damage: 55 },
+				{ name: "Solarstrahl", damage: 120 },
+				{ name: "Schlafpuder", damage: 0 },
+			],
+		},
+		{
+			name: "Glurak",
+			image: "/sprites/starter/charizard-back.gif",
+			attacks: [
+				{ name: "Flammenwurf", damage: 90 },
+				{ name: "Feuersturm", damage: 110 },
+				{ name: "Drachenklaue", damage: 80 },
+			],
+		},
+		{
+			name: "Turtok",
+			image: "/sprites/starter/blastoise-back.gif",
+			attacks: [
+				{ name: "Aquaknarre", damage: 40 },
+				{ name: "Hydropumpe", damage: 110 },
+				{ name: "Eisstrahl", damage: 90 },
+			],
+		},
 	];
 
 	return (

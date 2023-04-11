@@ -5,7 +5,7 @@ import backgroundMusic from "/public/audio/battle_music.mp3";
 import menuSound from "/public/audio/menu.mp3";
 import attackedSound from "/public/audio/attacked.mp3";
 
-const SoundEffects = () => {
+const useSoundEffects = () => {
 	const [playBackgroundMusic, { stop: stopBackgroundMusic }] = useSound(
 		backgroundMusic,
 		{ volume: 0.1 }
@@ -57,4 +57,4 @@ const SoundEffects = () => {
 	return [playSound, stopSound];
 };
 
-export default SoundEffects;
+export default useSoundEffects;

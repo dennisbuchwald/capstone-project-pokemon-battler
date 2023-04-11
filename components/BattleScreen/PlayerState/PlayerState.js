@@ -1,18 +1,19 @@
 import styled from "styled-components";
+import PokemonSelection from "../../PokemonSelection/PokemonSelection";
 
-export default function PlayerState({ currentHealth }) {
+export default function PlayerState({ currentHealth, selectedPokemon }) {
 	const maxHealth = 120;
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
 
 	return (
 		<PlayerStateSection>
-			<PokemonName>Glurak</PokemonName>
+			<PokemonName>{selectedPokemon.name}</PokemonName>
 			<PokemonLevelTitel>Lv.</PokemonLevelTitel>
-			<PokemonLevel>69</PokemonLevel>
+			<PokemonLevel>{selectedPokemon.level}</PokemonLevel>
 			<PokemonHealth>{currentHealth}</PokemonHealth>
 			<PokemonHealthBar value={healthPercent} max="100"></PokemonHealthBar>
 			<PokemonSlashHealth>/</PokemonSlashHealth>
-			<PokemonMaxHealth>{maxHealth}</PokemonMaxHealth>
+			<PokemonMaxHealth>{selectedPokemon.maxHealth}</PokemonMaxHealth>
 		</PlayerStateSection>
 	);
 }
