@@ -3,7 +3,7 @@ import useSound from "use-sound";
 import attackedSound from "/public/audio/attacked.mp3";
 
 const useAttackedSound = () => {
-	const [playAttackedSound] = useSound(attackedSound, { volume: 1 });
+	const [playAttackedSound] = useSound(attackedSound, { volume: 0.5 });
 
 	const playSound = useCallback(
 		(effect) => {

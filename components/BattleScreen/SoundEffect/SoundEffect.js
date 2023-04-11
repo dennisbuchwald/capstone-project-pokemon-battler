@@ -12,10 +12,10 @@ const useSoundEffects = () => {
 	);
 
 	const [playMenuSound, { stop: stopMenuSound }] = useSound(menuSound, {
-		volume: 0.1,
+		volume: 0.3,
 	});
 
-	const [playAttackedSound] = useSound(attackedSound, { volume: 1 });
+	const [playAttackedSound] = useSound(attackedSound, { volume: 0.4 });
 
 	const playSound = useCallback(
 		(effect) => {
