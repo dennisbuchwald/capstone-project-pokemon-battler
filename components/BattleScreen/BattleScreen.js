@@ -9,9 +9,24 @@ import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
+import PokemonSelection from "../PokemonSelection/PokemonSelection";
 
 export default function BattleScreen() {
 	const [playSound] = SoundEffect();
+
+	//________________________________________________________________
+
+	const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+	const handlePokemonSelection = (pokemon) => {
+		setSelectedPokemon(pokemon);
+	};
+
+	if (!selectedPokemon) {
+		return <PokemonSelection onSelect={handlePokemonSelection} />;
+	}
+
+	//________________________________________________________________
 
 	useEffect(() => {
 		playSound("backgroundMusic");
