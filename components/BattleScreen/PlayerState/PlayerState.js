@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import PokemonSelection from "../../PokemonSelection/PokemonSelection";
 
 export default function PlayerState({ currentHealth, selectedPokemon }) {
 	const maxHealth = 120;

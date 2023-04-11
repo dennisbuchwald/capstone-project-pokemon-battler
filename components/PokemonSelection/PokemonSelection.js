@@ -6,15 +6,19 @@ export default function PokemonSelection({ onSelect }) {
 		{
 			name: "Bisaflor",
 			image: "/sprites/starter/venusaur-back.gif",
+			maxHealth: 120,
+			level: 55,
 			attacks: [
 				{ name: "Rasierblatt", damage: 55 },
 				{ name: "Solarstrahl", damage: 120 },
-				{ name: "Schlafpuder", damage: 0 },
+				{ name: "Gifthieb", damage: 40 },
 			],
 		},
 		{
 			name: "Glurak",
 			image: "/sprites/starter/charizard-back.gif",
+			maxHealth: 120,
+			level: 63,
 			attacks: [
 				{ name: "Flammenwurf", damage: 90 },
 				{ name: "Feuersturm", damage: 110 },
@@ -24,6 +28,8 @@ export default function PokemonSelection({ onSelect }) {
 		{
 			name: "Turtok",
 			image: "/sprites/starter/blastoise-back.gif",
+			maxHealth: 120,
+			level: 59,
 			attacks: [
 				{ name: "Aquaknarre", damage: 40 },
 				{ name: "Hydropumpe", damage: 110 },
@@ -32,12 +38,16 @@ export default function PokemonSelection({ onSelect }) {
 		},
 	];
 
+	const handleSelect = (selectedPokemon) => {
+		onSelect(selectedPokemon);
+	};
+
 	return (
 		<SelectionContainer>
 			<Title>Waehle dein Pokémon</Title>
 			<PokemonList>
 				{pokemons.map((pokemon, index) => (
-					<Pokemon key={index} onClick={() => onSelect(pokemon)}>
+					<Pokemon key={index} onClick={() => handleSelect(pokemon)}>
 						<Image
 							src="/sprites/masterball.png"
 							alt={pokemon.name}
