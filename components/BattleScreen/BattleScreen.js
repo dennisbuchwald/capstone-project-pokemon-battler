@@ -10,6 +10,7 @@ import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
 import PokemonSelection from "../PokemonSelection/PokemonSelection";
+import OpponentSelection from "../OpponentSelection/OpponentSelection";
 
 function BackgroundMusic() {
 	const [playSound] = SoundEffect();
@@ -21,41 +22,85 @@ function BackgroundMusic() {
 	return null;
 }
 
-function Battle({ selectedPokemon }) {
-	const {
-		playerHealth,
-		victory,
-		isDisabled,
-		isEnemyDefeated,
-		playerAttacking,
-		enemyAttacking,
-		selectedEnemyPokemonIndex,
-		handleAttack,
-		handlePlayerDamage,
-	} = useBattleLogic(selectedPokemon);
+function Battle({ selectedPokemon, selectedEnemyPokemons }) {
+	const [isPokemonFainted, setIsPokemonFainted] = useState(false);
+	const [isVictory, setIsVictory] = useState(false);
+	const [isMenuDisabled, setIsMenuDisabled] = useState(false);
+	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
+	const [isPlayerAttacking, setIsPlayerAttacking] = useState(false);
+	const [isEnemyAttacking, setIsEnemyAttacking] = useState(false);
+	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
 
+	const playerPokemon = selectedPokemon;
 	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
-	if (playerHealth <= 0) {
-		return <LoserMessage />;
-	} else if (victory) {
+	const handleAttack = () => {
+		setIsMenuDisabled(true);
+
+		setIsPlayerAttacking(true);
+		setTimeout(() => {
+			setIsPlayerAttacking(false);
+
+			const damage = playerPokemon.attacks[0].power;
+			const newEnemyHealth = enemyPokemon.currentHealth - damage;
+			const isEnemyFainted = newEnemyHealth <= 0;
+
+			if (isEnemyFainted) {
+				setIsEnemyDefeated(true);
+				setIsVictory(true);
+				setIsMenuDisabled(true);
+				return;
+			}
+
+			enemyPokemon.currentHealth = newEnemyHealth;
+			setSelectedEnemyPokemonIndex((prevIndex) => prevIndex + 1);
+
+			setTimeout(() => {
+				setIsEnemyAttacking(true);
+
+				setTimeout(() => {
+					setIsEnemyAttacking(false);
+
+					const enemyAttack = enemyPokemon.attacks[0];
+					const damage = enemyAttack.power;
+					const newPlayerHealth = playerPokemon.currentHealth - damage;
+					const isPlayerFainted = newPlayerHealth <= 0;
+
+					if (isPlayerFainted) {
+						setIsPokemonFainted(true);
+						setIsMenuDisabled(true);
+						return;
+					}
+
+					playerPokemon.currentHealth = newPlayerHealth;
+					setIsMenuDisabled(false);
+				}, 1000);
+			}, 1000);
+		}, 1000);
+	};
+
+	if (isVictory) {
 		return <VictoryMessage />;
+	}
+
+	if (isPokemonFainted) {
+		return <LoserMessage />;
 	}
 
 	return (
 		<ScreenContainer>
 			<PlayerState
-				currentHealth={playerHealth}
-				selectedPokemon={selectedPokemon}
+				currentHealth={playerPokemon.currentHealth}
+				selectedPokemon={playerPokemon}
 			/>
 			<PlayerPokemon
-				attacking={playerAttacking}
-				isDamaged={enemyAttacking}
-				selectedPokemon={selectedPokemon}
+				attacking={isPlayerAttacking}
+				isDamaged={isEnemyAttacking}
+				selectedPokemon={playerPokemon}
 			/>
 			<EnemyPokemon
-				attacking={enemyAttacking}
-				wasAttacked={playerAttacking}
+				attacking={isEnemyAttacking}
+				wasAttacked={isPlayerAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
 			/>
 			<EnemyState
@@ -66,8 +111,8 @@ function Battle({ selectedPokemon }) {
 			/>
 			<Menu
 				onAttack={handleAttack}
-				disabled={isDisabled || isEnemyDefeated}
-				attacks={selectedPokemon.attacks}
+				disabled={isMenuDisabled}
+				attacks={playerPokemon.attacks}
 			/>
 		</ScreenContainer>
 	);
@@ -75,9 +120,14 @@ function Battle({ selectedPokemon }) {
 
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
+	const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
 
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
+	};
+
+	const handleEnemySelection = (enemy) => {
+		setSelectedEnemyPokemons(enemy.pokemons);
 	};
 
 	if (!selectedPokemon) {
@@ -89,10 +139,23 @@ export default function BattleScreen() {
 		);
 	}
 
+	if (!selectedEnemyPokemons) {
+		return (
+			<>
+				<BackgroundMusic />
+				<OpponentSelection onSelect={handleEnemySelection} />
+			</>
+		);
+	}
+
 	return (
 		<>
 			<BackgroundMusic />
-			<Battle selectedPokemon={selectedPokemon} />
+			<OpponentSelection onSelect={handleEnemySelection} />
+			<Battle
+				selectedPokemon={selectedPokemon}
+				selectedEnemyPokemons={selectedEnemyPokemons}
+			/>
 		</>
 	);
 }
