@@ -8,6 +8,7 @@ export default function EnemyState({
 }) {
 	const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
 
+	console.log("Pokemon name:", pokemon);
 	return (
 		<EnemyStateSection>
 			<EnemyPokemonName>{pokemon}</EnemyPokemonName>

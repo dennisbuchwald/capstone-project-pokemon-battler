@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { enemyPokemonArray } from "../components/BattleScreen/Pokemon/EnemyPokemon";
 
-export function useBattleLogic(selectedPokemon) {
+export function useBattleLogic(selectedPokemon, selectedOpponentPokemons) {
 	const [playerHealth, setPlayerHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -9,6 +8,9 @@ export function useBattleLogic(selectedPokemon) {
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
 	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
+
+	// Setzt das aktuelle Pokemon des Gegners als das ausgewählte Pokemon
+	const enemyPokemon = selectedOpponentPokemons?.[selectedEnemyPokemonIndex];
 
 	const handlePlayerDamage = (damage) => {
 		setPlayerHealth((prevHealth) => prevHealth - damage);
@@ -30,12 +32,12 @@ export function useBattleLogic(selectedPokemon) {
 
 	const handleAttack = (attackIndex) => {
 		const attack = selectedPokemon.attacks[attackIndex];
+		const enemyPokemon = selectedOpponentPokemons[selectedEnemyPokemonIndex];
 
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(
 			attack.damage * (Math.random() * 0.2 + 0.8)
 		);
-		const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 		const newCurrentHealth = Math.max(
 			enemyPokemon.currentHealth - actualDamage,
 			0
@@ -46,7 +48,7 @@ export function useBattleLogic(selectedPokemon) {
 			setIsEnemyDefeated(true);
 			setTimeout(() => {
 				setIsEnemyDefeated(false);
-				if (selectedEnemyPokemonIndex === enemyPokemonArray.length - 1) {
+				if (selectedEnemyPokemonIndex === selectedOpponentPokemons.length - 1) {
 					setVictory(true);
 				} else {
 					setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);
@@ -57,6 +59,7 @@ export function useBattleLogic(selectedPokemon) {
 		if (newCurrentHealth <= 0) {
 			return;
 		}
+
 		setIsDisabled(true);
 		setTimeout(() => {
 			if (isEnemyDefeated) {

@@ -22,7 +22,7 @@ function BackgroundMusic() {
 	return null;
 }
 
-function Battle({ selectedPokemon }) {
+function Battle({ selectedPokemon, enemyPokemon }) {
 	const {
 		playerHealth,
 		victory,
@@ -30,12 +30,9 @@ function Battle({ selectedPokemon }) {
 		isEnemyDefeated,
 		playerAttacking,
 		enemyAttacking,
-		selectedEnemyPokemonIndex,
 		handleAttack,
 		handlePlayerDamage,
 	} = useBattleLogic(selectedPokemon);
-
-	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
@@ -57,7 +54,7 @@ function Battle({ selectedPokemon }) {
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				wasAttacked={playerAttacking}
-				selectedPokemonIndex={selectedEnemyPokemonIndex}
+				pokemon={enemyPokemon}
 			/>
 			<EnemyState
 				currentHealth={enemyPokemon.currentHealth}
@@ -77,6 +74,7 @@ function Battle({ selectedPokemon }) {
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
+	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
 
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
@@ -84,6 +82,7 @@ export default function BattleScreen() {
 
 	const handleEnemySelection = (enemy) => {
 		setSelectedEnemyPokemons(enemy);
+		setSelectedEnemyPokemonIndex(0); // Setzt den Index des ersten Pokemon als ausgewählt
 	};
 
 	if (!selectedPokemon) {
@@ -104,10 +103,12 @@ export default function BattleScreen() {
 		);
 	}
 
+	const enemyPokemon = selectedEnemyPokemons[selectedEnemyPokemonIndex];
+
 	return (
 		<>
 			<BackgroundMusic />
-			<Battle selectedPokemon={selectedPokemon} />
+			<Battle selectedPokemon={selectedPokemon} enemyPokemon={enemyPokemon} />
 		</>
 	);
 }

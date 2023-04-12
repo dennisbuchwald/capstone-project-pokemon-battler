@@ -90,7 +90,9 @@ export default function OpponentSelection({ onOpponentSelect }) {
 	];
 
 	const handleSelect = (selectedOpponent) => {
-		onOpponentSelect(selectedOpponent.pokemons);
+		if (selectedOpponent && selectedOpponent.pokemons) {
+			onOpponentSelect(selectedOpponent.pokemons);
+		}
 	};
 
 	return (
@@ -109,6 +111,9 @@ export default function OpponentSelection({ onOpponentSelect }) {
 						<OpponentLevel>{opponent.difficultyLevel}</OpponentLevel>
 					</Opponent>
 				))}
+				{(!opponent || opponent.length === 0) && (
+					<div>Keine Gegner verfügbar</div>
+				)}
 			</OpponentList>
 		</SelectionContainer>
 	);
