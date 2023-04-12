@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useBattleLogic } from "../../hooks/useBattleLogic";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
-import EnemyPokemon, { enemyPokemonArray } from "./Pokemon/EnemyPokemon";
+import EnemyPokemon from "./Pokemon/EnemyPokemon";
 import EnemyState from "./EnemyState/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
@@ -22,7 +22,7 @@ function BackgroundMusic() {
 	return null;
 }
 
-function Battle({ selectedPokemon }) {
+function Battle({ selectedPokemon, selectedEnemyPokemon }) {
 	const {
 		playerHealth,
 		victory,
@@ -35,7 +35,7 @@ function Battle({ selectedPokemon }) {
 		handlePlayerDamage,
 	} = useBattleLogic(selectedPokemon);
 
-	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
+	const enemyPokemon = selectedEnemyPokemon;
 
 	if (playerHealth <= 0) {
 		return <LoserMessage />;
@@ -57,7 +57,7 @@ function Battle({ selectedPokemon }) {
 			<EnemyPokemon
 				attacking={enemyAttacking}
 				wasAttacked={playerAttacking}
-				selectedPokemonIndex={selectedEnemyPokemonIndex}
+				selectedPokemon={selectedEnemyPokemon}
 			/>
 			<EnemyState
 				currentHealth={enemyPokemon.currentHealth}
