@@ -30,10 +30,9 @@ function Battle({ selectedPokemon, selectedEnemyPokemon }) {
 		isEnemyDefeated,
 		playerAttacking,
 		enemyAttacking,
-		selectedEnemyPokemonIndex,
 		handleAttack,
 		handlePlayerDamage,
-	} = useBattleLogic(selectedPokemon);
+	} = useBattleLogic(selectedPokemon, selectedEnemyPokemon);
 
 	const enemyPokemon = selectedEnemyPokemon;
 
