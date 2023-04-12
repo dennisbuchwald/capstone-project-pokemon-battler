@@ -13,8 +13,9 @@ export default function EnemyPokemon({
 	attacking,
 	wasAttacked,
 	selectedPokemonIndex,
+	selectedEnemyPokemons, //neu
 }) {
-	const selectedPokemon = enemyPokemonArray[selectedPokemonIndex];
+	const selectedPokemon = selectedEnemyPokemons[selectedPokemonIndex]; // Verwenden selectedEnemyPokemons anstelle von enemyPokemonArray
 	const { name, level, currentHealth, maxHealth } = selectedPokemon;
 
 	const [isDamaged, setIsDamaged] = useState(false);
@@ -40,7 +41,7 @@ export default function EnemyPokemon({
 		<BlinkingEnemyPokemonContainer isDamaged={isDamaged}>
 			<EnemyPokemonContainer attacking={attacking}>
 				<StyledImage
-					src={`/sprites/opponent/hard/${name}.gif`}
+					src={`/sprites/opponent/${name}.gif`}
 					alt={`${name}`}
 					width={150}
 					height={100}

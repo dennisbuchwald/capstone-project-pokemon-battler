@@ -10,21 +10,21 @@ export default function OpponentSelection({ onGegnerSelect }) {
 			pokemons: [
 				{
 					name: "menki",
-					image: "/sprites/opponent/easymankey.gif",
+					image: "/sprites/opponent/menki.gif",
 					level: 15,
 					maxHealth: 20,
 					currentHealth: 20,
 				},
 				{
 					name: "taubsi",
-					image: "/sprites/opponent/easypidgey.gif",
+					image: "/sprites/opponent/taubsi.gif",
 					level: 15,
 					maxHealth: 20,
 					currentHealth: 20,
 				},
 				{
 					name: "pikachu",
-					image: "/sprites/starter/easypikachu.gif",
+					image: "/sprites/opponent/pikachu.gif",
 					level: 85,
 					maxHealth: 140,
 					currentHealth: 140,
@@ -38,21 +38,21 @@ export default function OpponentSelection({ onGegnerSelect }) {
 			pokemons: [
 				{
 					name: "aerodactyl",
-					image: "/sprites/opponent/middle/aerodactyl.gif",
+					image: "/sprites/opponent/aerodactyl.gif",
 					level: 35,
 					maxHealth: 50,
 					currentHealth: 50,
 				},
 				{
 					name: "kadabra",
-					image: "/sprites/opponent/middle/kadabra.gif",
+					image: "/sprites/opponent/kadabra.gif",
 					level: 35,
 					maxHealth: 50,
 					currentHealth: 50,
 				},
 				{
 					name: "maschock",
-					image: "/sprites/starter/middle/maschock.gif",
+					image: "/sprites/opponent/maschock.gif",
 					level: 35,
 					maxHealth: 50,
 					currentHealth: 50,
@@ -90,7 +90,7 @@ export default function OpponentSelection({ onGegnerSelect }) {
 	];
 
 	const handleSelect = (selectedOpponent) => {
-		onSelect(selectedOpponent.pokemons);
+		onGegnerSelect(selectedOpponent.pokemons);
 	};
 
 	return (

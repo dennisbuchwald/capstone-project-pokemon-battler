@@ -102,6 +102,7 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 				attacking={isEnemyAttacking}
 				wasAttacked={isPlayerAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
+				selectedEnemyPokemons={selectedEnemyPokemons} // Fügen Prop hinzu
 			/>
 			<EnemyState
 				currentHealth={enemyPokemon.currentHealth}
@@ -121,13 +122,15 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
+	const [isBattleReady, setIsBattleReady] = useState(false); // Hinzufügen
 
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
 	};
 
 	const handleEnemySelection = (enemy) => {
-		setSelectedEnemyPokemons(enemy.pokemons);
+		setSelectedEnemyPokemons(enemy);
+		setIsBattleReady(true); // hinmzugefügt
 	};
 
 	if (!selectedPokemon) {
@@ -143,21 +146,23 @@ export default function BattleScreen() {
 		return (
 			<>
 				<BackgroundMusic />
-				<OpponentSelection onSelect={handleEnemySelection} />
+				<OpponentSelection onGegnerSelect={handleEnemySelection} />
 			</>
 		);
 	}
 
-	return (
-		<>
-			<BackgroundMusic />
-			<OpponentSelection onSelect={handleEnemySelection} />
-			<Battle
-				selectedPokemon={selectedPokemon}
-				selectedEnemyPokemons={selectedEnemyPokemons}
-			/>
-		</>
-	);
+	if (isBattleReady) {
+		// Hinzufügen
+		return (
+			<>
+				<BackgroundMusic />
+				<Battle
+					selectedPokemon={selectedPokemon}
+					selectedEnemyPokemons={selectedEnemyPokemons}
+				/>
+			</>
+		);
+	}
 }
 
 const ScreenContainer = styled.main`
