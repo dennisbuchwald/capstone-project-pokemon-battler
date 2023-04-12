@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import { useBattleLogic } from "../../hooks/useBattleLogic";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon, { enemyPokemonArray } from "./Pokemon/EnemyPokemon";
@@ -22,7 +21,7 @@ function BackgroundMusic() {
 	return null;
 }
 
-function Battle({ selectedPokemon, selectedEnemyPokemons }) {
+function Battle({ selectedPokemon, selectedEnemyPokemons, forceRenderUpdate }) {
 	const [isPokemonFainted, setIsPokemonFainted] = useState(false);
 	const [isVictory, setIsVictory] = useState(false);
 	const [isMenuDisabled, setIsMenuDisabled] = useState(false);
@@ -30,9 +29,10 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 	const [isPlayerAttacking, setIsPlayerAttacking] = useState(false);
 	const [isEnemyAttacking, setIsEnemyAttacking] = useState(false);
 	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
+	const [forceRender, setForceRender] = useState(false);
 
 	const playerPokemon = selectedPokemon;
-	const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
+	const enemyPokemon = selectedEnemyPokemons[selectedEnemyPokemonIndex];
 
 	const handleAttack = () => {
 		setIsMenuDisabled(true);
@@ -53,6 +53,7 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 			}
 
 			enemyPokemon.currentHealth = newEnemyHealth;
+			forceRenderUpdate();
 			setSelectedEnemyPokemonIndex((prevIndex) => prevIndex + 1);
 
 			setTimeout(() => {
@@ -73,6 +74,7 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 					}
 
 					playerPokemon.currentHealth = newPlayerHealth;
+					forceRenderUpdate();
 					setIsMenuDisabled(false);
 				}, 1000);
 			}, 1000);
@@ -102,7 +104,13 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 				attacking={isEnemyAttacking}
 				wasAttacked={isPlayerAttacking}
 				selectedPokemonIndex={selectedEnemyPokemonIndex}
-				selectedEnemyPokemons={selectedEnemyPokemons} // Fügen Prop hinzu
+				selectedEnemyPokemons={selectedEnemyPokemons} // Füge Prop hinzu
+			/>
+			<EnemyPokemon
+				attacking={isEnemyAttacking}
+				wasAttacked={isPlayerAttacking}
+				selectedPokemonIndex={selectedEnemyPokemonIndex}
+				selectedEnemyPokemons={selectedEnemyPokemons} // Füge Prop hinzu
 			/>
 			<EnemyState
 				currentHealth={enemyPokemon.currentHealth}
@@ -122,7 +130,7 @@ function Battle({ selectedPokemon, selectedEnemyPokemons }) {
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
-	const [isBattleReady, setIsBattleReady] = useState(false); // Hinzufügen
+	const isBattleReady = selectedPokemon && selectedEnemyPokemons;
 
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
@@ -130,7 +138,10 @@ export default function BattleScreen() {
 
 	const handleEnemySelection = (enemy) => {
 		setSelectedEnemyPokemons(enemy);
-		setIsBattleReady(true); // hinmzugefügt
+	};
+
+	const forceRenderUpdate = () => {
+		setSelectedPokemon((prevPokemon) => ({ ...prevPokemon }));
 	};
 
 	if (!selectedPokemon) {
@@ -146,23 +157,21 @@ export default function BattleScreen() {
 		return (
 			<>
 				<BackgroundMusic />
-				<OpponentSelection onGegnerSelect={handleEnemySelection} />
+				<OpponentSelection onSelect={handleEnemySelection} />
 			</>
 		);
 	}
 
-	if (isBattleReady) {
-		// Hinzufügen
-		return (
-			<>
-				<BackgroundMusic />
-				<Battle
-					selectedPokemon={selectedPokemon}
-					selectedEnemyPokemons={selectedEnemyPokemons}
-				/>
-			</>
-		);
-	}
+	return (
+		<>
+			<BackgroundMusic />
+			<Battle
+				selectedPokemon={selectedPokemon}
+				selectedEnemyPokemons={selectedEnemyPokemons}
+				forceRenderUpdate={forceRenderUpdate}
+			/>
+		</>
+	);
 }
 
 const ScreenContainer = styled.main`

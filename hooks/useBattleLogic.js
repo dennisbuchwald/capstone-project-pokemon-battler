@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { enemyPokemonArray } from "../components/BattleScreen/Pokemon/EnemyPokemon";
 
-export function useBattleLogic(selectedPokemon) {
+export function useBattleLogic(selectedPokemon, selectedEnemyPokemons) {
+	// Verwendung von selectedEnemyPokemons als Parameter
 	const [playerHealth, setPlayerHealth] = useState(120);
 	const [victory, setVictory] = useState(false);
 	const [isDisabled, setIsDisabled] = useState(false);
@@ -35,7 +35,7 @@ export function useBattleLogic(selectedPokemon) {
 		const actualDamage = Math.floor(
 			attack.damage * (Math.random() * 0.2 + 0.8)
 		);
-		const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
+		const enemyPokemon = selectedEnemyPokemons[selectedEnemyPokemonIndex]; // Verwenden von selectedEnemyPokemons anstelle von enemyPokemonArray
 		const newCurrentHealth = Math.max(
 			enemyPokemon.currentHealth - actualDamage,
 			0
@@ -46,7 +46,8 @@ export function useBattleLogic(selectedPokemon) {
 			setIsEnemyDefeated(true);
 			setTimeout(() => {
 				setIsEnemyDefeated(false);
-				if (selectedEnemyPokemonIndex === enemyPokemonArray.length - 1) {
+				if (selectedEnemyPokemonIndex === selectedEnemyPokemons.length - 1) {
+					// Verwenden von selectedEnemyPokemons anstelle von enemyPokemonArray
 					setVictory(true);
 				} else {
 					setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);

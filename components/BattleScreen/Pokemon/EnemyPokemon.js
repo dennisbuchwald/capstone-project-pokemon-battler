@@ -3,12 +3,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import SoundEffect from "../SoundEffect/SoundEffect";
 
-export const enemyPokemonArray = [
-	{ name: "mewtwo", level: 75, maxHealth: 120, currentHealth: 120 },
-	{ name: "gengar", level: 80, maxHealth: 130, currentHealth: 130 },
-	{ name: "garados", level: 85, maxHealth: 140, currentHealth: 140 },
-];
-
 export default function EnemyPokemon({
 	attacking,
 	wasAttacked,
