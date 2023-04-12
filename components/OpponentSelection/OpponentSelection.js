@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-export default function OpponentSelection({ onGegnerSelect }) {
+export default function OpponentSelection({ onOpponentSelect }) {
 	const opponent = [
 		{
 			id: 0,
@@ -90,7 +90,7 @@ export default function OpponentSelection({ onGegnerSelect }) {
 	];
 
 	const handleSelect = (selectedOpponent) => {
-		onGegnerSelect(selectedOpponent.pokemons);
+		onOpponentSelect(selectedOpponent.pokemons);
 	};
 
 	return (
