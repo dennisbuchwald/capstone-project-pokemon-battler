@@ -10,6 +10,7 @@ import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
 import PokemonSelection from "../PokemonSelection/PokemonSelection";
+import OpponentSelection from "../OpponentSelection/OpponentSelection";
 
 function BackgroundMusic() {
 	const [playSound] = SoundEffect();
@@ -75,9 +76,16 @@ function Battle({ selectedPokemon }) {
 
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
+	const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);
 
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
+	};
+
+	const handleEnemySelection = (enemyPokemons) => {
+		const randomIndex = Math.floor(Math.random() * enemyPokemons.length);
+		const selectedEnemy = enemyPokemons[randomIndex];
+		setSelectedEnemyPokemon(selectedEnemy);
 	};
 
 	if (!selectedPokemon) {
@@ -89,10 +97,22 @@ export default function BattleScreen() {
 		);
 	}
 
+	if (!selectedEnemyPokemon) {
+		return (
+			<>
+				<BackgroundMusic />
+				<OpponentSelection onSelect={handleEnemySelection} />
+			</>
+		);
+	}
+
 	return (
 		<>
 			<BackgroundMusic />
-			<Battle selectedPokemon={selectedPokemon} />
+			<Battle
+				selectedPokemon={selectedPokemon}
+				selectedEnemyPokemon={selectedEnemyPokemon}
+			/>
 		</>
 	);
 }
