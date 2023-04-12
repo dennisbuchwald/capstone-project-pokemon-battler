@@ -80,7 +80,6 @@ export default function BattleScreen() {
 	const handlePokemonSelection = (pokemon) => {
 		setSelectedPokemon(pokemon);
 	};
-
 	const handleEnemySelection = (enemyPokemons) => {
 		const randomIndex = Math.floor(Math.random() * enemyPokemons.length);
 		const selectedEnemy = enemyPokemons[randomIndex];

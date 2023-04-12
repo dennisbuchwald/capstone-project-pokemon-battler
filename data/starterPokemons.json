@@ -8,7 +8,7 @@
 		"attacks": [
 			{ "name": "Rasierblatt", "damage": 55 },
 			{ "name": "Solarstrahl", "damage": 120 },
-			{ "name": "Gifthieb", "damage": 40 }
+			{ "name": "Gifthieb", "damage": 4 }
 		]
 	},
 	{

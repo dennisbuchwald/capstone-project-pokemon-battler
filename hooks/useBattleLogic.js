@@ -7,6 +7,7 @@ export function useBattleLogic(selectedPokemon, selectedEnemyPokemon) {
 	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
+	const [defeatedEnemyIndexes, setDefeatedEnemyIndexes] = useState([]);
 
 	const handlePlayerDamage = (damage) => {
 		setPlayerHealth((prevHealth) => prevHealth - damage);
@@ -67,6 +68,28 @@ export function useBattleLogic(selectedPokemon, selectedEnemyPokemon) {
 		}, 1000);
 	};
 
+	const handleEnemyDefeat = () => {
+		setDefeatedEnemyIndexes([
+			...defeatedEnemyIndexes,
+			selectedEnemyPokemonIndex,
+		]);
+		setEnemyDefeated(true);
+		setEnemyAttacking(false);
+		setPlayerAttacking(false);
+
+		// Wählen den nächsten Gegner aus
+		if (defeatedEnemyIndexes.length + 1 < enemyTeam.length) {
+			let nextEnemyIndex;
+			do {
+				nextEnemyIndex = Math.floor(Math.random() * enemyTeam.length);
+			} while (defeatedEnemyIndexes.includes(nextEnemyIndex));
+
+			setSelectedEnemyPokemonIndex(nextEnemyIndex);
+		} else {
+			setVictory(true);
+		}
+	};
+
 	return {
 		playerHealth,
 		victory,
@@ -76,5 +99,6 @@ export function useBattleLogic(selectedPokemon, selectedEnemyPokemon) {
 		enemyAttacking,
 		handleAttack,
 		handlePlayerDamage,
+		handleEnemyDefeat,
 	};
 }

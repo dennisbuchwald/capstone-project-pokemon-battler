@@ -21,7 +21,7 @@
 			{
 				"name": "pikachu",
 				"image": "/sprites/opponent/pikachu.gif",
-				"level": 85,
+				"level": 15,
 				"maxHealth": 140,
 				"currentHealth": 140
 			}
