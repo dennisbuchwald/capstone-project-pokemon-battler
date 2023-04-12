@@ -1,46 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
+import starterPokemons from "../../data/starterPokemons.json";
 
 export default function PokemonSelection({ onSelect }) {
-	const pokemons = [
-		{
-			name: "Bisaflor",
-			image: "/sprites/starter/venusaur-back.gif",
-			maxHealth: 120,
-			currentHealth: 120,
-			level: 55,
-			attacks: [
-				{ name: "Rasierblatt", damage: 55 },
-				{ name: "Solarstrahl", damage: 120 },
-				{ name: "Gifthieb", damage: 40 },
-			],
-		},
-		{
-			name: "Glurak",
-			image: "/sprites/starter/charizard-back.gif",
-			maxHealth: 120,
-			currentHealth: 120,
-			level: 63,
-			attacks: [
-				{ name: "Flammenwurf", damage: 90 },
-				{ name: "Feuersturm", damage: 110 },
-				{ name: "Drachenklaue", damage: 80 },
-			],
-		},
-		{
-			name: "Turtok",
-			image: "/sprites/starter/blastoise-back.gif",
-			maxHealth: 120,
-			currentHealth: 120,
-			level: 59,
-			attacks: [
-				{ name: "Aquaknarre", damage: 40 },
-				{ name: "Hydropumpe", damage: 110 },
-				{ name: "Eisstrahl", damage: 90 },
-			],
-		},
-	];
-
 	const handleSelect = (selectedPokemon) => {
 		onSelect(selectedPokemon);
 	};
@@ -49,7 +11,7 @@ export default function PokemonSelection({ onSelect }) {
 		<SelectionContainer>
 			<Title>Waehle dein Pokémon</Title>
 			<PokemonList>
-				{pokemons.map((pokemon, index) => (
+				{starterPokemons.map((pokemon, index) => (
 					<Pokemon key={index} onClick={() => handleSelect(pokemon)}>
 						<Image
 							src="/sprites/masterball.png"
