@@ -1,94 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
+import opponents from "../../data/opponents.json";
 
 export default function OpponentSelection({ onSelect }) {
-	const opponent = [
-		{
-			id: 0,
-			name: "misty",
-			difficultyLevel: "Einfach",
-			pokemons: [
-				{
-					name: "menki",
-					image: "/sprites/opponent/menki.gif",
-					level: 15,
-					maxHealth: 20,
-					currentHealth: 20,
-				},
-				{
-					name: "taubsi",
-					image: "/sprites/opponent/taubsi.gif",
-					level: 15,
-					maxHealth: 20,
-					currentHealth: 20,
-				},
-				{
-					name: "pikachu",
-					image: "/sprites/opponent/pikachu.gif",
-					level: 85,
-					maxHealth: 140,
-					currentHealth: 140,
-				},
-			],
-		},
-		{
-			id: 1,
-			name: "prof. eich",
-			difficultyLevel: "Mittel",
-			pokemons: [
-				{
-					name: "aerodactyl",
-					image: "/sprites/opponent/aerodactyl.gif",
-					level: 35,
-					maxHealth: 50,
-					currentHealth: 50,
-				},
-				{
-					name: "kadabra",
-					image: "/sprites/opponent/kadabra.gif",
-					level: 35,
-					maxHealth: 50,
-					currentHealth: 50,
-				},
-				{
-					name: "maschock",
-					image: "/sprites/opponent/maschock.gif",
-					level: 35,
-					maxHealth: 50,
-					currentHealth: 50,
-				},
-			],
-		},
-		{
-			id: 2,
-			name: "garry",
-			difficultyLevel: "Schwer",
-			pokemons: [
-				{
-					name: "garados",
-					image: "/sprites/starter/hard/garados.gif",
-					level: 85,
-					maxHealth: 140,
-					currentHealth: 140,
-				},
-				{
-					name: "mewtwo",
-					image: "/sprites/starter/hard/mewtwo.gif",
-					level: 75,
-					maxHealth: 120,
-					currentHealth: 120,
-				},
-				{
-					name: "gengar",
-					image: "/sprites/starter/hard/gengar.gif",
-					level: 80,
-					maxHealth: 130,
-					currentHealth: 130,
-				},
-			],
-		},
-	];
-
 	const handleSelect = (selectedOpponent) => {
 		onSelect(selectedOpponent.pokemons);
 	};
@@ -97,7 +11,7 @@ export default function OpponentSelection({ onSelect }) {
 		<SelectionContainer>
 			<Title>Waehle deinen Gegner</Title>
 			<OpponentList>
-				{opponent.map((opponent) => (
+				{opponents.map((opponent) => (
 					<Opponent key={opponent.id} onClick={() => handleSelect(opponent)}>
 						<Image
 							src={`/sprites/character/${opponent.id}.png`}
