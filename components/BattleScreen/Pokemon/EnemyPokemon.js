@@ -8,7 +8,7 @@ export default function EnemyPokemon({
   wasAttacked,
   selectedPokemon,
 }) {
-  const { name, level, currentHealth, maxHealth } = selectedPokemon;
+  const { name, level, currentHealth, maxHealth, scale } = selectedPokemon;
 
   const [isDamaged, setIsDamaged] = useState(false);
 
@@ -36,7 +36,7 @@ export default function EnemyPokemon({
           src={`/sprites/opponent/${name}.gif`}
           alt={`${name}`}
           width={150}
-          height={100}
+          height={100 * scale}
         />
       </EnemyPokemonContainer>
     </BlinkingEnemyPokemonContainer>

@@ -50,37 +50,46 @@ export function useBattleLogic(
 
     playSound("attackedSound");
 
-    // Verzögere die Überprüfung des besiegten Gegners, um die Animation abzuschließen
     setTimeout(() => {
       if (newCurrentHealth === 0) {
         const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
         if (newIndex !== -1) {
           setTimeout(() => {
             setSelectedEnemyPokemon(selectedEnemyPokemons[newIndex]);
-            setIsEnemyDefeated(false); // Setze isEnemyDefeated auf false zurück
-          }, 1000); // Timeout von 1000 ms hinzu
+            setIsEnemyDefeated(false);
+          }, 1000);
         }
       }
-    }, 500); // Füge eine Verzögerung von 500 ms hinzu, um die Animation abzuschließen
+    }, 500);
 
     if (newCurrentHealth <= 0) {
       return;
     }
     setIsDisabled(true);
     setTimeout(() => {
+      setEnemyAttacking(true);
       if (isEnemyDefeated) {
         setIsDisabled(false);
         return;
       }
 
-      const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-      handlePlayerDamage(damageTaken);
-      setIsDisabled(false);
-      setEnemyAttacking(true);
+      setTimeout(() => {
+        const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+        handlePlayerDamage(damageTaken);
 
-      if (playerHealth - damageTaken <= 0) {
-        setVictory(false);
-      }
+        if (playerHealth - damageTaken <= 0) {
+          setIsDisabled(false);
+          setTimeout(() => {
+            setVictory(false);
+          }, 1000);
+        } else {
+          setIsDisabled(false);
+        }
+      }, 150);
+
+      setTimeout(() => {
+        setEnemyAttacking(false);
+      }, 1500);
     }, 1000);
   };
 
@@ -91,10 +100,10 @@ export function useBattleLogic(
 
     if (selectedEnemyIndex + 1 < enemyPokemons.length) {
       setSelectedEnemyIndex(selectedEnemyIndex + 1);
-      return selectedEnemyIndex + 1; // Rückgabe des neuen Index
+      return selectedEnemyIndex + 1;
     } else {
       setVictory(true);
-      return -1; // Rückgabe von -1, wenn alle feindlichen Pokémon besiegt sind
+      return -1;
     }
   };
 
