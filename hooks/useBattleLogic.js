@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import useAttackedSound from "../components/BattleScreen/SoundEffect/useAttackedSound";
 
 export function useBattleLogic(
   selectedPokemon,
@@ -13,6 +14,8 @@ export function useBattleLogic(
   const [playerAttacking, setPlayerAttacking] = useState(false);
   const [enemyAttacking, setEnemyAttacking] = useState(false);
   const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
+
+  const [playSound] = useAttackedSound();
 
   const handlePlayerDamage = (damage) => {
     setPlayerHealth((prevHealth) => prevHealth - damage);
@@ -54,6 +57,7 @@ export function useBattleLogic(
         }, 1000); // Timeout von 1000 ms hinzu
       }
     }
+    playSound("attackedSound");
 
     if (newCurrentHealth <= 0) {
       return;
