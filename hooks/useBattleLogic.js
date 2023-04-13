@@ -1,89 +1,121 @@
 import { useState, useEffect } from "react";
-import { enemyPokemonArray } from "../components/BattleScreen/Pokemon/EnemyPokemon";
+import useAttackedSound from "../components/BattleScreen/SoundEffect/useAttackedSound";
 
-export function useBattleLogic(selectedPokemon) {
-	const [playerHealth, setPlayerHealth] = useState(120);
-	const [victory, setVictory] = useState(false);
-	const [isDisabled, setIsDisabled] = useState(false);
-	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
-	const [playerAttacking, setPlayerAttacking] = useState(false);
-	const [enemyAttacking, setEnemyAttacking] = useState(false);
-	const [selectedEnemyPokemonIndex, setSelectedEnemyPokemonIndex] = useState(0);
+export function useBattleLogic(
+  selectedPokemon,
+  selectedEnemyPokemon,
+  selectedEnemyPokemons,
+  setSelectedEnemyPokemon
+) {
+  const [playerHealth, setPlayerHealth] = useState(120);
+  const [victory, setVictory] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
+  const [playerAttacking, setPlayerAttacking] = useState(false);
+  const [enemyAttacking, setEnemyAttacking] = useState(false);
+  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
 
-	const handlePlayerDamage = (damage) => {
-		setPlayerHealth((prevHealth) => prevHealth - damage);
-	};
+  const [playSound] = useAttackedSound();
 
-	useEffect(() => {
-		if (playerAttacking) {
-			setTimeout(() => {
-				setPlayerAttacking(false);
-			}, 500);
-		}
+  const handlePlayerDamage = (damage) => {
+    setPlayerHealth((prevHealth) => prevHealth - damage);
+  };
 
-		if (enemyAttacking) {
-			setTimeout(() => {
-				setEnemyAttacking(false);
-			}, 500);
-		}
-	}, [playerAttacking, enemyAttacking]);
+  useEffect(() => {
+    if (playerAttacking) {
+      setTimeout(() => {
+        setPlayerAttacking(false);
+      }, 500);
+    }
 
-	const handleAttack = (attackIndex) => {
-		const attack = selectedPokemon.attacks[attackIndex];
+    if (enemyAttacking) {
+      setTimeout(() => {
+        setEnemyAttacking(false);
+      }, 500);
+    }
+  }, [playerAttacking, enemyAttacking]);
 
-		setPlayerAttacking(true);
-		const actualDamage = Math.floor(
-			attack.damage * (Math.random() * 0.2 + 0.8)
-		);
-		const enemyPokemon = enemyPokemonArray[selectedEnemyPokemonIndex];
-		const newCurrentHealth = Math.max(
-			enemyPokemon.currentHealth - actualDamage,
-			0
-		);
-		enemyPokemon.currentHealth = newCurrentHealth;
+  const handleAttack = (attackIndex) => {
+    const attack = selectedPokemon.attacks[attackIndex];
 
-		if (newCurrentHealth === 0) {
-			setIsEnemyDefeated(true);
-			setTimeout(() => {
-				setIsEnemyDefeated(false);
-				if (selectedEnemyPokemonIndex === enemyPokemonArray.length - 1) {
-					setVictory(true);
-				} else {
-					setSelectedEnemyPokemonIndex(selectedEnemyPokemonIndex + 1);
-				}
-			}, 1000);
-		}
+    setPlayerAttacking(true);
+    const actualDamage = Math.floor(
+      attack.damage * (Math.random() * 0.2 + 0.8)
+    );
+    const newCurrentHealth = Math.max(
+      selectedEnemyPokemon.currentHealth - actualDamage,
+      0
+    );
+    selectedEnemyPokemon.currentHealth = newCurrentHealth;
 
-		if (newCurrentHealth <= 0) {
-			return;
-		}
-		setIsDisabled(true);
-		setTimeout(() => {
-			if (isEnemyDefeated) {
-				setIsDisabled(false);
-				return;
-			}
+    playSound("attackedSound");
 
-			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-			handlePlayerDamage(damageTaken);
-			setIsDisabled(false);
-			setEnemyAttacking(true);
+    setTimeout(() => {
+      if (newCurrentHealth === 0) {
+        const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
+        if (newIndex !== -1) {
+          setTimeout(() => {
+            setSelectedEnemyPokemon(selectedEnemyPokemons[newIndex]);
+            setIsEnemyDefeated(false);
+          }, 1000);
+        }
+      }
+    }, 500);
 
-			if (playerHealth - damageTaken <= 0) {
-				setVictory(false);
-			}
-		}, 1000);
-	};
+    if (newCurrentHealth <= 0) {
+      return;
+    }
+    setIsDisabled(true);
+    setTimeout(() => {
+      setEnemyAttacking(true);
+      if (isEnemyDefeated) {
+        setIsDisabled(false);
+        return;
+      }
 
-	return {
-		playerHealth,
-		victory,
-		isDisabled,
-		isEnemyDefeated,
-		playerAttacking,
-		enemyAttacking,
-		selectedEnemyPokemonIndex,
-		handleAttack,
-		handlePlayerDamage,
-	};
+      setTimeout(() => {
+        const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+        handlePlayerDamage(damageTaken);
+
+        if (playerHealth - damageTaken <= 0) {
+          setIsDisabled(false);
+          setTimeout(() => {
+            setVictory(false);
+          }, 1000);
+        } else {
+          setIsDisabled(false);
+        }
+      }, 150);
+
+      setTimeout(() => {
+        setEnemyAttacking(false);
+      }, 1500);
+    }, 1000);
+  };
+
+  const handleEnemyDefeat = (enemyPokemons) => {
+    setIsEnemyDefeated(true);
+    setEnemyAttacking(false);
+    setPlayerAttacking(false);
+
+    if (selectedEnemyIndex + 1 < enemyPokemons.length) {
+      setSelectedEnemyIndex(selectedEnemyIndex + 1);
+      return selectedEnemyIndex + 1;
+    } else {
+      setVictory(true);
+      return -1;
+    }
+  };
+
+  return {
+    playerHealth,
+    victory,
+    isDisabled,
+    isEnemyDefeated,
+    playerAttacking,
+    enemyAttacking,
+    handleAttack,
+    handlePlayerDamage,
+    handleEnemyDefeat,
+  };
 }
