@@ -48,16 +48,20 @@ export function useBattleLogic(
     );
     selectedEnemyPokemon.currentHealth = newCurrentHealth;
 
-    if (newCurrentHealth === 0) {
-      const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
-      if (newIndex !== -1) {
-        setTimeout(() => {
-          setSelectedEnemyPokemon(selectedEnemyPokemons[newIndex]);
-          setIsEnemyDefeated(false); // Setze isEnemyDefeated auf false zurück
-        }, 1000); // Timeout von 1000 ms hinzu
-      }
-    }
     playSound("attackedSound");
+
+    // Verzögere die Überprüfung des besiegten Gegners, um die Animation abzuschließen
+    setTimeout(() => {
+      if (newCurrentHealth === 0) {
+        const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
+        if (newIndex !== -1) {
+          setTimeout(() => {
+            setSelectedEnemyPokemon(selectedEnemyPokemons[newIndex]);
+            setIsEnemyDefeated(false); // Setze isEnemyDefeated auf false zurück
+          }, 1000); // Timeout von 1000 ms hinzu
+        }
+      }
+    }, 500); // Füge eine Verzögerung von 500 ms hinzu, um die Animation abzuschließen
 
     if (newCurrentHealth <= 0) {
       return;
