@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "name": "misty",
+    "name": "Misty",
     "difficultyLevel": "Einfach",
     "pokemons": [
       {
@@ -32,7 +32,7 @@
   },
   {
     "id": 1,
-    "name": "prof. eich",
+    "name": "Prof. Eich",
     "difficultyLevel": "Mittel",
     "pokemons": [
       {
@@ -63,7 +63,7 @@
   },
   {
     "id": 2,
-    "name": "garry",
+    "name": "Garry",
     "difficultyLevel": "Schwer",
     "pokemons": [
       {
