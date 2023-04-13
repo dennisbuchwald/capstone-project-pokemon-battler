@@ -1,104 +1,104 @@
 import { useState, useEffect } from "react";
 
-export function useBattleLogic(selectedPokemon, selectedEnemyPokemon) {
-	const [playerHealth, setPlayerHealth] = useState(120);
-	const [victory, setVictory] = useState(false);
-	const [isDisabled, setIsDisabled] = useState(false);
-	const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
-	const [playerAttacking, setPlayerAttacking] = useState(false);
-	const [enemyAttacking, setEnemyAttacking] = useState(false);
-	const [defeatedEnemyIndexes, setDefeatedEnemyIndexes] = useState([]);
+export function useBattleLogic(
+  selectedPokemon,
+  selectedEnemyPokemon,
+  selectedEnemyPokemons,
+  setSelectedEnemyPokemon
+) {
+  const [playerHealth, setPlayerHealth] = useState(120);
+  const [victory, setVictory] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [isEnemyDefeated, setIsEnemyDefeated] = useState(false);
+  const [playerAttacking, setPlayerAttacking] = useState(false);
+  const [enemyAttacking, setEnemyAttacking] = useState(false);
+  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
 
-	const handlePlayerDamage = (damage) => {
-		setPlayerHealth((prevHealth) => prevHealth - damage);
-	};
+  const handlePlayerDamage = (damage) => {
+    setPlayerHealth((prevHealth) => prevHealth - damage);
+  };
 
-	useEffect(() => {
-		if (playerAttacking) {
-			setTimeout(() => {
-				setPlayerAttacking(false);
-			}, 500);
-		}
+  useEffect(() => {
+    if (playerAttacking) {
+      setTimeout(() => {
+        setPlayerAttacking(false);
+      }, 500);
+    }
 
-		if (enemyAttacking) {
-			setTimeout(() => {
-				setEnemyAttacking(false);
-			}, 500);
-		}
-	}, [playerAttacking, enemyAttacking]);
+    if (enemyAttacking) {
+      setTimeout(() => {
+        setEnemyAttacking(false);
+      }, 500);
+    }
+  }, [playerAttacking, enemyAttacking]);
 
-	const handleAttack = (attackIndex) => {
-		const attack = selectedPokemon.attacks[attackIndex];
+  const handleAttack = (attackIndex) => {
+    const attack = selectedPokemon.attacks[attackIndex];
 
-		setPlayerAttacking(true);
-		const actualDamage = Math.floor(
-			attack.damage * (Math.random() * 0.2 + 0.8)
-		);
-		const newCurrentHealth = Math.max(
-			selectedEnemyPokemon.currentHealth - actualDamage,
-			0
-		);
-		selectedEnemyPokemon.currentHealth = newCurrentHealth;
+    setPlayerAttacking(true);
+    const actualDamage = Math.floor(
+      attack.damage * (Math.random() * 0.2 + 0.8)
+    );
+    const newCurrentHealth = Math.max(
+      selectedEnemyPokemon.currentHealth - actualDamage,
+      0
+    );
+    selectedEnemyPokemon.currentHealth = newCurrentHealth;
 
-		if (newCurrentHealth === 0) {
-			setIsEnemyDefeated(true);
-			setTimeout(() => {
-				setVictory(true);
-			}, 1000);
-		}
+    if (newCurrentHealth === 0) {
+      const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
+      if (newIndex !== -1) {
+        setTimeout(() => {
+          setSelectedEnemyPokemon(selectedEnemyPokemons[newIndex]);
+          setIsEnemyDefeated(false); // Setze isEnemyDefeated auf false zurück
+        }, 1000); // Timeout von 1000 ms hinzu
+      }
+    }
 
-		if (newCurrentHealth <= 0) {
-			return;
-		}
-		setIsDisabled(true);
-		setTimeout(() => {
-			if (isEnemyDefeated) {
-				setIsDisabled(false);
-				return;
-			}
+    if (newCurrentHealth <= 0) {
+      return;
+    }
+    setIsDisabled(true);
+    setTimeout(() => {
+      if (isEnemyDefeated) {
+        setIsDisabled(false);
+        return;
+      }
 
-			const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-			handlePlayerDamage(damageTaken);
-			setIsDisabled(false);
-			setEnemyAttacking(true);
+      const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+      handlePlayerDamage(damageTaken);
+      setIsDisabled(false);
+      setEnemyAttacking(true);
 
-			if (playerHealth - damageTaken <= 0) {
-				setVictory(false);
-			}
-		}, 1000);
-	};
+      if (playerHealth - damageTaken <= 0) {
+        setVictory(false);
+      }
+    }, 1000);
+  };
 
-	const handleEnemyDefeat = () => {
-		setDefeatedEnemyIndexes([
-			...defeatedEnemyIndexes,
-			selectedEnemyPokemonIndex,
-		]);
-		setEnemyDefeated(true);
-		setEnemyAttacking(false);
-		setPlayerAttacking(false);
+  const handleEnemyDefeat = (enemyPokemons) => {
+    setIsEnemyDefeated(true);
+    setEnemyAttacking(false);
+    setPlayerAttacking(false);
 
-		// Wählen den nächsten Gegner aus
-		if (defeatedEnemyIndexes.length + 1 < enemyTeam.length) {
-			let nextEnemyIndex;
-			do {
-				nextEnemyIndex = Math.floor(Math.random() * enemyTeam.length);
-			} while (defeatedEnemyIndexes.includes(nextEnemyIndex));
+    if (selectedEnemyIndex + 1 < enemyPokemons.length) {
+      setSelectedEnemyIndex(selectedEnemyIndex + 1);
+      return selectedEnemyIndex + 1; // Rückgabe des neuen Index
+    } else {
+      setVictory(true);
+      return -1; // Rückgabe von -1, wenn alle feindlichen Pokémon besiegt sind
+    }
+  };
 
-			setSelectedEnemyPokemonIndex(nextEnemyIndex);
-		} else {
-			setVictory(true);
-		}
-	};
-
-	return {
-		playerHealth,
-		victory,
-		isDisabled,
-		isEnemyDefeated,
-		playerAttacking,
-		enemyAttacking,
-		handleAttack,
-		handlePlayerDamage,
-		handleEnemyDefeat,
-	};
+  return {
+    playerHealth,
+    victory,
+    isDisabled,
+    isEnemyDefeated,
+    playerAttacking,
+    enemyAttacking,
+    handleAttack,
+    handlePlayerDamage,
+    handleEnemyDefeat,
+  };
 }
