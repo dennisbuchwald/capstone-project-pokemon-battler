@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useAttackedSound from "../components/BattleScreen/SoundEffect/useAttackedSound";
+import SoundEffect from "../components/BattleScreen/SoundEffect/SoundEffect";
 
 export function useBattleLogic(
 	selectedPokemon,
@@ -17,6 +18,7 @@ export function useBattleLogic(
 	const [potionCount, setPotionCount] = useState(3);
 
 	const [playSound] = useAttackedSound();
+	const [playHealthSound] = SoundEffect();
 
 	const handlePlayerDamage = (damage) => {
 		setPlayerHealth((prevHealth) => prevHealth - damage);
@@ -117,6 +119,7 @@ export function useBattleLogic(
 			Math.min(prevHealth + healthToRestore, 120)
 		);
 		setIsDisabled(true);
+		playHealthSound("healSound");
 		setTimeout(() => {
 			setIsDisabled(false);
 		}, 1000);
