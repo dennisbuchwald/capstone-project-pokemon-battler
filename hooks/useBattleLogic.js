@@ -115,6 +115,27 @@ export function useBattleLogic(
 		setTimeout(() => {
 			setIsDisabled(false);
 		}, 1000);
+
+		setTimeout(() => {
+			setEnemyAttacking(true);
+			setTimeout(() => {
+				const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+				handlePlayerDamage(damageTaken);
+
+				if (playerHealth - damageTaken <= 0) {
+					setIsDisabled(false);
+					setTimeout(() => {
+						setVictory(false);
+					}, 1000);
+				} else {
+					setIsDisabled(false);
+				}
+
+				setTimeout(() => {
+					setEnemyAttacking(false);
+				}, 1500);
+			}, 150);
+		}, 1000);
 	};
 
 	return {

@@ -11,7 +11,6 @@ import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
 import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
-import Bag from "./Menu/Bag";
 
 function BackgroundMusic() {
 	const [playSound] = SoundEffect();
