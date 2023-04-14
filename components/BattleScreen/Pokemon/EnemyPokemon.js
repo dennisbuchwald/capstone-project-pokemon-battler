@@ -4,47 +4,47 @@ import { useState, useEffect } from "react";
 import SoundEffect from "../SoundEffect/SoundEffect";
 
 export default function EnemyPokemon({
-  attacking,
-  wasAttacked,
-  selectedPokemon,
+	attacking,
+	wasAttacked,
+	selectedPokemon,
 }) {
-  const { name, level, currentHealth, maxHealth, scale } = selectedPokemon;
+	const { name, level, currentHealth, maxHealth, scale } = selectedPokemon;
 
-  const [isDamaged, setIsDamaged] = useState(false);
+	const [isDamaged, setIsDamaged] = useState(false);
 
-  useEffect(() => {
-    if (wasAttacked) {
-      setIsDamaged(true);
-      setTimeout(() => {
-        setIsDamaged(false);
-      }, 500);
-    }
-  }, [wasAttacked]);
+	useEffect(() => {
+		if (wasAttacked) {
+			setIsDamaged(true);
+			setTimeout(() => {
+				setIsDamaged(false);
+			}, 500);
+		}
+	}, [wasAttacked]);
 
-  const [playSound] = SoundEffect();
+	const [playSound] = SoundEffect();
 
-  useEffect(() => {
-    if (isDamaged) {
-      playSound("attackedSound");
-    }
-  }, [isDamaged, playSound]);
+	useEffect(() => {
+		if (isDamaged) {
+			playSound("attackedSound");
+		}
+	}, [isDamaged, playSound]);
 
-  return (
-    <BlinkingEnemyPokemonContainer isDamaged={isDamaged}>
-      <EnemyPokemonContainer attacking={attacking}>
-        <StyledImage
-          src={`/sprites/opponent/${name}.gif`}
-          alt={`${name}`}
-          width={150}
-          height={100 * scale}
-        />
-      </EnemyPokemonContainer>
-    </BlinkingEnemyPokemonContainer>
-  );
+	return (
+		<BlinkingEnemyPokemonContainer isDamaged={isDamaged}>
+			<EnemyPokemonContainer attacking={attacking}>
+				<StyledImage
+					src={`/sprites/opponent/${name}.gif`}
+					alt={`${name}`}
+					width={150}
+					height={100 * scale}
+				/>
+			</EnemyPokemonContainer>
+		</BlinkingEnemyPokemonContainer>
+	);
 }
 
 const StyledImage = styled(Image)`
-  object-fit: contain;
+	object-fit: contain;
 `;
 
 const attackAnimation = keyframes`
@@ -60,10 +60,10 @@ const attackAnimation = keyframes`
 `;
 
 const EnemyPokemonContainer = styled.figure`
-  position: absolute;
-  right: -8%;
-  top: 15%;
-  animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.4s;
+	position: absolute;
+	right: -8%;
+	top: 15%;
+	animation: ${({ attacking }) => (attacking ? attackAnimation : "none")} 0.4s;
 `;
 
 const damageAnimation = keyframes`
@@ -81,13 +81,13 @@ const damageAnimation = keyframes`
 `;
 
 const BlinkingEnemyPokemonContainer = styled.figure`
-  position: absolute;
-  right: -8%;
-  top: 15%;
-  animation: ${({ isDamaged }) =>
-    isDamaged
-      ? css`
-          ${damageAnimation} 0.5s
-        `
-      : "none"};
+	position: absolute;
+	right: -8%;
+	top: 15%;
+	animation: ${({ isDamaged }) =>
+		isDamaged
+			? css`
+					${damageAnimation} 0.5s
+			  `
+			: "none"};
 `;

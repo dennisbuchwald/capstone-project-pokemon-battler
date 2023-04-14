@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
+import Bag from "./Bag";
 
-const Menu = ({ onAttack, disabled, attacks }) => {
+const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
+	const [showBag, setShowBag] = useState(false);
 	const [playSound, stopSound] = SoundEffects();
 	const [hoveredButton, setHoveredButton] = useState(null);
 
@@ -23,6 +25,22 @@ const Menu = ({ onAttack, disabled, attacks }) => {
 		setShowAttackMenu(false);
 	};
 
+	const handleBagClick = () => {
+		if (!disabled) {
+			setShowBag(true);
+		}
+	};
+
+	const handlePotionUse = () => {
+		const healthToRestore = 20;
+		onPotionUse(healthToRestore);
+		setShowBag(false);
+	};
+
+	const handleBagClose = () => {
+		setShowBag(false);
+	};
+
 	return (
 		<MenuContainer>
 			{showAttackMenu ? (
@@ -31,6 +49,8 @@ const Menu = ({ onAttack, disabled, attacks }) => {
 					onBackButtonClick={handleCloseMenu}
 					attacks={attacks}
 				/>
+			) : showBag ? (
+				<Bag onPotionUse={handlePotionUse} onClose={handleBagClose} />
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
@@ -52,6 +72,21 @@ const Menu = ({ onAttack, disabled, attacks }) => {
 							{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
 							Kampf
 						</MenuButtonFight>
+						<MenuButtonBag
+							onMouseEnter={() => {
+								playSound("menuSound");
+								setHoveredButton(2);
+							}}
+							onMouseLeave={() => {
+								stopSound("menuSound");
+								setHoveredButton(null);
+							}}
+							onClick={handleBagClick}
+							disabled={disabled}
+						>
+							{hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
+							Beutel
+						</MenuButtonBag>
 						<MenuButtonRun
 							onMouseEnter={() => {
 								playSound("menuSound");
