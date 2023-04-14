@@ -14,6 +14,7 @@ export function useBattleLogic(
 	const [playerAttacking, setPlayerAttacking] = useState(false);
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
 	const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
+	const [potionCount, setPotionCount] = useState(3);
 
 	const [playSound] = useAttackedSound();
 
@@ -108,6 +109,10 @@ export function useBattleLogic(
 	};
 
 	const handlePotionUse = (healthToRestore) => {
+		if (potionCount <= 0) {
+			return;
+		}
+		setPotionCount(potionCount - 1);
 		setPlayerHealth((prevHealth) =>
 			Math.min(prevHealth + healthToRestore, 120)
 		);
@@ -149,5 +154,6 @@ export function useBattleLogic(
 		handlePlayerDamage,
 		handleEnemyDefeat,
 		handlePotionUse,
+		potionCount,
 	};
 }

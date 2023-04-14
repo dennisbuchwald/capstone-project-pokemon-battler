@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SoundEffects from "../SoundEffect/SoundEffect";
 
-export default function Bag({ onPotionUse, onClose }) {
+export default function Bag({ onPotionUse, onClose, potionCount }) {
 	const handleBagClick = () => {
 		onPotionUse();
 		playSound("menuSound");
@@ -28,7 +28,7 @@ export default function Bag({ onPotionUse, onClose }) {
 				}}
 			>
 				{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
-				Trank
+				{potionCount}x Trank
 			</BagButton>
 			<BagButtonBack
 				onClick={onClose}

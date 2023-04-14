@@ -9,6 +9,7 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 	const [showBag, setShowBag] = useState(false);
 	const [playSound, stopSound] = SoundEffects();
 	const [hoveredButton, setHoveredButton] = useState(null);
+	const [potionCount, setPotionCount] = useState(3);
 
 	const handleAttackClick = () => {
 		if (!disabled) {
@@ -33,10 +34,12 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 
 	const handlePotionUse = () => {
 		const healthToRestore = 20;
-		onPotionUse(healthToRestore);
-		setShowBag(false);
+		if (potionCount > 0) {
+			onPotionUse(healthToRestore);
+			setPotionCount(potionCount - 1);
+			setShowBag(false);
+		}
 	};
-
 	const handleBagClose = () => {
 		setShowBag(false);
 	};
@@ -50,7 +53,11 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 					attacks={attacks}
 				/>
 			) : showBag ? (
-				<Bag onPotionUse={handlePotionUse} onClose={handleBagClose} />
+				<Bag
+					onPotionUse={handlePotionUse}
+					onClose={handleBagClose}
+					potionCount={potionCount}
+				/>
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
