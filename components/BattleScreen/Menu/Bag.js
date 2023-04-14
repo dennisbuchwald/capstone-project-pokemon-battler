@@ -31,7 +31,20 @@ export default function Bag({ onPotionUse, onClose }) {
 				{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
 				Trank
 			</BagButton>
-			<BagButtonBack onClick={onClose}>Zurueck</BagButtonBack>
+			<BagButtonBack
+				onClick={onClose}
+				onMouseEnter={() => {
+					playSound("menuSound");
+					setHoveredButton(2);
+				}}
+				onMouseLeave={() => {
+					stopSound("menuSound");
+					setHoveredButton(null);
+				}}
+			>
+				{hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
+				Zurueck
+			</BagButtonBack>
 		</BagContainer>
 	);
 }
