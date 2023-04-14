@@ -153,6 +153,7 @@ const MenuOverviewBoxRight = styled.section`
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	grid-gap: 0px;
+	text-align: left;
 `;
 
 const CursorImage = styled.img`
