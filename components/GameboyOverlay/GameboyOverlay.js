@@ -8,10 +8,10 @@ function GameboyOverlay() {
 	useEffect(() => {
 		const toggleLED = () => {
 			setLedOn(false);
-			setTimeout(() => setLedOn(true), 75); // LED nach 20 ms wieder einschalten
+			setTimeout(() => setLedOn(true), 75);
 		};
 
-		const randomTimeout = Math.random() * 12000 + 8000; // Zufällige Zeit zwischen 8 und 20 Sekunden
+		const randomTimeout = Math.random() * 12000 + 8000;
 		const timeoutId = setTimeout(toggleLED, randomTimeout);
 
 		return () => {
