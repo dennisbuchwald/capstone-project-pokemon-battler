@@ -12,7 +12,7 @@ function GameboyOverlay() {
 	);
 }
 
-const OverlayContainer = styled.div`
+const OverlayContainer = styled.section`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -24,7 +24,7 @@ const OverlayContainer = styled.div`
 	margin: 0 auto;
 `;
 
-const BattleScreenWrapper = styled.div`
+const BattleScreenWrapper = styled.section`
 	position: absolute;
 	left: 50%;
 	top: 22%;
@@ -35,7 +35,7 @@ const BattleScreenWrapper = styled.div`
 	z-index: 1;
 `;
 
-const OverlayImage = styled.div`
+const OverlayImage = styled.figure`
 	background-image: url("/gba-sp-overlay.png");
 	background-size: cover;
 	background-position: center;
