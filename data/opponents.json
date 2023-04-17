@@ -125,8 +125,8 @@
 				"name": "maschock",
 				"image": "/sprites/opponent/maschock.gif",
 				"level": 39,
-				"maxHealth": 226,
-				"currentHealth": 226,
+				"maxHealth": 126,
+				"currentHealth": 126,
 				"scale": 0.9,
 				"attacks": [
 					{
@@ -182,15 +182,15 @@
 				"attacks": [
 					{
 						"name": "Spukball",
-						"damage": 25
+						"damage": 45
 					},
 					{
 						"name": "Traumfresser",
-						"damage": 30
+						"damage": 40
 					},
 					{
 						"name": "Donnerblitz",
-						"damage": 35
+						"damage": 45
 					}
 				]
 			},
@@ -204,15 +204,15 @@
 				"attacks": [
 					{
 						"name": "Psychokinese",
-						"damage": 35
+						"damage": 55
 					},
 					{
 						"name": "Hyperstrahl",
-						"damage": 60
+						"damage": 80
 					},
 					{
 						"name": "Psystoss",
-						"damage": 45
+						"damage": 65
 					}
 				]
 			}

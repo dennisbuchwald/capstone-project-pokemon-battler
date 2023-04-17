@@ -33,7 +33,7 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 	};
 
 	const handlePotionUse = () => {
-		const healthToRestore = 20;
+		const healthToRestore = 50;
 		if (potionCount > 0) {
 			onPotionUse(healthToRestore);
 			setPotionCount(potionCount - 1);
