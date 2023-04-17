@@ -18,6 +18,7 @@
 		"postcss": "^8.4.21",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"react-player": "^2.12.0",
 		"styled-components": "^5.3.9",
 		"use-sound": "^4.0.1"
 	},
