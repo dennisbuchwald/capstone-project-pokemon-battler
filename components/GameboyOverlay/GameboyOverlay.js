@@ -1,14 +1,31 @@
 import styled from "styled-components";
 import BattleScreen from "../BattleScreen/BattleScreen";
+import { useState, useEffect } from "react";
 
 function GameboyOverlay() {
+	const [ledOn, setLedOn] = useState(true);
+
+	useEffect(() => {
+		const toggleLED = () => {
+			setLedOn(false);
+			setTimeout(() => setLedOn(true), 75); // LED nach 20 ms wieder einschalten
+		};
+
+		const randomTimeout = Math.random() * 12000 + 8000; // Zufällige Zeit zwischen 8 und 20 Sekunden
+		const timeoutId = setTimeout(toggleLED, randomTimeout);
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [ledOn]);
+
 	return (
 		<OverlayContainer>
 			<BattleScreenWrapper>
 				<BattleScreen />
 			</BattleScreenWrapper>
 			<OverlayImage />
-			<LED />
+			{ledOn && <LED />}
 		</OverlayContainer>
 	);
 }
