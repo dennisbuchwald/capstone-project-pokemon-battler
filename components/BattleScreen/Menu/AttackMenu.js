@@ -91,21 +91,6 @@ const AttackButton = styled.button`
 	min-width: 0;
 `;
 
-const AttackButtonOne = styled(AttackButton)`
-	grid-column: 1 / 2;
-	grid-row: 1 / 2;
-`;
-
-const AttackButtonTwo = styled(AttackButton)`
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-`;
-
-const AttackButtonThree = styled(AttackButton)`
-	grid-column: 1 / 2;
-	grid-row: 2 / 3;
-`;
-
 const AttackButtonBack = styled(AttackButton)`
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
