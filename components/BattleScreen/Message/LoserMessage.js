@@ -13,22 +13,37 @@ export default function LoserMessage() {
 }
 
 const LoserMessageMessageContainer = styled.section`
-	color: #000;
-	width: 100%;
-	height: 100%;
+	background-color: lightgrey;
+	background-size: 426px 250px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	font-size: 36px;
+	justify-content: center;
+	font-size: 10px;
+	max-height: 325px;
+	max-width: 426px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
 `;
 
 const LoserTitle = styled.h1`
 	color: red;
+	text-align: center;
+	font-size: 40px;
+	padding-top: 0px;
 `;
 
 const RestartButton = styled.button`
-	margin-top: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	cursor: pointer;
+
 	background-color: red;
 	color: white;
 	padding: 10px 20px;
@@ -38,6 +53,5 @@ const RestartButton = styled.button`
 	cursor: pointer;
 
 	&:hover {
-		background-color: darkred;
-	}
+		background-color: darkgreen;
 `;
