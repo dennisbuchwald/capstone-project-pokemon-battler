@@ -28,7 +28,7 @@ export function useBattleLogic(
 
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(
-			attack.damage * (Math.random() * 0.2 + 0.8)
+			attack.damage * (Math.random() * 0.7 + 0.3)
 		);
 		console.log("Schaden am gegnerischen Pokémon:", actualDamage); // Schaden am gegnerischen Pokémon
 		const newCurrentHealth = Math.max(
