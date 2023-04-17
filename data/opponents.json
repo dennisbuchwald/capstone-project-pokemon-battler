@@ -1,95 +1,221 @@
 [
-  {
-    "id": 0,
-    "name": "misty",
-    "difficultyLevel": "Einfach",
-    "pokemons": [
-      {
-        "name": "menki",
-        "image": "/sprites/opponent/menki.gif",
-        "level": 15,
-        "maxHealth": 20,
-        "currentHealth": 20,
-        "scale": 0.8
-      },
-      {
-        "name": "taubsi",
-        "image": "/sprites/opponent/taubsi.gif",
-        "level": 15,
-        "maxHealth": 20,
-        "currentHealth": 20,
-        "scale": 0.7
-      },
-      {
-        "name": "pikachu",
-        "image": "/sprites/opponent/pikachu.gif",
-        "level": 15,
-        "maxHealth": 140,
-        "currentHealth": 140,
-        "scale": 0.8
-      }
-    ]
-  },
-  {
-    "id": 1,
-    "name": "prof. eich",
-    "difficultyLevel": "Mittel",
-    "pokemons": [
-      {
-        "name": "aerodactyl",
-        "image": "/sprites/opponent/aerodactyl.gif",
-        "level": 35,
-        "maxHealth": 50,
-        "currentHealth": 50,
-        "scale": 0.9
-      },
-      {
-        "name": "kadabra",
-        "image": "/sprites/opponent/kadabra.gif",
-        "level": 35,
-        "maxHealth": 50,
-        "currentHealth": 50,
-        "scale": 0.9
-      },
-      {
-        "name": "maschock",
-        "image": "/sprites/opponent/maschock.gif",
-        "level": 35,
-        "maxHealth": 50,
-        "currentHealth": 50,
-        "scale": 0.9
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "garry",
-    "difficultyLevel": "Schwer",
-    "pokemons": [
-      {
-        "name": "garados",
-        "image": "/sprites/starter/hard/garados.gif",
-        "level": 85,
-        "maxHealth": 140,
-        "currentHealth": 140,
-        "scale": 1
-      },
-      {
-        "name": "mewtwo",
-        "image": "/sprites/starter/hard/mewtwo.gif",
-        "level": 75,
-        "maxHealth": 120,
-        "currentHealth": 120,
-        "scale": 1
-      },
-      {
-        "name": "gengar",
-        "image": "/sprites/starter/hard/gengar.gif",
-        "level": 80,
-        "maxHealth": 130,
-        "currentHealth": 130,
-        "scale": 1
-      }
-    ]
-  }
+	{
+		"id": 0,
+		"name": "misty",
+		"difficultyLevel": "Einfach",
+		"pokemons": [
+			{
+				"name": "menki",
+				"image": "/sprites/opponent/menki.gif",
+				"level": 15,
+				"maxHealth": 20,
+				"currentHealth": 20,
+				"scale": 0.8,
+				"attacks": [
+					{
+						"name": "Faustschlag",
+						"damage": 10
+					},
+					{
+						"name": "Ruckzuckhieb",
+						"damage": 12
+					},
+					{
+						"name": "Karateschlag",
+						"damage": 15
+					}
+				]
+			},
+			{
+				"name": "taubsi",
+				"image": "/sprites/opponent/taubsi.gif",
+				"level": 15,
+				"maxHealth": 20,
+				"currentHealth": 20,
+				"scale": 0.7,
+				"attacks": [
+					{
+						"name": "Ruckzuckhieb",
+						"damage": 12
+					},
+					{
+						"name": "Windstoß",
+						"damage": 18
+					},
+					{
+						"name": "Stahlflügel",
+						"damage": 20
+					}
+				]
+			},
+			{
+				"name": "pikachu",
+				"image": "/sprites/opponent/pikachu.gif",
+				"level": 15,
+				"maxHealth": 140,
+				"currentHealth": 140,
+				"scale": 0.8,
+				"attacks": [
+					{
+						"name": "Donnerschock",
+						"damage": 25
+					},
+					{
+						"name": "Tackle",
+						"damage": 10
+					},
+					{
+						"name": "Donnerblitz",
+						"damage": 35
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 1,
+		"name": "prof. eich",
+		"difficultyLevel": "Mittel",
+		"pokemons": [
+			{
+				"name": "aerodactyl",
+				"image": "/sprites/opponent/aerodactyl.gif",
+				"level": 35,
+				"maxHealth": 50,
+				"currentHealth": 50,
+				"scale": 0.9,
+				"attacks": [
+					{
+						"name": "Biss",
+						"damage": 20
+					},
+					{
+						"name": "Flügelschlag",
+						"damage": 25
+					},
+					{
+						"name": "Steinkante",
+						"damage": 30
+					}
+				]
+			},
+			{
+				"name": "kadabra",
+				"image": "/sprites/opponent/kadabra.gif",
+				"level": 35,
+				"maxHealth": 50,
+				"currentHealth": 50,
+				"scale": 0.9,
+				"attacks": [
+					{
+						"name": "Psystrahl",
+						"damage": 25
+					},
+					{
+						"name": "Konfusion",
+						"damage": 20
+					},
+					{
+						"name": "Reflektor",
+						"damage": 0
+					}
+				]
+			},
+			{
+				"name": "maschock",
+				"image": "/sprites/opponent/maschock.gif",
+				"level": 35,
+				"maxHealth": 50,
+				"currentHealth": 50,
+				"scale": 0.9,
+				"attacks": [
+					{
+						"name": "Karateschlag",
+						"damage": 15
+					},
+					{
+						"name": "Erdbeben",
+						"damage": 35
+					},
+					{
+						"name": "Steinkante",
+						"damage": 30
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "garry",
+		"difficultyLevel": "Schwer",
+		"pokemons": [
+			{
+				"name": "garados",
+				"image": "/sprites/starter/hard/garados.gif",
+				"level": 85,
+				"maxHealth": 140,
+				"currentHealth": 140,
+				"scale": 1,
+				"attacks": [
+					{
+						"name": "Aquaknarre",
+						"damage": 30
+					},
+					{
+						"name": "Hyperstrahl",
+						"damage": 60
+					},
+					{
+						"name": "Hydropumpe",
+						"damage": 80
+					}
+				]
+			},
+			{
+				"name": "mewtwo",
+				"image": "/sprites/starter/hard/mewtwo.gif",
+				"level": 75,
+				"maxHealth": 120,
+				"currentHealth": 120,
+				"scale": 1,
+				"attacks": [
+					{
+						"name": "Psychokinese",
+						"damage": 35
+					},
+					{
+						"name": "Hyperstrahl",
+						"damage": 60
+					},
+					{
+						"name": "Psystoss",
+						"damage": 45
+					}
+				]
+			},
+			{
+				"name": "gengar",
+				"image": "/sprites/starter/hard/gengar.gif",
+				"level": 80,
+				"maxHealth": 130,
+				"currentHealth": 130,
+				"scale": 1,
+				"attacks": [
+					{
+						"name": "Spukball",
+						"damage": 25
+					},
+					{
+						"name": "Traumfresser",
+						"damage": 30
+					},
+					{
+						"name": "Donnerblitz",
+						"damage": 35
+					}
+				]
+			}
+		]
+	}
 ]

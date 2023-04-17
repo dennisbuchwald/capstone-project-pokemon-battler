@@ -6,9 +6,9 @@
 		"currentHealth": 120,
 		"level": 55,
 		"attacks": [
-			{ "name": "Rasierblatt", "damage": 55 },
-			{ "name": "Solarstrahl", "damage": 120 },
-			{ "name": "Gifthieb", "damage": 4 }
+			{ "name": "Rasierblatt", "damage": 45 },
+			{ "name": "Solarstrahl", "damage": 90 },
+			{ "name": "Gifthieb", "damage": 40 }
 		]
 	},
 	{
@@ -18,9 +18,9 @@
 		"currentHealth": 120,
 		"level": 63,
 		"attacks": [
-			{ "name": "Flammenwurf", "damage": 90 },
-			{ "name": "Feuersturm", "damage": 110 },
-			{ "name": "Drachenklaue", "damage": 80 }
+			{ "name": "Flammenwurf", "damage": 70 },
+			{ "name": "Feuersturm", "damage": 40 },
+			{ "name": "Drachenklaue", "damage": 60 }
 		]
 	},
 	{
@@ -30,9 +30,9 @@
 		"currentHealth": 120,
 		"level": 59,
 		"attacks": [
-			{ "name": "Aquaknarre", "damage": 40 },
-			{ "name": "Hydropumpe", "damage": 110 },
-			{ "name": "Eisstrahl", "damage": 90 }
+			{ "name": "Aquaknarre", "damage": 35 },
+			{ "name": "Hydropumpe", "damage": 85 },
+			{ "name": "Eisstrahl", "damage": 65 }
 		]
 	}
 ]
