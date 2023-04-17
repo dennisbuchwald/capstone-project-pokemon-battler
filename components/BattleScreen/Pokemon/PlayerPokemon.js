@@ -53,7 +53,7 @@ const StyledImage = styled(Image)`
 const BlinkingPokemonContainer = styled.figure`
 	position: absolute;
 	bottom: 20%;
-	left: 0%;
+	left: 10%;
 	transform: scale(1);
 
 	margin: 0;
