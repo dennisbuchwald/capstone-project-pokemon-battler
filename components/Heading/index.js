@@ -21,6 +21,7 @@ const Wrapper = styled.header`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	padding-bottom: 30px;
 `;
 
 const HeadingTitel = styled.h1`

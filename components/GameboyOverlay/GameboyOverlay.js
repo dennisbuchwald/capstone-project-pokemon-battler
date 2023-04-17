@@ -16,12 +16,12 @@ const OverlayContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 550px; // Gameboy Breite anpassen
-	height: 1000px; // Gameboy Höhe anpassen
-	max-width: 550px; // Maximale Gameboy Breite anpassen
-	max-height: 1000px; // Maximale Gameboy Höhe anpassen
+	width: 550px;
+	height: 1000px;
+	max-width: 550px;
+	max-height: 1000px;
 	position: relative;
-	margin: 0 auto; // Zentriert den Gameboy-Container horizontal
+	margin: 0 auto;
 `;
 
 const BattleScreenWrapper = styled.div`

@@ -131,7 +131,7 @@ export default function BattleScreen() {
 
 const ScreenContainer = styled.main`
 	background-image: url("/background/background-middle.png");
-	background-size: 426px 250px;
+	background-size: 426px 200px;
 	display: block;
 	font-size: 10px;
 	max-height: 325px;

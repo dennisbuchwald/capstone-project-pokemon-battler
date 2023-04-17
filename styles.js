@@ -31,7 +31,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
   font-family: 'PokemonFireRed', 'PressStart2P', -apple-system, BlinkMacSystemFont, Segoe UI;
-    // background-color: #3a464d;
+  background-color: #3a464d;
   }
   
   html,
