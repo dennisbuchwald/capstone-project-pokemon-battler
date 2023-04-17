@@ -16,34 +16,15 @@ export function useBattleLogic(
 	const [enemyAttacking, setEnemyAttacking] = useState(false);
 	const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
 	const [potionCount, setPotionCount] = useState(3);
-
 	const [playSound] = useAttackedSound();
 	const [playHealthSound] = SoundEffect();
-
-	const handlePlayerDamage = (damage) => {
-		setPlayerHealth((prevHealth) => prevHealth - damage);
-	};
-
-	useEffect(() => {
-		if (playerAttacking) {
-			setTimeout(() => {
-				setPlayerAttacking(false);
-			}, 500);
-		}
-
-		if (enemyAttacking) {
-			setTimeout(() => {
-				setEnemyAttacking(false);
-			}, 500);
-		}
-	}, [playerAttacking, enemyAttacking]);
 
 	const handleAttack = (attackIndex) => {
 		const attack = selectedPokemon.attacks[attackIndex];
 
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(
-			attack.damage * (Math.random() * 0.2 + 0.8)
+			attack.damage * (Math.random() * 0.6 + 0.6)
 		);
 		const newCurrentHealth = Math.max(
 			selectedEnemyPokemon.currentHealth - actualDamage,
@@ -77,7 +58,15 @@ export function useBattleLogic(
 			}
 
 			setTimeout(() => {
-				const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
+				const enemyAttackIndex = Math.floor(
+					Math.random() * selectedEnemyPokemon.attacks.length
+				);
+				const enemyAttack = selectedEnemyPokemon.attacks[enemyAttackIndex];
+
+				const damageTaken = Math.floor(
+					enemyAttack.damage * (Math.random() * 0.7 + 0.4)
+				);
+
 				handlePlayerDamage(damageTaken);
 
 				if (playerHealth - damageTaken <= 0) {
@@ -95,6 +84,24 @@ export function useBattleLogic(
 			}, 1500);
 		}, 1000);
 	};
+
+	const handlePlayerDamage = (damage) => {
+		setPlayerHealth((prevHealth) => prevHealth - damage);
+	};
+
+	useEffect(() => {
+		if (playerAttacking) {
+			setTimeout(() => {
+				setPlayerAttacking(false);
+			}, 500);
+		}
+
+		if (enemyAttacking) {
+			setTimeout(() => {
+				setEnemyAttacking(false);
+			}, 500);
+		}
+	}, [playerAttacking, enemyAttacking]);
 
 	const handleEnemyDefeat = (enemyPokemons) => {
 		setIsEnemyDefeated(true);

@@ -28,7 +28,7 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
 				}}
 			>
 				{hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
-				{potionCount}x Trank
+				{potionCount}x Supertrank
 			</BagButton>
 			<BagButtonBack
 				onClick={onClose}

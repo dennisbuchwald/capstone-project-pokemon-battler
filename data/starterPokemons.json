@@ -2,37 +2,37 @@
 	{
 		"name": "Bisaflor",
 		"image": "/sprites/starter/venusaur-back.gif",
-		"maxHealth": 120,
-		"currentHealth": 120,
+		"maxHealth": 180,
+		"currentHealth": 180,
 		"level": 55,
 		"attacks": [
-			{ "name": "Rasierblatt", "damage": 55 },
-			{ "name": "Solarstrahl", "damage": 120 },
-			{ "name": "Gifthieb", "damage": 4 }
+			{ "name": "Rasierblatt", "damage": 50 },
+			{ "name": "Solarstrahl", "damage": 95 },
+			{ "name": "Gifthieb", "damage": 45 }
 		]
 	},
 	{
 		"name": "Glurak",
 		"image": "/sprites/starter/charizard-back.gif",
-		"maxHealth": 120,
-		"currentHealth": 120,
+		"maxHealth": 192,
+		"currentHealth": 192,
 		"level": 63,
 		"attacks": [
-			{ "name": "Flammenwurf", "damage": 90 },
-			{ "name": "Feuersturm", "damage": 110 },
-			{ "name": "Drachenklaue", "damage": 80 }
+			{ "name": "Flammenwurf", "damage": 45 },
+			{ "name": "Feuersturm", "damage": 85 },
+			{ "name": "Drachenklaue", "damage": 65 }
 		]
 	},
 	{
 		"name": "Turtok",
 		"image": "/sprites/starter/blastoise-back.gif",
-		"maxHealth": 120,
-		"currentHealth": 120,
+		"maxHealth": 184,
+		"currentHealth": 184,
 		"level": 59,
 		"attacks": [
 			{ "name": "Aquaknarre", "damage": 40 },
-			{ "name": "Hydropumpe", "damage": 110 },
-			{ "name": "Eisstrahl", "damage": 90 }
+			{ "name": "Hydropumpe", "damage": 90 },
+			{ "name": "Eisstrahl", "damage": 70 }
 		]
 	}
 ]
