@@ -19,8 +19,8 @@ export default function PlayerState({ currentHealth, selectedPokemon }) {
 
 const PlayerStateSection = styled.section`
 	position: absolute;
-	top: 165px;
-	right: 0px;
+	top: 130px;
+	right: -10px;
 	background-image: url("/sprites/statusbar-player3.png");
 	width: 200px;
 	height: 68px;

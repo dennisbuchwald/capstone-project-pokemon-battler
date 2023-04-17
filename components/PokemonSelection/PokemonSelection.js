@@ -50,7 +50,7 @@ const PokemonName = styled.p`
 
 const Title = styled.h2`
 	text-align: center;
-	margin-top: 30%;
+	margin-top: 20%;
 	font-size: 40px;
 `;
 
