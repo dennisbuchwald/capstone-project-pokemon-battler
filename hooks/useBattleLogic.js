@@ -28,14 +28,15 @@ export function useBattleLogic(
 
 		setPlayerAttacking(true);
 		const actualDamage = Math.floor(
-			attack.damage * (Math.random() * 0.7 + 0.3)
+			attack.damage * (Math.random() * 0.6 + 0.6)
 		);
-		console.log("Schaden am gegnerischen Pokémon:", actualDamage); // Schaden am gegnerischen Pokémon
 		const newCurrentHealth = Math.max(
 			selectedEnemyPokemon.currentHealth - actualDamage,
 			0
 		);
 		selectedEnemyPokemon.currentHealth = newCurrentHealth;
+
+		console.log("Player attack:", attack.name, "Damage:", actualDamage); // Log player attack
 
 		playSound("attackedSound");
 
@@ -63,8 +64,19 @@ export function useBattleLogic(
 			}
 
 			setTimeout(() => {
-				const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
-				console.log("Schaden am Spieler-Pokémon:", damageTaken); // Schaden am Spieler-Pokémon
+				// Wählen Sie einen zufälligen Angriff des gegnerischen Pokémon aus
+				const enemyAttackIndex = Math.floor(
+					Math.random() * selectedEnemyPokemon.attacks.length
+				);
+				const enemyAttack = selectedEnemyPokemon.attacks[enemyAttackIndex];
+
+				// Berechnen Sie den Schaden, den das Spieler-Pokémon erleidet
+				const damageTaken = Math.floor(
+					enemyAttack.damage * (Math.random() * 0.7 + 0.4)
+				);
+
+				console.log("Enemy attack:", enemyAttack.name, "Damage:", damageTaken); // Log enemy attack
+
 				handlePlayerDamage(damageTaken);
 
 				if (playerHealth - damageTaken <= 0) {
