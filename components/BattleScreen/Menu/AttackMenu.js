@@ -57,7 +57,7 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 
 const AttackMenuContainer = styled.section`
 	position: absolute;
-	width: 40%;
+	width: 45%;
 	height: 89%%;
 	left: 4.5%;
 	bottom: 24%;
@@ -66,6 +66,7 @@ const AttackMenuContainer = styled.section`
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	grid-gap: -0px;
+	grid-auto-columns: minmax(0, 1fr);
 `;
 
 const CursorImage = styled.img`
@@ -87,6 +88,7 @@ const AttackButton = styled.button`
 	cursor: pointer;
 	text-align: left;
 	border: none;
+	min-width: 0;
 `;
 
 const AttackButtonOne = styled(AttackButton)`
