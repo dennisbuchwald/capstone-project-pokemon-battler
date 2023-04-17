@@ -50,7 +50,7 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
 
 const BagContainer = styled.section`
 	position: absolute;
-	width: 50%;
+	width: 45%;
 	height: 89%%;
 	left: 4.5%;
 	bottom: 24%;
@@ -58,7 +58,8 @@ const BagContainer = styled.section`
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	grid-gap: 0px;
+	grid-gap: -0px;
+	grid-auto-columns: minmax(0, 1fr);
 `;
 
 const BagButton = styled.button`
@@ -71,6 +72,7 @@ const BagButton = styled.button`
 	cursor: pointer;
 	text-align: left;
 	border: none;
+	min-width: 0;
 `;
 
 const BagButtonBack = styled(BagButton)`
