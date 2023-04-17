@@ -19,10 +19,6 @@ export function useBattleLogic(
 	const [playSound] = useAttackedSound();
 	const [playHealthSound] = SoundEffect();
 
-	// ----------------------------------------------------------------
-	// Führt einen Angriff des Spielers aus, berechnet den Schaden,
-	// den der gegnerische Pokémon erleidet, und startet den Gegenangriff des Gegners.
-
 	const handleAttack = (attackIndex) => {
 		const attack = selectedPokemon.attacks[attackIndex];
 
@@ -35,8 +31,6 @@ export function useBattleLogic(
 			0
 		);
 		selectedEnemyPokemon.currentHealth = newCurrentHealth;
-
-		console.log("Player attack:", attack.name, "Damage:", actualDamage); // Log player attack
 
 		playSound("attackedSound");
 
@@ -64,18 +58,14 @@ export function useBattleLogic(
 			}
 
 			setTimeout(() => {
-				// Wählen Sie einen zufälligen Angriff des gegnerischen Pokémon aus
 				const enemyAttackIndex = Math.floor(
 					Math.random() * selectedEnemyPokemon.attacks.length
 				);
 				const enemyAttack = selectedEnemyPokemon.attacks[enemyAttackIndex];
 
-				// Berechnen Sie den Schaden, den das Spieler-Pokémon erleidet
 				const damageTaken = Math.floor(
 					enemyAttack.damage * (Math.random() * 0.7 + 0.4)
 				);
-
-				console.log("Enemy attack:", enemyAttack.name, "Damage:", damageTaken); // Log enemy attack
 
 				handlePlayerDamage(damageTaken);
 
@@ -95,9 +85,6 @@ export function useBattleLogic(
 		}, 1000);
 	};
 
-	//  ----------------------------------------------------------------
-	//  Reduziert die Gesundheit des Spielers um den angegebenen Schadenswert
-
 	const handlePlayerDamage = (damage) => {
 		setPlayerHealth((prevHealth) => prevHealth - damage);
 	};
@@ -116,10 +103,6 @@ export function useBattleLogic(
 		}
 	}, [playerAttacking, enemyAttacking]);
 
-	//----------------------------------------------------------------
-	// Aktualisiert den Status des Spiels, wenn ein gegnerisches Pokémon besiegt wird,
-	// und wechselt zum nächsten Pokémon in der Liste, falls vorhanden.
-
 	const handleEnemyDefeat = (enemyPokemons) => {
 		setIsEnemyDefeated(true);
 		setEnemyAttacking(false);
@@ -133,10 +116,6 @@ export function useBattleLogic(
 			return -1;
 		}
 	};
-
-	//----------------------------------------------------------------
-	//  Heilt den Spieler um den angegebenen Betrag, wenn er einen Heiltrank benutzt,
-	// und reduziert die Anzahl der verfügbaren Heiltränke.
 
 	const handlePotionUse = (healthToRestore) => {
 		if (potionCount <= 0) {
@@ -173,8 +152,6 @@ export function useBattleLogic(
 			}, 150);
 		}, 1000);
 	};
-
-	//----------------------------------------------------------------
 
 	return {
 		playerHealth,
