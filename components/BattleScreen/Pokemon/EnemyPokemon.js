@@ -82,8 +82,8 @@ const damageAnimation = keyframes`
 
 const BlinkingEnemyPokemonContainer = styled.figure`
 	position: absolute;
-	right: -8%;
-	top: 15%;
+	right: -15%;
+	top: 5%;
 	animation: ${({ isDamaged }) =>
 		isDamaged
 			? css`
