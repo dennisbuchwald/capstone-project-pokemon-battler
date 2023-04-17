@@ -13,7 +13,7 @@
 				"scale": 0.8,
 				"attacks": [
 					{
-						"name": "Faustschlag",
+						"name": "Kratzer",
 						"damage": 10
 					},
 					{
@@ -21,7 +21,7 @@
 						"damage": 12
 					},
 					{
-						"name": "Karateschlag",
+						"name": "Megakick",
 						"damage": 15
 					}
 				]
@@ -43,7 +43,7 @@
 						"damage": 18
 					},
 					{
-						"name": "Stahlflügel",
+						"name": "Aero-Ass",
 						"damage": 20
 					}
 				]
@@ -94,7 +94,7 @@
 						"damage": 25
 					},
 					{
-						"name": "Steinkante",
+						"name": "Sternschauer",
 						"damage": 30
 					}
 				]
@@ -138,7 +138,7 @@
 						"damage": 35
 					},
 					{
-						"name": "Steinkante",
+						"name": "Geowurf",
 						"damage": 30
 					}
 				]
@@ -211,7 +211,7 @@
 						"damage": 80
 					},
 					{
-						"name": "Psystoss",
+						"name": "Psychokinese",
 						"damage": 65
 					}
 				]
