@@ -8,6 +8,7 @@ function GameboyOverlay() {
 				<BattleScreen />
 			</BattleScreenWrapper>
 			<OverlayImage />
+			<LED />
 		</OverlayContainer>
 	);
 }
@@ -44,6 +45,18 @@ const OverlayImage = styled.figure`
 	position: absolute;
 	z-index: 2;
 	pointer-events: none;
+`;
+
+const LED = styled.div`
+	width: 20px;
+	height: 8px;
+	background-color: limegreen;
+	position: absolute;
+	left: 92.9%;
+	top: 57.8%;
+	z-index: 3;
+	border-radius: 2px;
+	box-shadow: 0 0 5px limegreen;
 `;
 
 export default GameboyOverlay;
