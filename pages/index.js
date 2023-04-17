@@ -1,11 +1,11 @@
 import Heading from "../components/Heading";
-import BattleScreen from "../components/BattleScreen/BattleScreen";
+import GameboyOverlay from "../components/GameboyOverlay/GameboyOverlay.js";
 
 export default function Home() {
 	return (
 		<>
-			<Heading />
-			<BattleScreen />
+			{/* <Heading /> */}
+			<GameboyOverlay />
 		</>
 	);
 }
