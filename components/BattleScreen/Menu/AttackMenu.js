@@ -57,15 +57,15 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 
 const AttackMenuContainer = styled.section`
 	position: absolute;
-	width: 50%;
+	width: 40%;
 	height: 89%%;
-	left: 0%;
+	left: 4.5%;
 	bottom: 24%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	grid-gap: 0px;
+	grid-gap: -0px;
 `;
 
 const CursorImage = styled.img`
