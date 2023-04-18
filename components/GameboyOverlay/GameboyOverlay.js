@@ -122,7 +122,7 @@ const ArrowSprite = styled.img`
 `;
 
 const OverlayContainer = styled.section`
-	background-color: lightgrey;
+	background-color: 7C8479;
 
 	display: flex;
 	justify-content: center;

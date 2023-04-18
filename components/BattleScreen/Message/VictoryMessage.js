@@ -14,7 +14,7 @@ export default function VictoryMessage() {
 }
 
 const VictoryMessageContainer = styled.section`
-	background-color: lightgrey;
+	background-color: white;
 	background-size: 426px 250px;
 	display: flex;
 	flex-direction: column;

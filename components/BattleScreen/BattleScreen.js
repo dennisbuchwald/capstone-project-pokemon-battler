@@ -11,6 +11,7 @@ import LoserMessage from "./Message/LoserMessage";
 import SoundEffect from "./SoundEffect/SoundEffect";
 import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
+import AttackMessage from "./Menu/AttackMessage";
 
 function BackgroundMusic() {
 	const [playSound] = SoundEffect();
@@ -27,6 +28,7 @@ function Battle({
 	selectedEnemyPokemon,
 	selectedEnemyPokemons,
 	setSelectedEnemyPokemon,
+	setAttackMessage,
 }) {
 	const {
 		playerHealth,
@@ -38,6 +40,7 @@ function Battle({
 		handleAttack,
 		handlePlayerDamage,
 		handlePotionUse,
+		attackMessage,
 	} = useBattleLogic(
 		selectedPokemon,
 		selectedEnemyPokemon,
@@ -79,12 +82,18 @@ function Battle({
 				onAttack={handleAttack}
 				disabled={isDisabled || isEnemyDefeated}
 				attacks={selectedPokemon.attacks}
+				name={selectedPokemon.name}
 				onPotionUse={handlePotionUse}
 			/>
+			{attackMessage && (
+				<AttackMessage
+					name={attackMessage.name}
+					attack={attackMessage.attack}
+				/>
+			)}
 		</ScreenContainer>
 	);
 }
-
 export default function BattleScreen() {
 	const [selectedPokemon, setSelectedPokemon] = useState(null);
 	const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);

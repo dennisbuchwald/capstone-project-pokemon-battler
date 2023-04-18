@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useAttackedSound from "../components/BattleScreen/SoundEffect/useAttackedSound";
 import SoundEffect from "../components/BattleScreen/SoundEffect/SoundEffect";
+import AttackMessage from "../components/BattleScreen/Menu/AttackMenu";
 
 export function useBattleLogic(
 	selectedPokemon,
@@ -18,6 +19,7 @@ export function useBattleLogic(
 	const [potionCount, setPotionCount] = useState(3);
 	const [playSound] = useAttackedSound();
 	const [playHealthSound] = SoundEffect();
+	const [attackMessage, setAttackMessage] = useState(null);
 
 	const handleAttack = (attackIndex) => {
 		const attack = selectedPokemon.attacks[attackIndex];
@@ -34,6 +36,11 @@ export function useBattleLogic(
 
 		playSound("attackedSound");
 
+		setAttackMessage({ name: selectedPokemon.name, attack: attack.name });
+		setTimeout(() => {
+			setAttackMessage(null);
+		}, 2000);
+
 		setTimeout(() => {
 			if (newCurrentHealth === 0) {
 				const newIndex = handleEnemyDefeat(selectedEnemyPokemons);
@@ -44,7 +51,7 @@ export function useBattleLogic(
 					}, 1000);
 				}
 			}
-		}, 500);
+		}, 1000);
 
 		if (newCurrentHealth <= 0) {
 			return;
@@ -165,5 +172,6 @@ export function useBattleLogic(
 		handleEnemyDefeat,
 		handlePotionUse,
 		potionCount,
+		attackMessage,
 	};
 }

@@ -28,7 +28,7 @@ export default function PokemonSelection({ onSelect }) {
 }
 
 const SelectionContainer = styled.div`
-	background-color: lightgrey;
+	background-color: white;
 	background-size: 426px 250px;
 	display: block;
 	font-size: 10px;

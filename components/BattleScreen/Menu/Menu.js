@@ -1,10 +1,10 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
 import Bag from "./Bag";
 
-const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
+const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
 	const [showBag, setShowBag] = useState(false);
 	const [playSound, stopSound] = SoundEffects();
@@ -61,7 +61,7 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Was soll dein Pokemon tun?</p>
+						<p>Was soll {name} tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
 						<MenuButtonFight
@@ -153,35 +153,50 @@ const MenuOverviewBoxLeft = styled.article`
 `;
 
 const MenuOverviewBoxRight = styled.section`
-	width: 50%;
-	right: -5%;
-	position: relative;
+	width: 44%;
+	right: 2%;
+	position: absolute;
+	height: 60px;
+	bottom: 13%;
+	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	grid-gap: 0px;
-	text-align: left;
+	grid-auto-columns: minmax(0, 1fr);
 `;
 
 const CursorImage = styled.img`
 	position: absolute;
-	left: -7px;
+	left: 0px;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 10px;
 	height: auto;
 `;
-
 const MenuButton = styled.button`
-	position: relative;
-	background-color: transparent;
 	color: black;
+	position: relative;
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
-	font-size: 20px;
+	font-size: 16px;
+	text-transform: uppercase;
 	cursor: pointer;
-	text-align: left;
 	border: none;
+	min-width: 0;
+	display: inline-block;
+	margin: 2px;
+	padding: 5px 0 5px 5px;
+	background-color: lightgray;
+	border-radius: 7px;
+	box-shadow: 0 0.2em gray;
+	cursor: pointer;
+
+	&:active {
+		box-shadow: none;
+		position: relative;
+		top: 0.2em;
+	}
 `;
 
 const MenuButtonFight = styled(MenuButton)`

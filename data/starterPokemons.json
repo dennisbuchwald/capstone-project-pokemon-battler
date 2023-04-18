@@ -6,9 +6,9 @@
 		"currentHealth": 180,
 		"level": 55,
 		"attacks": [
-			{ "name": "Rasierblatt", "damage": 50 },
-			{ "name": "Solarstrahl", "damage": 95 },
-			{ "name": "Gifthieb", "damage": 45 }
+			{ "name": "Rasierblatt", "damage": 50, "type": "Gras" },
+			{ "name": "Solarstrahl", "damage": 95, "type": "Gras" },
+			{ "name": "Gifthieb", "damage": 45, "type": "Gift" }
 		]
 	},
 	{
@@ -18,9 +18,9 @@
 		"currentHealth": 192,
 		"level": 63,
 		"attacks": [
-			{ "name": "Flammenwurf", "damage": 45 },
-			{ "name": "Feuersturm", "damage": 85 },
-			{ "name": "Drachenklaue", "damage": 65 }
+			{ "name": "Flammenwurf", "damage": 45, "type": "Feuer" },
+			{ "name": "Feuersturm", "damage": 85, "type": "Feuer" },
+			{ "name": "Drachenklaue", "damage": 65, "type": "Drache" }
 		]
 	},
 	{
@@ -30,9 +30,9 @@
 		"currentHealth": 184,
 		"level": 59,
 		"attacks": [
-			{ "name": "Aquaknarre", "damage": 40 },
-			{ "name": "Hydropumpe", "damage": 90 },
-			{ "name": "Eisstrahl", "damage": 70 }
+			{ "name": "Aquaknarre", "damage": 40, "type": "Wasser" },
+			{ "name": "Hydropumpe", "damage": 90, "type": "Wasser" },
+			{ "name": "Eisstrahl", "damage": 70, "type": "Eis" }
 		]
 	}
 ]
