@@ -13,7 +13,7 @@ const AttackMessage = ({ name, attack }) => {
 export default AttackMessage;
 
 const AttackMessageBox = styled.section`
-	background-image: url("/sprites/attack-box.png");
+	background-image: url("/sprites/text-box.png");
 	background-size: cover;
 	background-position: center;
 
