@@ -180,7 +180,6 @@ const MenuButton = styled.button`
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
 	font-size: 16px;
-	font-weight: bold;
 	text-transform: uppercase;
 	cursor: pointer;
 	border: none;

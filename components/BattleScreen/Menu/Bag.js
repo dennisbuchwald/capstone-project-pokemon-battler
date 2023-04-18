@@ -70,7 +70,6 @@ const BagButton = styled.button`
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
 	font-size: 16px;
-	font-weight: bold;
 	cursor: pointer;
 	border: none;
 	min-width: 0;

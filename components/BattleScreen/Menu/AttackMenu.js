@@ -101,41 +101,40 @@ const AttackButton = styled.button`
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
 	font-size: 16px;
-	font-weight: bold;
 	cursor: pointer;
 	border: none;
 	min-width: 0;
 	display: inline-block;
 	margin: 2px;
 	padding: 5px 0 5px 5px;
-	background-color: ${(props) =>
-		props.type === "Gras"
+	background-color: ${(attacks) =>
+		attacks.type === "Gras"
 			? "#78C850"
-			: props.type === "Gift"
+			: attacks.type === "Gift"
 			? "#A040A0"
-			: props.type === "Feuer"
+			: attacks.type === "Feuer"
 			? "#F08030"
-			: props.type === "Drache"
+			: attacks.type === "Drache"
 			? "#007FFF"
-			: props.type === "Wasser"
+			: attacks.type === "Wasser"
 			? "#6890F0"
-			: props.type === "Eis"
+			: attacks.type === "Eis"
 			? "#98D8D8"
 			: "lightgray"};
 	color: black;
 	border-radius: 7px;
-	box-shadow: ${(props) =>
-		props.type === "Gras"
+	box-shadow: ${(attacks) =>
+		attacks.type === "Gras"
 			? "0 0.2em #3BAC3B"
-			: props.type === "Gift"
+			: attacks.type === "Gift"
 			? "0 0.2em #8E35EF"
-			: props.type === "Feuer"
+			: attacks.type === "Feuer"
 			? "0 0.2em #A91B00"
-			: props.type === "Drache"
+			: attacks.type === "Drache"
 			? "0 0.2em #2D00FF"
-			: props.type === "Wasser"
+			: attacks.type === "Wasser"
 			? "0 0.2em #3366CC"
-			: props.type === "Eis"
+			: attacks.type === "Eis"
 			? "0 0.2em #66CCCC"
 			: "0 0.2em gray"};
 	cursor: pointer;
