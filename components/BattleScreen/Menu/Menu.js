@@ -1,15 +1,17 @@
-import styled from "styled-components";
 import { useState } from "react";
+import styled from "styled-components";
 import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
 import Bag from "./Bag";
 
-const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
+const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
 	const [showAttackMenu, setShowAttackMenu] = useState(false);
 	const [showBag, setShowBag] = useState(false);
 	const [playSound, stopSound] = SoundEffects();
 	const [hoveredButton, setHoveredButton] = useState(null);
 	const [potionCount, setPotionCount] = useState(3);
+
+	console.log("name:", name);
 
 	const handleAttackClick = () => {
 		if (!disabled) {
@@ -61,7 +63,7 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks }) => {
 			) : (
 				<MenuOverviewBox>
 					<MenuOverviewBoxLeft>
-						<p>Was soll dein Pokemon tun?</p>
+						<p>Was soll {name} tun?</p>
 					</MenuOverviewBoxLeft>
 					<MenuOverviewBoxRight>
 						<MenuButtonFight

@@ -79,6 +79,7 @@ function Battle({
 				onAttack={handleAttack}
 				disabled={isDisabled || isEnemyDefeated}
 				attacks={selectedPokemon.attacks}
+				name={selectedPokemon.name}
 				onPotionUse={handlePotionUse}
 			/>
 		</ScreenContainer>
