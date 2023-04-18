@@ -53,5 +53,5 @@ const RestartButton = styled.button`
 	cursor: pointer;
 
 	&:hover {
-		background-color: darkgreen;
+		background-color: darkred;
 `;
