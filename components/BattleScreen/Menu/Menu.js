@@ -175,6 +175,7 @@ const CursorImage = styled.img`
 	height: auto;
 `;
 const MenuButton = styled.button`
+	color: black;
 	position: relative;
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
