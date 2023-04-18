@@ -51,7 +51,7 @@ export function useBattleLogic(
 					}, 1000);
 				}
 			}
-		}, 500);
+		}, 1000);
 
 		if (newCurrentHealth <= 0) {
 			return;
