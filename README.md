@@ -1,8 +1,9 @@
 # Pokemon Battle App - Capestone Project at neuefische
 
-Welcome to the Pokemon Battle App Capestone Project! This app is designed to pit users against computer-controlled opponents in an exciting Pokemon battle. The app is written in Next.js and is meant to have three difficulty levels to challenge both novice and experienced players.
+![Image](nonpublic/ReadMe.png)
 
-
+Welcome to the Pokemon Battle App Capestone Project! This app is designed to let users compete against computer-controlled opponents in an exciting Pokemon battle. The app is written in Next.js and has three difficulty levels to challenge both beginners and experienced players.
+But enough talking, just try out [Pokemon Battler](https://capstone-project-pokemon-battler-app.vercel.app/)!
 
 <!-- ## Table of Contents
 
