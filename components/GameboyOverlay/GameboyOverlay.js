@@ -32,7 +32,10 @@ function GameboyOverlay() {
 			videoRef.current.muted = false;
 			videoRef.current.play();
 		}
-		setTimeout(() => setVideoPlaying(false), 5000);
+	};
+
+	const onVideoEnded = () => {
+		setVideoPlaying(false);
 	};
 
 	return (
@@ -47,8 +50,8 @@ function GameboyOverlay() {
 						ref={videoRef}
 						src="/startscreen.mp4"
 						autoPlay
-						loop
 						playsInline
+						onEnded={onVideoEnded}
 					/>
 				) : (
 					<BattleScreen />
