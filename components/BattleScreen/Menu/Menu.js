@@ -168,7 +168,7 @@ const MenuOverviewBoxRight = styled.section`
 
 const CursorImage = styled.img`
 	position: absolute;
-	left: -7px;
+	left: 0px;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 10px;
