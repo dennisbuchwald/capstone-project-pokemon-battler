@@ -7,7 +7,7 @@ export default function VictoryMessage() {
 
 	return (
 		<VictoryMessageContainer>
-			<VictoryTitle>Du hast Gewonen</VictoryTitle>
+			<VictoryTitle>Du hast Gewonnen!</VictoryTitle>
 			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</VictoryMessageContainer>
 	);
@@ -54,6 +54,6 @@ const RestartButton = styled.button`
 	cursor: pointer;
 
 	&:hover {
-		background-color: darkgreen;
+		background-color: darkgred;
 	}
 `;
