@@ -11,8 +11,6 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
 	const [hoveredButton, setHoveredButton] = useState(null);
 	const [potionCount, setPotionCount] = useState(3);
 
-	console.log("name:", name);
-
 	const handleAttackClick = () => {
 		if (!disabled) {
 			setShowAttackMenu(true);
