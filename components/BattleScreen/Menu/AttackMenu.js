@@ -85,7 +85,7 @@ const AttackButton = styled.button`
 	position: relative;
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bold;
 	cursor: pointer;
 	border: none;
