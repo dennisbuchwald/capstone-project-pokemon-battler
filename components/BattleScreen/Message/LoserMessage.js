@@ -13,7 +13,7 @@ export default function LoserMessage() {
 }
 
 const LoserMessageMessageContainer = styled.section`
-	background-color: lightgrey;
+	background-color: white;
 	background-size: 426px 250px;
 	display: flex;
 	flex-direction: column;
