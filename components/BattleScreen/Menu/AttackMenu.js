@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import SoundEffects from "../SoundEffect/SoundEffect";
 
 const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
@@ -28,6 +28,7 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 						stopSound("menuSound");
 						setHoveredButton(null);
 					}}
+					type={attack.type}
 				>
 					{hoveredButton === index + 1 && (
 						<CursorImage src="/sprites/cursor.png" />
@@ -57,16 +58,17 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 
 const AttackMenuContainer = styled.section`
 	position: absolute;
-	width: 45%;
-	height: 89%%;
-	left: 4.5%;
-	bottom: 24%;
+	width: 50%;
+	height: 60px;
+	left: 2%;
+	bottom: 13%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	grid-gap: -0px;
+	grid-gap: 0px;
 	grid-auto-columns: minmax(0, 1fr);
+	border: 2px solid red;
 `;
 
 const CursorImage = styled.img`
@@ -79,16 +81,55 @@ const CursorImage = styled.img`
 `;
 
 const AttackButton = styled.button`
+	text-transform: uppercase;
 	position: relative;
-	background-color: transparent;
-	color: white;
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
-	font-size: 20px;
+	font-size: 18px;
+	font-weight: bold;
 	cursor: pointer;
-	text-align: left;
 	border: none;
 	min-width: 0;
+	display: inline-block;
+	margin: 2px;
+	padding: 5px 0 5px 5px;
+	background-color: ${(props) =>
+		props.type === "Gras"
+			? "#78C850"
+			: props.type === "Gift"
+			? "#A040A0"
+			: props.type === "Feuer"
+			? "#F08030"
+			: props.type === "Drache"
+			? "#7038F8"
+			: props.type === "Wasser"
+			? "#6890F0"
+			: props.type === "Eis"
+			? "#98D8D8"
+			: "lightgray"};
+	color: black;
+	border-radius: 7px;
+	box-shadow: ${(props) =>
+		props.type === "Gras"
+			? "0 0.2em #3BAC3B"
+			: props.type === "Gift"
+			? "0 0.2em #8E35EF"
+			: props.type === "Feuer"
+			? "0 0.2em #A91B00"
+			: props.type === "Drache"
+			? "0 0.2em #2D00FF"
+			: props.type === "Wasser"
+			? "0 0.2em #3366CC"
+			: props.type === "Eis"
+			? "0 0.2em #66CCCC"
+			: "0 0.2em gray"};
+	cursor: pointer;
+
+	&:active {
+		box-shadow: none;
+		position: relative;
+		top: 0.2em;
+	}
 `;
 
 const AttackButtonBack = styled(AttackButton)`
