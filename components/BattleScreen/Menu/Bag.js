@@ -53,7 +53,6 @@ const BagContainer = styled.section`
 	width: 44%;
 	height: 30px;
 	right: 2%;
-	bottom: 13%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -64,6 +63,7 @@ const BagContainer = styled.section`
 
 const BagButton = styled.button`
 	color: black;
+	transform: translateY(50%);
 
 	text-transform: uppercase;
 	position: relative;
