@@ -12,53 +12,69 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 	const [hoveredButton, setHoveredButton] = React.useState(null);
 
 	return (
-		<AttackMenuContainer>
-			{attacks.map((attack, index) => (
-				<AttackButton
-					key={index}
-					onClick={() => {
-						handleAttackClick(index);
-						playSound("menuSound");
-					}}
+		<>
+			<BackgroundImageContainer />
+			<AttackMenuContainer>
+				{attacks.map((attack, index) => (
+					<AttackButton
+						key={index}
+						onClick={() => {
+							handleAttackClick(index);
+							playSound("menuSound");
+						}}
+						onMouseEnter={() => {
+							playSound("menuSound");
+							setHoveredButton(index + 1);
+						}}
+						onMouseLeave={() => {
+							stopSound("menuSound");
+							setHoveredButton(null);
+						}}
+						type={attack.type}
+					>
+						{hoveredButton === index + 1 && (
+							<CursorImage src="/sprites/cursor.png" />
+						)}
+						{attack.name}
+					</AttackButton>
+				))}
+				<AttackButtonBack
 					onMouseEnter={() => {
 						playSound("menuSound");
-						setHoveredButton(index + 1);
+						setHoveredButton(attacks.length + 1);
 					}}
 					onMouseLeave={() => {
 						stopSound("menuSound");
 						setHoveredButton(null);
 					}}
-					type={attack.type}
+					onClick={onBackButtonClick}
 				>
-					{hoveredButton === index + 1 && (
+					{hoveredButton === attacks.length + 1 && (
 						<CursorImage src="/sprites/cursor.png" />
 					)}
-					{attack.name}
-				</AttackButton>
-			))}
-			<AttackButtonBack
-				onMouseEnter={() => {
-					playSound("menuSound");
-					setHoveredButton(attacks.length + 1);
-				}}
-				onMouseLeave={() => {
-					stopSound("menuSound");
-					setHoveredButton(null);
-				}}
-				onClick={onBackButtonClick}
-			>
-				{hoveredButton === attacks.length + 1 && (
-					<CursorImage src="/sprites/cursor.png" />
-				)}
-				Zurueck
-			</AttackButtonBack>
-		</AttackMenuContainer>
+					Zurueck
+				</AttackButtonBack>
+			</AttackMenuContainer>
+		</>
 	);
 };
 
+const BackgroundImageContainer = styled.div`
+	background-image: url("/sprites/attack-box.png");
+	background-size: cover;
+	background-position: center;
+
+	position: absolute;
+	width: 100%;
+	height: 79px;
+	left: 0%;
+	bottom: 0%;
+	z-index: 1;
+`;
+
 const AttackMenuContainer = styled.section`
 	position: absolute;
-	width: 50%;
+	width: 60%;
 	height: 60px;
 	left: 2%;
 	bottom: 13%;
@@ -68,7 +84,6 @@ const AttackMenuContainer = styled.section`
 	grid-template-rows: repeat(2, 1fr);
 	grid-gap: 0px;
 	grid-auto-columns: minmax(0, 1fr);
-	border: 2px solid red;
 `;
 
 const CursorImage = styled.img`
@@ -101,7 +116,7 @@ const AttackButton = styled.button`
 			: props.type === "Feuer"
 			? "#F08030"
 			: props.type === "Drache"
-			? "#7038F8"
+			? "#007FFF"
 			: props.type === "Wasser"
 			? "#6890F0"
 			: props.type === "Eis"

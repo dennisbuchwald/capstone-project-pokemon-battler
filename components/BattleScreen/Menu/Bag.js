@@ -50,29 +50,42 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
 
 const BagContainer = styled.section`
 	position: absolute;
-	width: 45%;
-	height: 89%%;
-	left: 4.5%;
-	bottom: 24%;
+	width: 44%;
+	height: 60px;
+	right: 2%;
+	bottom: 13%;
 	z-index: 2;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-	grid-gap: -0px;
+	grid-gap: 0px;
 	grid-auto-columns: minmax(0, 1fr);
 `;
 
 const BagButton = styled.button`
+	text-transform: uppercase;
+
 	position: relative;
-	background-color: transparent;
-	color: white;
 	font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
 		BlinkMacSystemFont, Segoe UI;
-	font-size: 20px;
+	font-size: 16px;
+	font-weight: bold;
 	cursor: pointer;
-	text-align: left;
 	border: none;
 	min-width: 0;
+	display: inline-block;
+	margin: 2px;
+	padding: 5px 0 5px 5px;
+	background-color: lightgray;
+	border-radius: 7px;
+	box-shadow: 0 0.2em gray;
+	cursor: pointer;
+
+	&:active {
+		box-shadow: none;
+		position: relative;
+		top: 0.2em;
+	}
 `;
 
 const BagButtonBack = styled(BagButton)`
