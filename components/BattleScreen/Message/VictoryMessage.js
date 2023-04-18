@@ -7,7 +7,7 @@ export default function VictoryMessage() {
 
 	return (
 		<VictoryMessageContainer>
-			<VictoryTitle>Du hast Gewonen</VictoryTitle>
+			<VictoryTitle>Du hast Gewonnen!</VictoryTitle>
 			<RestartButton onClick={handleRestart}>Neustart</RestartButton>
 		</VictoryMessageContainer>
 	);
