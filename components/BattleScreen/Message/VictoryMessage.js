@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function VictoryMessage() {
+export default function VictoryMessage({ resetSelection }) {
   const handleRestart = () => {
-    window.location.reload();
+    resetSelection();
   };
 
   return (

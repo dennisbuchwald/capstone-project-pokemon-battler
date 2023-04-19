@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function LoserMessage() {
+export default function LoserMessage({ resetSelection }) {
   const handleRestart = () => {
-    window.location.reload();
+    resetSelection();
   };
   return (
     <LoserMessageMessageContainer>
