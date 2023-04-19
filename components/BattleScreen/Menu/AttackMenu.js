@@ -61,14 +61,13 @@ const AttackMenu = ({ onAttackSelection, onBackButtonClick, attacks }) => {
 
 const BackgroundImageContainer = styled.section`
   background-image: url("/sprites/attack-box.png");
-  background-size: cover;
-  background-position: center;
-
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   position: absolute;
+
   width: 100%;
-  height: 79px;
-  left: 0%;
-  bottom: 0%;
+  height: 80px;
+  right: 0.5%;
   z-index: 1;
 `;
 
@@ -76,7 +75,7 @@ const AttackMenuContainer = styled.section`
   position: absolute;
   width: 60%;
   height: 60px;
-  left: 2%;
+  left: 0%;
   bottom: 15%;
   z-index: 2;
   display: grid;

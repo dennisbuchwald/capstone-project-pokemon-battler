@@ -49,10 +49,15 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
 }
 
 const BagContainer = styled.section`
+  background-image: url("/sprites/menu-options-box.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 44%;
+  padding: 10px;
   position: absolute;
   width: 44%;
-  height: 30px;
-  right: 2%;
+  height: 80px;
+  right: 0.5%;
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -63,18 +68,16 @@ const BagContainer = styled.section`
 
 const BagButton = styled.button`
   color: black;
-  transform: translateY(50%);
-
-  text-transform: uppercase;
   position: relative;
   font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
     BlinkMacSystemFont, Segoe UI;
   font-size: 16px;
+  text-transform: uppercase;
   cursor: pointer;
   border: none;
   min-width: 0;
   display: inline-block;
-  margin: 2px;
+  margin: 5px;
   padding: 3.5px 3.5px 3.5px 3.5px;
   background-color: lightgray;
   border-radius: 7px;

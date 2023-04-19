@@ -35,6 +35,7 @@ const LoserTitle = styled.h1`
   text-align: center;
   font-size: 40px;
   padding-top: 0px;
+  text-transform: uppercase;
 `;
 
 const RestartButton = styled.button`

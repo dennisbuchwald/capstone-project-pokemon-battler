@@ -4,7 +4,7 @@ const AttackMessage = ({ name, attack }) => {
   return (
     <AttackMessageBox>
       <Message>
-        {name} setzt {attack} ein.
+        <span>{name}</span> setzt <span>{attack}</span> ein.
       </Message>
     </AttackMessageBox>
   );
@@ -13,21 +13,26 @@ const AttackMessage = ({ name, attack }) => {
 export default AttackMessage;
 
 const AttackMessageBox = styled.section`
-  background-image: url("/sprites/text-box.png");
-  background-size: cover;
-  background-position: center;
-
   position: absolute;
+  background-image: url("/sprites/text-box.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
   width: 100%;
-  height: 79px;
+  height: 80px;
   left: 0%;
   bottom: 0%;
   z-index: 2;
 `;
 
 const Message = styled.p`
-  font-size: 20px;
+  font-size: 25px;
   line-height: 16px;
   position: relative;
-  left: 4%;
+  left: 6%;
+  color: white;
+  span {
+    text-transform: uppercase;
+  }
 `;

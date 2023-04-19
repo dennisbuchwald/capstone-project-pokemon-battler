@@ -61,7 +61,9 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
       ) : (
         <MenuOverviewBox>
           <MenuOverviewBoxLeft>
-            <p>Was soll {name} tun?</p>
+            <p>
+              Was soll <span>{name}</span> tun?
+            </p>
           </MenuOverviewBoxLeft>
           <MenuOverviewBoxRight>
             <MenuButtonFight
@@ -126,7 +128,9 @@ const MenuContainer = styled.section`
   height: 80px;
   z-index: 2;
   bottom: 0;
-  background-image: url("/sprites/menu-box.png");
+  background-image: url("/sprites/text-box.png");
+  background-size: cover;
+
   background-size: 100% 100%;
   background-repeat: no-repeat;
   color: white;
@@ -149,16 +153,27 @@ const MenuOverviewBoxLeft = styled.article`
   position: relative;
   left: 0px;
   top: -10px;
-  font-size: 20px;
+  font-size: 25px;
+  span {
+    text-transform: uppercase;
+  }
 `;
 
 const MenuOverviewBoxRight = styled.section`
-  width: 44%;
-  right: 2.5%;
   position: absolute;
-  height: 60px;
-  bottom: 15%;
+  background-image: url("/sprites/menu-options-box.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 44%;
+
+  right: 0.5%;
+  position: absolute;
+  height: 80px;
+  bottom: 0%;
   z-index: 2;
+
+  padding: 10px;
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);

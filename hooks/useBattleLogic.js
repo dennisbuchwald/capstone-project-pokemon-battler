@@ -83,7 +83,7 @@ export function useBattleLogic(
         });
         setTimeout(() => {
           setEnemyAttackMessage(null);
-        }, 2000);
+        }, 1000);
 
         if (playerHealth - damageTaken <= 0) {
           setIsDisabled(false);
@@ -150,6 +150,19 @@ export function useBattleLogic(
     setTimeout(() => {
       setEnemyAttacking(true);
       setTimeout(() => {
+        const enemyAttackIndex = Math.floor(
+          Math.random() * selectedEnemyPokemon.attacks.length
+        );
+        const enemyAttack = selectedEnemyPokemon.attacks[enemyAttackIndex];
+
+        setEnemyAttackMessage({
+          name: selectedEnemyPokemon.name,
+          attack: enemyAttack.name,
+        });
+        setTimeout(() => {
+          setEnemyAttackMessage(null);
+        }, 1000);
+
         const damageTaken = Math.floor(Math.random() * (50 - 1 + 1) + 1);
         handlePlayerDamage(damageTaken);
 
