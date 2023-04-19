@@ -116,4 +116,13 @@ const PokemonHealthBar = styled.progress`
     border-radius: 2.5px;
     transition: all 0.1s linear;
   }
+  &::-moz-progress-bar {
+    background: linear-gradient(
+      180deg,
+      rgba(42, 106, 37, 1) 0%,
+      rgba(37, 183, 40, 1) 39%
+    );
+    border-radius: 2.5px;
+    transition: all 0.1s linear;
+  }
 `;

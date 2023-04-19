@@ -105,8 +105,8 @@ const AttackButton = styled.button`
   border: none;
   min-width: 0;
   display: inline-block;
-  margin: 2px;
-  padding: 5px 0 5px 5px;
+  margin: 2.5px;
+  padding: 3.5px 3.5px 3.5px 3.5px;
   background-color: ${(attacks) =>
     attacks.type === "Gras"
       ? "#78C850"

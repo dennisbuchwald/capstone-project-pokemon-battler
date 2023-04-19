@@ -185,8 +185,8 @@ const MenuButton = styled.button`
   border: none;
   min-width: 0;
   display: inline-block;
-  margin: 2px;
-  padding: 3.5px 0 3.5px 3.5px;
+  margin: 2.5px;
+  padding: 3.5px 3.5px 3.5px 3.5px;
   background-color: lightgray;
   border-radius: 7px;
   box-shadow: 0 0.2em gray;
