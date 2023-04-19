@@ -217,11 +217,19 @@ const MenuButton = styled.button`
 const MenuButtonFight = styled(MenuButton)`
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  background-color: #ff4747; // Rot
+  &:hover {
+    background-color: #e63b3b; // Dunkleres Rot für Hover-Effekt
+  }
 `;
 
 const MenuButtonBag = styled(MenuButton)`
   grid-column: 2 / 3;
   grid-row: 1 / 2;
+  background-color: #ffd700; // Gelb
+  &:hover {
+    background-color: #e6c200; // Dunkleres Gelb für Hover-Effekt
+  }
 `;
 
 const MenuButtonPokemon = styled(MenuButton)`
@@ -232,4 +240,8 @@ const MenuButtonPokemon = styled(MenuButton)`
 const MenuButtonRun = styled(MenuButton)`
   grid-column: 2 / 3;
   grid-row: 2 / 3;
+  background-color: #4a90e2; // Blau
+  &:hover {
+    background-color: #3f7dcb; // Dunkleres Blau für Hover-Effekt
+  }
 `;
