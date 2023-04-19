@@ -77,7 +77,7 @@ const AttackMenuContainer = styled.section`
   width: 60%;
   height: 60px;
   left: 2%;
-  bottom: 13%;
+  bottom: 15%;
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
