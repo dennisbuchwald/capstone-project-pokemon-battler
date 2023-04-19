@@ -75,7 +75,7 @@ const AttackMenuContainer = styled.section`
   position: absolute;
   width: 60%;
   height: 60px;
-  left: 0%;
+  left: 2.5%;
   bottom: 15%;
   z-index: 2;
   display: grid;
