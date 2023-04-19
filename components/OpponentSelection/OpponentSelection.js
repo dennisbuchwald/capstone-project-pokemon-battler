@@ -51,8 +51,13 @@ const SelectionContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  margin-top: 20%;
+  margin-top: 15%;
   font-size: 40px;
+  margin-block-start: none;
+  margin-block-end: none;
+  margin-inline-start: none;
+  margin-inline-end: none;
+  font-weight: regular !important;
 `;
 
 const OpponentList = styled.ul`
