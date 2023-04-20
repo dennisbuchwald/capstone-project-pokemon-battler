@@ -1,17 +1,16 @@
 import React, { useState, useCallback } from "react";
 import useSound from "use-sound";
 
-import backgroundMusic from "/public/audio/battle_music.mp3";
+import battleMusic from "/public/audio/battle_music.mp3";
 import menuSound from "/public/audio/menu.mp3";
 import attackedSound from "/public/audio/attacked.mp3";
 import healSound from "/public/audio/heal.mp3";
 import titelMusic from "/public/audio/title_screen.mp3";
 
 const useSoundEffects = () => {
-  const [playBackgroundMusic, { stop: stopBackgroundMusic }] = useSound(
-    backgroundMusic,
-    { volume: 0.1 }
-  );
+  const [playbattleMusic, { stop: stopbattleMusic }] = useSound(battleMusic, {
+    volume: 0.1,
+  });
 
   const [playtitelMusic, { stop: stoptitelMusic }] = useSound(titelMusic, {
     volume: 0.1,
@@ -28,8 +27,8 @@ const useSoundEffects = () => {
   const playSound = useCallback(
     (effect) => {
       switch (effect) {
-        case "backgroundMusic":
-          playBackgroundMusic();
+        case "battleMusic":
+          playbattleMusic();
           break;
         case "titelMusic":
           playtitelMusic();
@@ -49,7 +48,7 @@ const useSoundEffects = () => {
       }
     },
     [
-      playBackgroundMusic,
+      playbattleMusic,
       playMenuSound,
       playAttackedSound,
       playHealSound,
@@ -60,8 +59,8 @@ const useSoundEffects = () => {
   const stopSound = useCallback(
     (effect) => {
       switch (effect) {
-        case "backgroundMusic":
-          stopBackgroundMusic();
+        case "battleMusic":
+          stopbattleMusic();
           break;
         case "titelMusic":
           stoptitelMusic();
@@ -74,7 +73,7 @@ const useSoundEffects = () => {
           break;
       }
     },
-    [stopBackgroundMusic, stopMenuSound, stoptitelMusic]
+    [stopbattleMusic, stopMenuSound, stoptitelMusic]
   );
 
   return [playSound, stopSound];

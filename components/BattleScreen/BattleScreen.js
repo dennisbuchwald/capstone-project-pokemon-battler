@@ -13,14 +13,14 @@ import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
-function BackgroundMusic() {
+function BattleMusic() {
   const [playSound, stopSound] = SoundEffect();
 
   useEffect(() => {
-    playSound("backgroundMusic");
+    playSound("battleMusic");
 
     return () => {
-      stopSound("backgroundMusic");
+      stopSound("battleMusic");
     };
   }, [playSound, stopSound]);
 
@@ -63,7 +63,7 @@ function Battle({
 
   return (
     <ScreenContainer>
-      <BackgroundMusic />
+      <BattleMusic />
 
       <PlayerState
         currentHealth={playerHealth}
