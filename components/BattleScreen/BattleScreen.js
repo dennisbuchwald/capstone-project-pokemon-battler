@@ -13,6 +13,16 @@ import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
+function getBackgroundImageUrl(index) {
+  const images = [
+    "/background/background0.png",
+    "/background/background1.png",
+    "/background/background2.png",
+  ];
+
+  return images[index] || images[0];
+}
+
 function BattleMusic({ enemyIndex }) {
   const [playSound, stopSound] = SoundEffect();
 
@@ -80,7 +90,7 @@ function Battle({
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer selectedEnemyIndex={selectedEnemyIndex}>
       <BattleMusic enemyIndex={selectedEnemyIndex} />
 
       <PlayerState
@@ -185,7 +195,8 @@ export default function BattleScreen() {
 }
 
 const ScreenContainer = styled.main`
-  background-image: url("/background/background-middle.png");
+  background-image: ${({ selectedEnemyIndex }) =>
+    `url(${getBackgroundImageUrl(selectedEnemyIndex)})`};
   background-size: 426px 200px;
   display: block;
   font-size: 10px;
