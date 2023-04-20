@@ -35,7 +35,7 @@ const bounce = keyframes`
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
   }
 `;
 
