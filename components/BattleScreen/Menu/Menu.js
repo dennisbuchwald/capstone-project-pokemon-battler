@@ -4,7 +4,14 @@ import AttackMenu from "./AttackMenu";
 import SoundEffects from "../SoundEffect/SoundEffect";
 import Bag from "./Bag";
 
-const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
+const Menu = ({
+  onAttack,
+  onPotionUse,
+  disabled,
+  attacks,
+  name,
+  onResetSelection,
+}) => {
   const [showAttackMenu, setShowAttackMenu] = useState(false);
   const [showBag, setShowBag] = useState(false);
   const [playSound, stopSound] = SoundEffects();
@@ -106,7 +113,7 @@ const Menu = ({ onAttack, onPotionUse, disabled, attacks, name }) => {
                 setHoveredButton(null);
               }}
               onClick={() => {
-                window.location.reload();
+                onResetSelection();
               }}
               disabled={disabled}
             >

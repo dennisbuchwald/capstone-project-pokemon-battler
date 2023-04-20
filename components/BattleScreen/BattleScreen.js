@@ -28,7 +28,7 @@ function Battle({
   selectedEnemyPokemon,
   selectedEnemyPokemons,
   setSelectedEnemyPokemon,
-  setAttackMessage,
+  resetSelection,
 }) {
   const {
     playerHealth,
@@ -52,9 +52,9 @@ function Battle({
   const enemyPokemon = selectedEnemyPokemon;
 
   if (playerHealth <= 0) {
-    return <LoserMessage />;
+    return <LoserMessage resetSelection={resetSelection} />;
   } else if (victory) {
-    return <VictoryMessage />;
+    return <VictoryMessage resetSelection={resetSelection} />;
   }
 
   return (
@@ -85,6 +85,7 @@ function Battle({
         attacks={selectedPokemon.attacks}
         name={selectedPokemon.name}
         onPotionUse={handlePotionUse}
+        onResetSelection={resetSelection}
       />
       {attackMessage && (
         <AttackMessage
@@ -105,6 +106,11 @@ export default function BattleScreen() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);
   const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
+
+  const resetSelection = () => {
+    setSelectedPokemon(null);
+    setSelectedEnemyPokemon(null);
+  };
 
   const handlePokemonSelection = (pokemon) => {
     setSelectedPokemon(pokemon);
@@ -140,6 +146,7 @@ export default function BattleScreen() {
         selectedEnemyPokemon={selectedEnemyPokemon}
         selectedEnemyPokemons={selectedEnemyPokemons}
         setSelectedEnemyPokemon={setSelectedEnemyPokemon}
+        resetSelection={resetSelection}
       />
     </>
   );
