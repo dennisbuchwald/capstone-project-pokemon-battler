@@ -14,11 +14,15 @@ import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
 function BackgroundMusic() {
-  const [playSound] = SoundEffect();
+  const [playSound, stopSound] = SoundEffect();
 
   useEffect(() => {
     playSound("backgroundMusic");
-  }, [playSound]);
+
+    return () => {
+      stopSound("backgroundMusic");
+    };
+  }, [playSound, stopSound]);
 
   return null;
 }
@@ -59,6 +63,8 @@ function Battle({
 
   return (
     <ScreenContainer>
+      <BackgroundMusic />
+
       <PlayerState
         currentHealth={playerHealth}
         selectedPokemon={selectedPokemon}
@@ -123,7 +129,6 @@ export default function BattleScreen() {
   if (!selectedPokemon) {
     return (
       <>
-        <BackgroundMusic />
         <PokemonSelection onSelect={handlePokemonSelection} />
       </>
     );
@@ -132,7 +137,6 @@ export default function BattleScreen() {
   if (!selectedEnemyPokemon || !selectedEnemyPokemons) {
     return (
       <>
-        <BackgroundMusic />
         <OpponentSelection onSelect={handleEnemySelection} />
       </>
     );
@@ -140,7 +144,6 @@ export default function BattleScreen() {
 
   return (
     <>
-      <BackgroundMusic />
       <Battle
         selectedPokemon={selectedPokemon}
         selectedEnemyPokemon={selectedEnemyPokemon}
