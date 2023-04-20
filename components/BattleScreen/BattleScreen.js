@@ -13,16 +13,19 @@ import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
-function BattleMusic() {
+function BattleMusic({ enemyIndex }) {
   const [playSound, stopSound] = SoundEffect();
 
   useEffect(() => {
-    playSound("battleMusic");
+    const battleMusic = ["battleMusic0", "battleMusic1", "battleMusic2"][
+      enemyIndex
+    ];
+    playSound(battleMusic);
 
     return () => {
-      stopSound("battleMusic");
+      stopSound(battleMusic);
     };
-  }, [playSound, stopSound]);
+  }, [playSound, stopSound, enemyIndex]);
 
   return null;
 }
@@ -47,6 +50,7 @@ function Battle({
   selectedEnemyPokemons,
   setSelectedEnemyPokemon,
   resetSelection,
+  selectedEnemyIndex,
 }) {
   const {
     playerHealth,
@@ -77,7 +81,7 @@ function Battle({
 
   return (
     <ScreenContainer>
-      <BattleMusic />
+      <BattleMusic enemyIndex={selectedEnemyIndex} />
 
       <PlayerState
         currentHealth={playerHealth}
@@ -122,10 +126,12 @@ function Battle({
     </ScreenContainer>
   );
 }
+
 export default function BattleScreen() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);
   const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
+  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(null);
 
   const resetSelection = () => {
     setSelectedPokemon(null);
@@ -135,9 +141,11 @@ export default function BattleScreen() {
   const handlePokemonSelection = (pokemon) => {
     setSelectedPokemon(pokemon);
   };
-  const handleEnemySelection = (enemyPokemons) => {
+
+  const handleEnemySelection = (enemyPokemons, index) => {
     setSelectedEnemyPokemons(enemyPokemons);
     setSelectedEnemyPokemon(enemyPokemons[0]);
+    setSelectedEnemyIndex(index);
   };
 
   if (!selectedPokemon) {
@@ -153,7 +161,11 @@ export default function BattleScreen() {
     return (
       <>
         <TitleMusic />
-        <OpponentSelection onSelect={handleEnemySelection} />
+        <OpponentSelection
+          onSelect={(enemyPokemons, index) =>
+            handleEnemySelection(enemyPokemons, index)
+          }
+        />
       </>
     );
   }
@@ -166,6 +178,7 @@ export default function BattleScreen() {
         selectedEnemyPokemons={selectedEnemyPokemons}
         setSelectedEnemyPokemon={setSelectedEnemyPokemon}
         resetSelection={resetSelection}
+        selectedEnemyIndex={selectedEnemyIndex}
       />
     </>
   );

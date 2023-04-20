@@ -3,17 +3,17 @@ import Image from "next/image";
 import opponents from "../../data/opponents.json";
 
 export default function OpponentSelection({ onSelect }) {
-  const handleSelect = (selectedOpponent) => {
-    onSelect(selectedOpponent.pokemons);
+  const handleSelect = (selectedOpponent, index) => {
+    onSelect(selectedOpponent.pokemons, index);
   };
 
   return (
     <SelectionContainer>
       <Title>Waehle deinen Gegner</Title>
       <OpponentList>
-        {opponents.map((opponent) => (
+        {opponents.map((opponent, index) => (
           <Opponent key={opponent.id}>
-            <Button onClick={() => handleSelect(opponent)}>
+            <Button onClick={() => handleSelect(opponent, index)}>
               <Image
                 src={`/sprites/character/${opponent.id}.png`}
                 alt={opponent.name}
