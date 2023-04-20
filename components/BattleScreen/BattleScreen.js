@@ -27,6 +27,20 @@ function BattleMusic() {
   return null;
 }
 
+function TitleMusic() {
+  const [playSound, stopSound] = SoundEffect();
+
+  useEffect(() => {
+    playSound("titleMusic");
+
+    return () => {
+      stopSound("titleMusic");
+    };
+  }, [playSound, stopSound]);
+
+  return null;
+}
+
 function Battle({
   selectedPokemon,
   selectedEnemyPokemon,
@@ -129,6 +143,7 @@ export default function BattleScreen() {
   if (!selectedPokemon) {
     return (
       <>
+        <TitleMusic />
         <PokemonSelection onSelect={handlePokemonSelection} />
       </>
     );
@@ -137,6 +152,7 @@ export default function BattleScreen() {
   if (!selectedEnemyPokemon || !selectedEnemyPokemons) {
     return (
       <>
+        <TitleMusic />
         <OpponentSelection onSelect={handleEnemySelection} />
       </>
     );
