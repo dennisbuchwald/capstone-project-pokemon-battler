@@ -1,4 +1,20 @@
 import styled from "styled-components";
+import SoundEffect from "../SoundEffect/SoundEffect";
+import { useEffect } from "react";
+
+function WinMusic() {
+  const [playSound, stopSound] = SoundEffect();
+
+  useEffect(() => {
+    playSound("winMusic");
+
+    return () => {
+      stopSound("winMusic");
+    };
+  }, [playSound, stopSound]);
+
+  return null;
+}
 
 export default function VictoryMessage({ resetSelection }) {
   const handleRestart = () => {
@@ -7,6 +23,7 @@ export default function VictoryMessage({ resetSelection }) {
 
   return (
     <VictoryMessageContainer>
+      <WinMusic />
       <VictoryTitle>Du hast Gewonnen!</VictoryTitle>
       <RestartButton onClick={handleRestart}>Neustart</RestartButton>
     </VictoryMessageContainer>

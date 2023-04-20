@@ -99,7 +99,7 @@ const PokemonMaxHealth = styled.span`
 const PokemonHealthBar = styled.progress`
   position: absolute;
   height: 6px;
-  width: 89px;
+  width: 88px;
   left: 88px;
   top: 31px;
   z-index: 1;

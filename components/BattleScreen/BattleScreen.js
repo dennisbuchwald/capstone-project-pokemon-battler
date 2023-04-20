@@ -13,12 +13,43 @@ import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
-function BackgroundMusic() {
-  const [playSound] = SoundEffect();
+function getBackgroundImageUrl(index) {
+  const images = [
+    "/background/background0.png",
+    "/background/background1.png",
+    "/background/background2.png",
+  ];
+
+  return images[index] || images[0];
+}
+
+function BattleMusic({ enemyIndex }) {
+  const [playSound, stopSound] = SoundEffect();
 
   useEffect(() => {
-    playSound("backgroundMusic");
-  }, [playSound]);
+    const battleMusic = ["battleMusic0", "battleMusic1", "battleMusic2"][
+      enemyIndex
+    ];
+    playSound(battleMusic);
+
+    return () => {
+      stopSound(battleMusic);
+    };
+  }, [playSound, stopSound, enemyIndex]);
+
+  return null;
+}
+
+function TitleMusic() {
+  const [playSound, stopSound] = SoundEffect();
+
+  useEffect(() => {
+    playSound("titleMusic");
+
+    return () => {
+      stopSound("titleMusic");
+    };
+  }, [playSound, stopSound]);
 
   return null;
 }
@@ -29,6 +60,7 @@ function Battle({
   selectedEnemyPokemons,
   setSelectedEnemyPokemon,
   resetSelection,
+  selectedEnemyIndex,
 }) {
   const {
     playerHealth,
@@ -58,7 +90,9 @@ function Battle({
   }
 
   return (
-    <ScreenContainer>
+    <ScreenContainer selectedEnemyIndex={selectedEnemyIndex}>
+      <BattleMusic enemyIndex={selectedEnemyIndex} />
+
       <PlayerState
         currentHealth={playerHealth}
         selectedPokemon={selectedPokemon}
@@ -102,10 +136,12 @@ function Battle({
     </ScreenContainer>
   );
 }
+
 export default function BattleScreen() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);
   const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
+  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(null);
 
   const resetSelection = () => {
     setSelectedPokemon(null);
@@ -115,15 +151,17 @@ export default function BattleScreen() {
   const handlePokemonSelection = (pokemon) => {
     setSelectedPokemon(pokemon);
   };
-  const handleEnemySelection = (enemyPokemons) => {
+
+  const handleEnemySelection = (enemyPokemons, index) => {
     setSelectedEnemyPokemons(enemyPokemons);
     setSelectedEnemyPokemon(enemyPokemons[0]);
+    setSelectedEnemyIndex(index);
   };
 
   if (!selectedPokemon) {
     return (
       <>
-        <BackgroundMusic />
+        <TitleMusic />
         <PokemonSelection onSelect={handlePokemonSelection} />
       </>
     );
@@ -132,28 +170,33 @@ export default function BattleScreen() {
   if (!selectedEnemyPokemon || !selectedEnemyPokemons) {
     return (
       <>
-        <BackgroundMusic />
-        <OpponentSelection onSelect={handleEnemySelection} />
+        <TitleMusic />
+        <OpponentSelection
+          onSelect={(enemyPokemons, index) =>
+            handleEnemySelection(enemyPokemons, index)
+          }
+        />
       </>
     );
   }
 
   return (
     <>
-      <BackgroundMusic />
       <Battle
         selectedPokemon={selectedPokemon}
         selectedEnemyPokemon={selectedEnemyPokemon}
         selectedEnemyPokemons={selectedEnemyPokemons}
         setSelectedEnemyPokemon={setSelectedEnemyPokemon}
         resetSelection={resetSelection}
+        selectedEnemyIndex={selectedEnemyIndex}
       />
     </>
   );
 }
 
 const ScreenContainer = styled.main`
-  background-image: url("/background/background-middle.png");
+  background-image: ${({ selectedEnemyIndex }) =>
+    `url(${getBackgroundImageUrl(selectedEnemyIndex)})`};
   background-size: 426px 200px;
   display: block;
   font-size: 10px;
