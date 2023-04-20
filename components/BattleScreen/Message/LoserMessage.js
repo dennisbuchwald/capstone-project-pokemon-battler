@@ -1,4 +1,20 @@
 import styled from "styled-components";
+import SoundEffect from "../SoundEffect/SoundEffect";
+import { useEffect } from "react";
+
+function LoserMusic() {
+  const [playSound, stopSound] = SoundEffect();
+
+  useEffect(() => {
+    playSound("loserMusic");
+
+    return () => {
+      stopSound("loserMusic");
+    };
+  }, [playSound, stopSound]);
+
+  return null;
+}
 
 export default function LoserMessage({ resetSelection }) {
   const handleRestart = () => {
@@ -6,6 +22,8 @@ export default function LoserMessage({ resetSelection }) {
   };
   return (
     <LoserMessageMessageContainer>
+      <LoserMusic />
+
       <LoserTitle>Du hast Verloren!</LoserTitle>
       <RestartButton onClick={handleRestart}>Neustart</RestartButton>
     </LoserMessageMessageContainer>

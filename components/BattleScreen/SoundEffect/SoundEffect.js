@@ -7,6 +7,7 @@ import attackedSound from "/public/audio/attacked.mp3";
 import healSound from "/public/audio/heal.mp3";
 import titleMusic from "/public/audio/title_screen.mp3";
 import winMusic from "/public/audio/win.mp3";
+import loserMusic from "/public/audio/loser.mp3";
 
 const useSoundEffects = () => {
   const [playBattleMusic, { stop: stopBattleMusic }] = useSound(battleMusic, {
@@ -14,6 +15,10 @@ const useSoundEffects = () => {
   });
 
   const [playTitleMusic, { stop: stopTitleMusic }] = useSound(titleMusic, {
+    volume: 0.1,
+  });
+
+  const [playLoserMusic, { stop: stopLoserMusic }] = useSound(loserMusic, {
     volume: 0.1,
   });
 
@@ -32,6 +37,9 @@ const useSoundEffects = () => {
   const playSound = useCallback(
     (effect) => {
       switch (effect) {
+        case "loserMusic":
+          playLoserMusic();
+          break;
         case "battleMusic":
           playBattleMusic();
           break;
@@ -62,12 +70,16 @@ const useSoundEffects = () => {
       playHealSound,
       playTitleMusic,
       playWinMusic,
+      playLoserMusic,
     ]
   );
 
   const stopSound = useCallback(
     (effect) => {
       switch (effect) {
+        case "loserMusic":
+          stopLoserMusic();
+          break;
         case "battleMusic":
           stopBattleMusic();
           break;
@@ -85,7 +97,13 @@ const useSoundEffects = () => {
           break;
       }
     },
-    [stopBattleMusic, stopMenuSound, stopTitleMusic, stopWinMusic]
+    [
+      stopBattleMusic,
+      stopMenuSound,
+      stopTitleMusic,
+      stopWinMusic,
+      stopLoserMusic,
+    ]
   );
 
   return [playSound, stopSound];
