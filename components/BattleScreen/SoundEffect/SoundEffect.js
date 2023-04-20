@@ -10,10 +10,14 @@ import winMusic from "/public/audio/win.mp3";
 
 const useSoundEffects = () => {
   const [playBattleMusic, { stop: stopBattleMusic }] = useSound(battleMusic, {
-    volume: 0.1,
+    volume: 0.05,
   });
 
   const [playTitleMusic, { stop: stopTitleMusic }] = useSound(titleMusic, {
+    volume: 0.1,
+  });
+
+  const [playWinMusic, { stop: stopWinMusic }] = useSound(winMusic, {
     volume: 0.1,
   });
 
@@ -30,6 +34,9 @@ const useSoundEffects = () => {
       switch (effect) {
         case "battleMusic":
           playBattleMusic();
+          break;
+        case "winMusic":
+          playWinMusic();
           break;
         case "titleMusic":
           playTitleMusic();
@@ -54,6 +61,7 @@ const useSoundEffects = () => {
       playAttackedSound,
       playHealSound,
       playTitleMusic,
+      playWinMusic,
     ]
   );
 
@@ -62,6 +70,9 @@ const useSoundEffects = () => {
       switch (effect) {
         case "battleMusic":
           stopBattleMusic();
+          break;
+        case "winMusic":
+          stopWinMusic();
           break;
         case "titleMusic":
           stopTitleMusic();
@@ -74,7 +85,7 @@ const useSoundEffects = () => {
           break;
       }
     },
-    [stopBattleMusic, stopMenuSound, stopTitleMusic]
+    [stopBattleMusic, stopMenuSound, stopTitleMusic, stopWinMusic]
   );
 
   return [playSound, stopSound];
