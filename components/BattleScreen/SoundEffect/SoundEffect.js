@@ -49,9 +49,9 @@ const useSoundEffects = () => {
     volume: 0.3,
   });
 
-  const [playAttackedSound] = useSound(attackedSound, { volume: 0.4 });
+  const [playAttackedSound] = useSound(attackedSound, { volume: 0.3 });
 
-  const [playHealSound] = useSound(healSound, { volume: 0.4 });
+  const [playHealSound] = useSound(healSound, { volume: 0.3 });
 
   const playSound = useCallback(
     (effect) => {
