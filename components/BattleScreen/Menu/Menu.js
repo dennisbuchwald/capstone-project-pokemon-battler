@@ -131,7 +131,7 @@ export default Menu;
 
 const MenuContainer = styled.section`
   position: absolute;
-  background-image: url("/sprites/text-box-mod2.png");
+  background-image: url("/sprites/text-box.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -154,15 +154,14 @@ const MenuOverviewBox = styled.section`
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 10px 25px;
+  padding-left: 5%;
 `;
 
 const MenuOverviewBoxLeft = styled.article`
   width: 50%;
   font-size: 1.5rem;
-  position: relative;
   left: 0px;
-  top: -10px;
+  top: 0px;
   font-size: 25px;
   span {
     text-transform: uppercase;

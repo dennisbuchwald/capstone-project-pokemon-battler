@@ -14,7 +14,7 @@ export default AttackMessage;
 
 const AttackMessageBox = styled.section`
   position: absolute;
-  background-image: url("/sprites/text-box-mod2.png");
+  background-image: url("/sprites/text-box.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -25,6 +25,7 @@ const AttackMessageBox = styled.section`
   right: 0.5%;
   bottom: 0.5%;
   z-index: 2;
+  border: 1px solid yellow;
 `;
 
 const Message = styled.p`
