@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import { useBattleLogic } from "../../hooks/useBattleLogic";
+import { useBattleLogic, resetEnemyHealth } from "../../hooks/useBattleLogic";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
 import PlayerState from "./PlayerState/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
@@ -60,6 +60,7 @@ function Battle({
     handlePotionUse,
     attackMessage,
     enemyAttackMessage,
+    resetEnemyHealth,
   } = useBattleLogic(
     selectedPokemon,
     selectedEnemyPokemon,
@@ -130,9 +131,10 @@ export default function BattleScreen({ setInBattle }) {
 
   const resetSelection = () => {
     setSelectedPokemon(null);
+    resetEnemyHealth(selectedEnemyPokemons);
     setSelectedEnemyPokemons([]);
     setSelectedEnemyPokemon(null);
-    setInBattle(false); // Setze inBattle auf false, wenn die Auswahl zurückgesetzt wird
+    setInBattle(false);
   };
 
   if (!selectedPokemon) {

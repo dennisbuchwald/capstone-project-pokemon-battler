@@ -25,7 +25,6 @@ const AttackMessageBox = styled.section`
   right: 0.5%;
   bottom: 0.5%;
   z-index: 2;
-  border: 1px solid yellow;
 `;
 
 const Message = styled.p`
