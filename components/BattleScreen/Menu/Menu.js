@@ -154,15 +154,14 @@ const MenuOverviewBox = styled.section`
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 10px 25px;
+  padding-left: 5%;
 `;
 
 const MenuOverviewBoxLeft = styled.article`
   width: 50%;
   font-size: 1.5rem;
-  position: relative;
   left: 0px;
-  top: -10px;
+  top: 0px;
   font-size: 25px;
   span {
     text-transform: uppercase;
