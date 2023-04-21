@@ -5,6 +5,7 @@ export default function Preload({ onPreloaded }) {
     const imagesToPreload = [
       "/sprites/arrow.png",
       "/sprites/cursor.png",
+      "/sprites/masterball.png",
 
       "/background/background0.png",
       "/background/background1.png",
@@ -27,6 +28,13 @@ export default function Preload({ onPreloaded }) {
       "/sprites/starter/blastoise-back.gif",
       "/sprites/starter/charizard-back.gif",
       "/sprites/starter/venusaur-back.gif",
+
+      "/sprites/attack-box.png",
+      "/sprites/menu-options-box.png",
+      "/sprites/text-box.png",
+
+      "/sprites/statusbar-player.png",
+      "/sprites/statusbar-opponent.png",
     ];
 
     const audioToPreload = [
