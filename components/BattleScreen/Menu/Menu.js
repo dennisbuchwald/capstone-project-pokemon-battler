@@ -135,7 +135,7 @@ const MenuContainer = styled.section`
   height: 80px;
   z-index: 2;
   bottom: 0;
-  background-image: url("/sprites/text-box.png");
+  background-image: url("/sprites/text-box-mod3.png");
   background-size: cover;
   background-size: 100% 100%;
   background-repeat: no-repeat;
