@@ -14,6 +14,7 @@ function GameboyOverlay() {
   const [playSound, stopSound] = SoundEffect();
   const [inBattle, setInBattle] = useState(false);
 
+  // LED-Effekt, der das LED ein- und ausschaltet
   useEffect(() => {
     if (ledOn) {
       const toggleLED = () => {
@@ -30,6 +31,7 @@ function GameboyOverlay() {
     }
   }, [ledOn]);
 
+  // Startet die App und das Startvideo
   const startApp = () => {
     setAppStarted(true);
     setLedOn(true);
@@ -40,11 +42,13 @@ function GameboyOverlay() {
     }
   };
 
+  // Wird aufgerufen, wenn das Video beendet ist
   const onVideoEnded = () => {
     setVideoPlaying(false);
     setTitleMusicPlaying(true);
   };
 
+  // Spielt die Titelmusik ab, wenn das Video beendet ist und der Spieler nicht im Kampf ist
   useEffect(() => {
     if (titleMusicPlaying && !inBattle) {
       playSound("titleMusic");
@@ -55,13 +59,15 @@ function GameboyOverlay() {
     }
   }, [titleMusicPlaying, inBattle, playSound, stopSound]);
 
+  // Wird aufgerufen, wenn alle Ressourcen vorgeladen sind
   const onPreloaded = () => {
     setPreloaded(true);
   };
 
+  // Haupt-GameboyOverlay-Komponente
   return (
     <OverlayContainer>
-      {!preloaded && <Preload onPreloaded={onPreloaded} />}{" "}
+      {!preloaded && <Preload onPreloaded={onPreloaded} />}
       <BattleScreenWrapper>
         {!appStarted ? (
           <>

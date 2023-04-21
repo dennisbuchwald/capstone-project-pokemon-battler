@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import useAttackedSound from "../components/BattleScreen/SoundEffect/useAttackedSound";
 import SoundEffect from "../components/BattleScreen/SoundEffect/SoundEffect";
-import AttackMessage from "../components/BattleScreen/Menu/AttackMenu";
 
 export function useBattleLogic(
   selectedPokemon,
@@ -22,6 +21,7 @@ export function useBattleLogic(
   const [attackMessage, setAttackMessage] = useState(null);
   const [enemyAttackMessage, setEnemyAttackMessage] = useState(null);
 
+  // Verarbeitet den Angriff des Spielers und berechnet den Schaden für den Gegner
   const handleAttack = (attackIndex) => {
     const attack = selectedPokemon.attacks[attackIndex];
 
@@ -101,10 +101,12 @@ export function useBattleLogic(
     }, 1000);
   };
 
+  // Verarbeitet den erlittenen Schaden des Spielers
   const handlePlayerDamage = (damage) => {
     setPlayerHealth((prevHealth) => prevHealth - damage);
   };
 
+  // Überprüft, ob der Spieler oder der Gegner angreifen und setzt den Angriffsstatus zurück
   useEffect(() => {
     if (playerAttacking) {
       setTimeout(() => {
@@ -119,6 +121,7 @@ export function useBattleLogic(
     }
   }, [playerAttacking, enemyAttacking]);
 
+  // Verarbeitet die Niederlage eines Gegners und wechselt zum nächsten Gegner oder setzt den Siegstatus
   const handleEnemyDefeat = (enemyPokemons) => {
     setIsEnemyDefeated(true);
     setEnemyAttacking(false);
@@ -133,6 +136,7 @@ export function useBattleLogic(
     }
   };
 
+  // Verarbeitet die Verwendung eines Heiltranks und stellt die Gesundheit des Spielers wieder her
   const handlePotionUse = (healthToRestore) => {
     if (potionCount <= 0) {
       return;
@@ -182,6 +186,7 @@ export function useBattleLogic(
     }, 1000);
   };
 
+  // Exportierte Werte und Funktionen des Hooks
   return {
     playerHealth,
     victory,
@@ -198,6 +203,7 @@ export function useBattleLogic(
   };
 }
 
+// Setzt die Gesundheit der Gegner zurück
 export const resetEnemyHealth = (selectedEnemyPokemons) => {
   selectedEnemyPokemons.forEach((enemy) => {
     enemy.currentHealth = enemy.maxHealth;

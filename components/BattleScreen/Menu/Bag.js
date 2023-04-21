@@ -20,40 +20,6 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
         }}
         onMouseEnter={() => {
           playSound("menuSound");
-          setHoveredButton(1);
-        }}
-        onMouseLeave={() => {
-          stopSound("menuSound");
-          setHoveredButton(null);
-        }}
-      >
-        {hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
-        {potionCount}x Supertrank
-      </BagButton>
-      <BagButton
-        onClick={() => {
-          handleBagClick();
-          playSound("menuSound");
-        }}
-        onMouseEnter={() => {
-          playSound("menuSound");
-          setHoveredButton(2);
-        }}
-        onMouseLeave={() => {
-          stopSound("menuSound");
-          setHoveredButton(null);
-        }}
-      >
-        {hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
-        {potionCount}x Supertrank
-      </BagButton>
-      <BagButton
-        onClick={() => {
-          handleBagClick();
-          playSound("menuSound");
-        }}
-        onMouseEnter={() => {
-          playSound("menuSound");
           setHoveredButton(3);
         }}
         onMouseLeave={() => {

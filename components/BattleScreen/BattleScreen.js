@@ -2,9 +2,9 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useBattleLogic, resetEnemyHealth } from "../../hooks/useBattleLogic";
 import PlayerPokemon from "./Pokemon/PlayerPokemon";
-import PlayerState from "./PlayerState/PlayerState";
+import PlayerState from "./Statusbar/PlayerState";
 import EnemyPokemon from "./Pokemon/EnemyPokemon";
-import EnemyState from "./EnemyState/EnemyState";
+import EnemyState from "./Statusbar/EnemyState";
 import Menu from "./Menu/Menu";
 import VictoryMessage from "./Message/VictoryMessage";
 import LoserMessage from "./Message/LoserMessage";
@@ -13,23 +13,27 @@ import PokemonSelection from "../PokemonSelection/PokemonSelection";
 import OpponentSelection from "../OpponentSelection/OpponentSelection";
 import AttackMessage from "./Menu/AttackMessage";
 
-function getBackgroundImageUrl(index) {
-  const images = [
-    "/background/background0.png",
-    "/background/background1.png",
-    "/background/background2.png",
-  ];
+// Liste der Hintergrundbild-URLs
+const backgroundImageUrls = [
+  "/background/background0.png",
+  "/background/background1.png",
+  "/background/background2.png",
+];
 
-  return images[index] || images[0];
+// Funktion zum Abrufen der Hintergrundbild-URL anhand des Index
+function getBackgroundImageUrl(index) {
+  return backgroundImageUrls[index] || backgroundImageUrls[0];
 }
 
+// Liste der Kampfmusik
+const battleMusicList = ["battleMusic0", "battleMusic1", "battleMusic2"];
+
+// BattleMusic-Komponente zum Abspielen der Kampfmusik basierend auf dem enemyIndex
 function BattleMusic({ enemyIndex }) {
   const [playSound, stopSound] = SoundEffect();
 
   useEffect(() => {
-    const battleMusic = ["battleMusic0", "battleMusic1", "battleMusic2"][
-      enemyIndex
-    ];
+    const battleMusic = battleMusicList[enemyIndex];
     playSound(battleMusic);
 
     return () => {
@@ -40,6 +44,7 @@ function BattleMusic({ enemyIndex }) {
   return null;
 }
 
+// Hauptkampfkomponente, die alle relevanten Zustände und Aktionen verwaltet
 function Battle({
   selectedPokemon,
   selectedEnemyPokemon,
@@ -68,8 +73,7 @@ function Battle({
     setSelectedEnemyPokemon
   );
 
-  const enemyPokemon = selectedEnemyPokemon;
-
+  // Überprüfung der Sieg- oder Niederlagebedingungen
   if (playerHealth <= 0) {
     return <LoserMessage resetSelection={resetSelection} />;
   } else if (victory) {
@@ -79,7 +83,6 @@ function Battle({
   return (
     <ScreenContainer selectedEnemyIndex={selectedEnemyIndex}>
       <BattleMusic enemyIndex={selectedEnemyIndex} />
-
       <PlayerState
         currentHealth={playerHealth}
         selectedPokemon={selectedPokemon}
@@ -95,10 +98,10 @@ function Battle({
         selectedPokemon={selectedEnemyPokemon}
       />
       <EnemyState
-        currentHealth={enemyPokemon.currentHealth}
-        maxHealth={enemyPokemon.maxHealth}
-        pokemon={enemyPokemon.name}
-        level={enemyPokemon.level}
+        currentHealth={selectedEnemyPokemon.currentHealth}
+        maxHealth={selectedEnemyPokemon.maxHealth}
+        pokemon={selectedEnemyPokemon.name}
+        level={selectedEnemyPokemon.level}
       />
       <Menu
         onAttack={handleAttack}
@@ -123,6 +126,8 @@ function Battle({
     </ScreenContainer>
   );
 }
+
+// Haupt-BattleScreen-Komponente, die den ausgewählten Spieler und Gegner verwaltet
 export default function BattleScreen({ setInBattle }) {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState([]);
@@ -137,6 +142,7 @@ export default function BattleScreen({ setInBattle }) {
     setInBattle(false);
   };
 
+  // Auswahl des Spieler-Pokémons
   if (!selectedPokemon) {
     return (
       <ScreenContainer>
@@ -147,6 +153,7 @@ export default function BattleScreen({ setInBattle }) {
         />
       </ScreenContainer>
     );
+    // Auswahl des Gegner-Pokémons
   } else if (!selectedEnemyPokemon) {
     return (
       <ScreenContainer>
@@ -162,6 +169,7 @@ export default function BattleScreen({ setInBattle }) {
     );
   }
 
+  // Rendering der Battle-Komponente
   return (
     <Battle
       selectedPokemon={selectedPokemon}

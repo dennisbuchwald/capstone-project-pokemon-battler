@@ -18,27 +18,32 @@ const Menu = ({
   const [hoveredButton, setHoveredButton] = useState(null);
   const [potionCount, setPotionCount] = useState(3);
 
+  // Zeigt das Angriffsmenü an
   const handleAttackClick = () => {
     if (!disabled) {
       setShowAttackMenu(true);
     }
   };
 
+  // Verarbeitet die Auswahl eines Angriffs und schließt das Angriffsmenü
   const handleAttackSelection = (damage) => {
     setShowAttackMenu(false);
     onAttack(damage);
   };
 
+  // Schließt das Angriffsmenü
   const handleCloseMenu = () => {
     setShowAttackMenu(false);
   };
 
+  // Zeigt den Beutel an
   const handleBagClick = () => {
     if (!disabled) {
       setShowBag(true);
     }
   };
 
+  // Verarbeitet die Verwendung eines Heiltranks und schließt den Beutel
   const handlePotionUse = () => {
     const healthToRestore = 50;
     if (potionCount > 0) {
@@ -47,6 +52,8 @@ const Menu = ({
       setShowBag(false);
     }
   };
+
+  // Schließt den Beutel
   const handleBagClose = () => {
     setShowBag(false);
   };
