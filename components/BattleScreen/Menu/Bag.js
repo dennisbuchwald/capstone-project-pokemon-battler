@@ -55,7 +55,6 @@ const BagContainer = styled.section`
   width: 44%;
   padding: 10px;
   position: absolute;
-  width: 44%;
   height: 80px;
   right: 0.5%;
   z-index: 2;
@@ -68,17 +67,18 @@ const BagContainer = styled.section`
 
 const BagButton = styled.button`
   color: black;
+  text-align: left
   position: relative;
   font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
     BlinkMacSystemFont, Segoe UI;
-  font-size: 16px;
+  font-size: 1rem;
   text-transform: uppercase;
   cursor: pointer;
   border: none;
   min-width: 0;
   display: inline-block;
   margin: 5px;
-  padding: 3.5px 3.5px 3.5px 3.5px;
+  padding: 3.5px 3.5px 0.5px 3.5px;
   background-color: lightgray;
   border-radius: 7px;
   box-shadow: 0 0.2em gray;

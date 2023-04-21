@@ -27,7 +27,7 @@ const AttackMessageBox = styled.section`
 `;
 
 const Message = styled.p`
-  font-size: 25px;
+  font-size: 1.5rem;
   line-height: 16px;
   position: relative;
   left: 6%;
