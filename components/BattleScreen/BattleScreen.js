@@ -200,11 +200,11 @@ const ScreenContainer = styled.main`
   background-size: 426px 200px;
   display: block;
   font-size: 10px;
-  max-height: 325px;
-  max-width: 426px;
+  max-height: 266px;
+  max-width: 388px;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 49.8%;
+  top: 51.8%;
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
