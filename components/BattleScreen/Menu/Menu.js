@@ -131,14 +131,18 @@ export default Menu;
 
 const MenuContainer = styled.section`
   position: absolute;
-  width: 100%;
-  height: 80px;
-  z-index: 2;
-  bottom: 0;
-  background-image: url("/sprites/text-box-mod3.png");
-  background-size: cover;
+  background-image: url("/sprites/text-box-mod2.png");
+  background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  width: 100%;
+  height: 80px;
+  left: 0%;
+  right: 0.5%;
+  bottom: 0.5%;
+  z-index: 2;
+
   color: white;
 `;
 
@@ -172,7 +176,7 @@ const MenuOverviewBoxRight = styled.section`
   background-size: 100% 100%;
   background-repeat: no-repeat;
   width: 44%;
-  right: 0.5%;
+  right: 0%;
   position: absolute;
   height: 80px;
   bottom: 0%;

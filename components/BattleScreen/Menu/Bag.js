@@ -30,8 +30,11 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
         {hoveredButton === 1 && <CursorImage src="/sprites/cursor.png" />}
         {potionCount}x Supertrank
       </BagButton>
-      <BagButtonBack
-        onClick={onClose}
+      <BagButton
+        onClick={() => {
+          handleBagClick();
+          playSound("menuSound");
+        }}
         onMouseEnter={() => {
           playSound("menuSound");
           setHoveredButton(2);
@@ -42,6 +45,37 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
         }}
       >
         {hoveredButton === 2 && <CursorImage src="/sprites/cursor.png" />}
+        {potionCount}x Supertrank
+      </BagButton>
+      <BagButton
+        onClick={() => {
+          handleBagClick();
+          playSound("menuSound");
+        }}
+        onMouseEnter={() => {
+          playSound("menuSound");
+          setHoveredButton(3);
+        }}
+        onMouseLeave={() => {
+          stopSound("menuSound");
+          setHoveredButton(null);
+        }}
+      >
+        {hoveredButton === 3 && <CursorImage src="/sprites/cursor.png" />}
+        {potionCount}x Supertrank
+      </BagButton>
+      <BagButtonBack
+        onClick={onClose}
+        onMouseEnter={() => {
+          playSound("menuSound");
+          setHoveredButton(4);
+        }}
+        onMouseLeave={() => {
+          stopSound("menuSound");
+          setHoveredButton(null);
+        }}
+      >
+        {hoveredButton === 4 && <CursorImage src="/sprites/cursor.png" />}
         Zurueck
       </BagButtonBack>
     </BagContainer>
@@ -49,41 +83,42 @@ export default function Bag({ onPotionUse, onClose, potionCount }) {
 }
 
 const BagContainer = styled.section`
+  grid-gap: 5px;
+  position: absolute;
   background-image: url("/sprites/menu-options-box.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   width: 44%;
-  padding: 10px;
+  right: 0%;
   position: absolute;
   height: 80px;
-  right: 0.5%;
+  bottom: 0%;
   z-index: 2;
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-rows: repeat(2, 1fr);
   grid-gap: 0px;
   grid-auto-columns: minmax(0, 1fr);
 `;
 
 const BagButton = styled.button`
+  bottom: 7%;
   color: black;
-  text-align: left
   position: relative;
   font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
     BlinkMacSystemFont, Segoe UI;
-  font-size: 1rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   cursor: pointer;
   border: none;
   min-width: 0;
   display: inline-block;
-  margin: 5px;
-  padding: 3.5px 3.5px 0.5px 3.5px;
+  margin: 2.5px;
   background-color: lightgray;
   border-radius: 7px;
   box-shadow: 0 0.2em gray;
   cursor: pointer;
-
   &:active {
     box-shadow: none;
     position: relative;

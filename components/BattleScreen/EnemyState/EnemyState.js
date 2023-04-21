@@ -37,7 +37,7 @@ const BackgroundImageContainer = styled.section`
 const EnemyStateSection = styled.section`
   color: white;
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 20px;
   // background-image: url("/sprites/statusbar-opponent3.png");
   width: 150px;
