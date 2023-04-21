@@ -131,7 +131,7 @@ export default Menu;
 
 const MenuContainer = styled.section`
   position: absolute;
-  background-image: url("/sprites/text-box-mod2.png");
+  background-image: url("/sprites/text-box.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;

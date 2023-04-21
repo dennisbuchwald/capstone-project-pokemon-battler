@@ -24,7 +24,7 @@ const BackgroundImageContainer = styled.section`
   position: absolute;
   top: 133px;
   right: -22%;
-  background-image: url("/sprites/statusbar-player-mod6.png");
+  background-image: url("/sprites/statusbar-player.png");
   width: 250px;
   height: 50px;
   background-repeat: no-repeat;

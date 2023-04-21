@@ -5,17 +5,40 @@ export default function Preload({ onPreloaded }) {
     const imagesToPreload = [
       "/sprites/arrow.png",
       "/sprites/cursor.png",
+
       "/background/background0.png",
       "/background/background1.png",
       "/background/background2.png",
-      // Weitere Bilder hier hinzufügen
+
+      "/sprites/character/0.png",
+      "/sprites/character/1.png",
+      "/sprites/character/2.png",
+
+      "/sprites/opponent/Aerodactyl.gif",
+      "/sprites/opponent/Garados.gif",
+      "/sprites/opponent/Gengar.gif",
+      "/sprites/opponent/Kadabra.gif",
+      "/sprites/opponent/Maschock.gif",
+      "/sprites/opponent/Menki.gif",
+      "/sprites/opponent/Mewtwo.gif",
+      "/sprites/opponent/Pikachu.gif",
+      "/sprites/opponent/Taubsi.gif",
+
+      "/sprites/starter/blastoise-back.gif",
+      "/sprites/starter/charizard-back.gif",
+      "/sprites/starter/venusaur-back.gif",
     ];
 
     const audioToPreload = [
       "/audio/title_screen.mp3",
       "/audio/menu.mp3",
 
-      // Weitere Audiodateien hier hinzufügen
+      "audio/battle_music0.mp3",
+      "audio/battle_music1.mp3",
+      "audio/battle_music2.mp3",
+
+      "audio/win.mp3",
+      "audio/loser.mp3",
     ];
 
     const loadImages = async () => {
