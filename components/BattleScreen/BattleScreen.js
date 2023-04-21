@@ -40,20 +40,6 @@ function BattleMusic({ enemyIndex }) {
   return null;
 }
 
-function TitleMusic() {
-  const [playSound, stopSound] = SoundEffect();
-
-  useEffect(() => {
-    playSound("titleMusic");
-
-    return () => {
-      stopSound("titleMusic");
-    };
-  }, [playSound, stopSound]);
-
-  return null;
-}
-
 function Battle({
   selectedPokemon,
   selectedEnemyPokemon,
@@ -136,61 +122,53 @@ function Battle({
     </ScreenContainer>
   );
 }
-
-export default function BattleScreen() {
+export default function BattleScreen({ setInBattle }) {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState([]);
   const [selectedEnemyPokemon, setSelectedEnemyPokemon] = useState(null);
-  const [selectedEnemyPokemons, setSelectedEnemyPokemons] = useState(null);
-  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(null);
+  const [selectedEnemyIndex, setSelectedEnemyIndex] = useState(0);
 
   const resetSelection = () => {
     setSelectedPokemon(null);
+    setSelectedEnemyPokemons([]);
     setSelectedEnemyPokemon(null);
-  };
-
-  const handlePokemonSelection = (pokemon) => {
-    setSelectedPokemon(pokemon);
-  };
-
-  const handleEnemySelection = (enemyPokemons, index) => {
-    setSelectedEnemyPokemons(enemyPokemons);
-    setSelectedEnemyPokemon(enemyPokemons[0]);
-    setSelectedEnemyIndex(index);
+    setInBattle(false); // Setze inBattle auf false, wenn die Auswahl zurückgesetzt wird
   };
 
   if (!selectedPokemon) {
     return (
-      <>
-        <TitleMusic />
-        <PokemonSelection onSelect={handlePokemonSelection} />
-      </>
-    );
-  }
-
-  if (!selectedEnemyPokemon || !selectedEnemyPokemons) {
-    return (
-      <>
-        <TitleMusic />
-        <OpponentSelection
-          onSelect={(enemyPokemons, index) =>
-            handleEnemySelection(enemyPokemons, index)
-          }
+      <ScreenContainer>
+        <PokemonSelection
+          onSelect={(pokemon) => {
+            setSelectedPokemon(pokemon);
+          }}
         />
-      </>
+      </ScreenContainer>
+    );
+  } else if (!selectedEnemyPokemon) {
+    return (
+      <ScreenContainer>
+        <OpponentSelection
+          onSelect={(enemyPokemons, index) => {
+            setSelectedEnemyPokemons(enemyPokemons);
+            setSelectedEnemyPokemon(enemyPokemons[0]);
+            setSelectedEnemyIndex(index);
+            setInBattle(true); // Setze inBattle auf true, wenn ein Gegner ausgewählt wird
+          }}
+        />
+      </ScreenContainer>
     );
   }
 
   return (
-    <>
-      <Battle
-        selectedPokemon={selectedPokemon}
-        selectedEnemyPokemon={selectedEnemyPokemon}
-        selectedEnemyPokemons={selectedEnemyPokemons}
-        setSelectedEnemyPokemon={setSelectedEnemyPokemon}
-        resetSelection={resetSelection}
-        selectedEnemyIndex={selectedEnemyIndex}
-      />
-    </>
+    <Battle
+      selectedPokemon={selectedPokemon}
+      selectedEnemyPokemon={selectedEnemyPokemon}
+      selectedEnemyPokemons={selectedEnemyPokemons}
+      setSelectedEnemyPokemon={setSelectedEnemyPokemon}
+      resetSelection={resetSelection}
+      selectedEnemyIndex={selectedEnemyIndex}
+    />
   );
 }
 

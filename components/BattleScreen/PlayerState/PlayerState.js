@@ -35,7 +35,7 @@ const BackgroundImageContainer = styled.section`
 const PlayerStateSection = styled.section`
   color: white;
   position: absolute;
-  top: 134px;
+  top: 132px;
   right: -10%;
   width: 250px;
   height: 50px;
