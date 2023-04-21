@@ -14,8 +14,8 @@
 	{
 		"name": "Glurak",
 		"image": "/sprites/starter/charizard-back.gif",
-		"maxHealth": 192,
-		"currentHealth": 192,
+		"maxHealth": 180,
+		"currentHealth": 180,
 		"level": 63,
 		"attacks": [
 			{ "name": "Flammenwurf", "damage": 45, "type": "Feuer" },
@@ -26,8 +26,8 @@
 	{
 		"name": "Turtok",
 		"image": "/sprites/starter/blastoise-back.gif",
-		"maxHealth": 184,
-		"currentHealth": 184,
+		"maxHealth": 180,
+		"currentHealth": 180,
 		"level": 59,
 		"attacks": [
 			{ "name": "Aquaknarre", "damage": 40, "type": "Wasser" },

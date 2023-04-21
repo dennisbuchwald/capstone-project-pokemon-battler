@@ -1,29 +1,44 @@
 import styled from "styled-components";
 
 export default function PlayerState({ currentHealth, selectedPokemon }) {
-  const maxHealth = 120;
+  const maxHealth = 180;
   const healthPercent = Math.floor((currentHealth / maxHealth) * 100);
 
   return (
-    <PlayerStateSection>
-      <PokemonName>{selectedPokemon.name}</PokemonName>
-      <PokemonLevelTitel>Lv.</PokemonLevelTitel>
-      <PokemonLevel>{selectedPokemon.level}</PokemonLevel>
-      <PokemonHealth>{currentHealth}</PokemonHealth>
-      <PokemonHealthBar value={healthPercent} max="100"></PokemonHealthBar>
-      <PokemonSlashHealth>/</PokemonSlashHealth>
-      <PokemonMaxHealth>{selectedPokemon.maxHealth}</PokemonMaxHealth>
-    </PlayerStateSection>
+    <>
+      <BackgroundImageContainer />
+      <PlayerStateSection>
+        <PokemonName>{selectedPokemon.name}</PokemonName>
+        <PokemonLevelTitel>Lv.</PokemonLevelTitel>
+        <PokemonLevel>{selectedPokemon.level}</PokemonLevel>
+        <PokemonHealth>{currentHealth}</PokemonHealth>
+        <PokemonHealthBar value={healthPercent} max="100"></PokemonHealthBar>
+        <PokemonSlashHealth>/</PokemonSlashHealth>
+        <PokemonMaxHealth>{selectedPokemon.maxHealth}</PokemonMaxHealth>
+      </PlayerStateSection>
+    </>
   );
 }
 
-const PlayerStateSection = styled.section`
+const BackgroundImageContainer = styled.section`
   position: absolute;
-  top: 130px;
-  right: -10px;
-  background-image: url("/sprites/statusbar-player3.png");
-  width: 200px;
-  height: 68px;
+  top: 133px;
+  right: -22%;
+  background-image: url("/sprites/statusbar-player-mod6.png");
+  width: 250px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+`;
+
+const PlayerStateSection = styled.section`
+  color: white;
+  position: absolute;
+  top: 134px;
+  right: -10%;
+  width: 250px;
+  height: 50px;
   background-repeat: no-repeat;
   background-size: contain;
   z-index: 1;
@@ -31,10 +46,10 @@ const PlayerStateSection = styled.section`
 
 const PokemonName = styled.p`
   position: absolute;
-  top: 5px;
-  left: 30px;
+  top: 1px;
+  left: 65px;
   z-index: 1;
-  text-shadow: 1px 1px 0px #b7b7b7;
+  // text-shadow: 1px 1px 0px #b7b7b7;
   font-size: 20px;
   text-transform: uppercase;
   margin: 0;
@@ -43,10 +58,10 @@ const PokemonName = styled.p`
 
 const PokemonLevel = styled.span`
   position: absolute;
-  top: 5px;
-  right: 29px;
+  top: 1px;
+  right: 65px;
   z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
+  // text-shadow: 1px 1px 0px #b7b7b7;
   font-size: 20px;
   margin: 0;
   padding: 0;
@@ -54,10 +69,10 @@ const PokemonLevel = styled.span`
 
 const PokemonLevelTitel = styled.span`
   position: absolute;
-  top: 5px;
-  right: 50px;
+  top: 1px;
+  right: 85px;
   z-index: 10;
-  text-shadow: 1px 1px 0px #b7b7b7;
+  // text-shadow: 1px 1px 0px #b7b7b7;
   font-size: 20px;
   margin: 0;
   padding: 0;
@@ -65,10 +80,10 @@ const PokemonLevelTitel = styled.span`
 
 const PokemonHealth = styled.span`
   position: absolute;
-  top: 40px;
-  right: 55px;
+  top: 30px;
+  right: 100px;
   z-index: 11;
-  text-shadow: 1px 1px 0px #b7b7b7;
+  // text-shadow: 1px 1px 0px #b7b7b7;
   font-size: 15px;
   margin: 0;
   padding: 0;
@@ -76,10 +91,10 @@ const PokemonHealth = styled.span`
 
 const PokemonSlashHealth = styled.span`
   position: absolute;
-  top: 40px;
-  right: 45px;
+  top: 30px;
+  right: 90px;
   z-index: 1;
-  text-shadow: 1px 1px 0px #b7b7b7;
+  // text-shadow: 1px 1px 0px #b7b7b7;
   font-size: 15px;
   margin: 0;
   padding: 0;
@@ -87,10 +102,10 @@ const PokemonSlashHealth = styled.span`
 
 const PokemonMaxHealth = styled.span`
   position: absolute;
-  top: 40px;
-  right: 25px;
+  top: 30px;
+  right: 70px;
   z-index: 1;
-  text-shadow: 1px b7b7b7;
+  // text-shadow: 1px b7b7b7;
   font-size: 15px;
   margin: 0;
   padding: 0;
@@ -100,8 +115,8 @@ const PokemonHealthBar = styled.progress`
   position: absolute;
   height: 6px;
   width: 88px;
-  left: 88px;
-  top: 31px;
+  left: 100px;
+  top: 23px;
   z-index: 1;
   appearance: none;
   &::-webkit-progress-bar {

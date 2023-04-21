@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import starterPokemons from "../../data/starterPokemons.json";
 
@@ -13,7 +13,7 @@ export default function PokemonSelection({ onSelect }) {
       <PokemonList>
         {starterPokemons.map((pokemon, index) => (
           <Pokemon key={index} onClick={() => handleSelect(pokemon)}>
-            <Image
+            <StyledImage
               src="/sprites/masterball.png"
               alt={pokemon.name}
               width={80}
@@ -61,6 +61,19 @@ const PokemonList = styled.ul`
   list-style-type: none;
   padding: 0;
   margin-top: -5%;
+`;
+
+const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+`;
+
+const StyledImage = styled(Image)`
+  animation: ${bounce} 1s infinite;
 `;
 
 const Pokemon = styled.li`

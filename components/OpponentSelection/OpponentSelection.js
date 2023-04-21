@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 import opponents from "../../data/opponents.json";
 
@@ -14,7 +14,7 @@ export default function OpponentSelection({ onSelect }) {
         {opponents.map((opponent, index) => (
           <Opponent key={opponent.id}>
             <Button onClick={() => handleSelect(opponent, index)}>
-              <Image
+              <StyledImage
                 src={`/sprites/character/${opponent.id}.png`}
                 alt={opponent.name}
                 width={80}
@@ -29,6 +29,19 @@ export default function OpponentSelection({ onSelect }) {
     </SelectionContainer>
   );
 }
+
+const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+`;
+
+const StyledImage = styled(Image)`
+  animation: ${bounce} 1s infinite;
+`;
 
 const Button = styled.button`
   all: unset;

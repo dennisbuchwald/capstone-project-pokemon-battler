@@ -131,15 +131,18 @@ export default Menu;
 
 const MenuContainer = styled.section`
   position: absolute;
-  width: 100%;
-  height: 80px;
-  z-index: 2;
-  bottom: 0;
-  background-image: url("/sprites/text-box.png");
-  background-size: cover;
-
+  background-image: url("/sprites/text-box-mod2.png");
+  background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
+  width: 100%;
+  height: 80px;
+  left: 0%;
+  right: 0.5%;
+  bottom: 0.5%;
+  z-index: 2;
+
   color: white;
 `;
 
@@ -156,7 +159,7 @@ const MenuOverviewBox = styled.section`
 
 const MenuOverviewBoxLeft = styled.article`
   width: 50%;
-  line-height: 16px;
+  font-size: 1.5rem;
   position: relative;
   left: 0px;
   top: -10px;
@@ -167,20 +170,18 @@ const MenuOverviewBoxLeft = styled.article`
 `;
 
 const MenuOverviewBoxRight = styled.section`
+  grid-gap: 5px;
   position: absolute;
   background-image: url("/sprites/menu-options-box.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   width: 44%;
-
-  right: 0.5%;
+  right: 0%;
   position: absolute;
   height: 80px;
   bottom: 0%;
   z-index: 2;
-
   padding: 10px;
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -197,23 +198,23 @@ const CursorImage = styled.img`
   height: auto;
 `;
 const MenuButton = styled.button`
+  margin: 1px;
+  bottom: 7%;
   color: black;
   position: relative;
   font-family: "PokemonFireRed", "Press Start 2P", -apple-system,
     BlinkMacSystemFont, Segoe UI;
-  font-size: 16px;
+  font-size: 1.2rem;
   text-transform: uppercase;
   cursor: pointer;
   border: none;
   min-width: 0;
   display: inline-block;
   margin: 2.5px;
-  padding: 3.5px 3.5px 3.5px 3.5px;
   background-color: lightgray;
   border-radius: 7px;
   box-shadow: 0 0.2em gray;
   cursor: pointer;
-
   &:active {
     box-shadow: none;
     position: relative;
