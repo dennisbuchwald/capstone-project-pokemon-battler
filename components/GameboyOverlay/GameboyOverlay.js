@@ -2,17 +2,17 @@ import styled, { keyframes } from "styled-components";
 import BattleScreen from "../BattleScreen/BattleScreen";
 import { useState, useEffect, useRef } from "react";
 import Preload from "../Preload/Preload";
-import SoundEffect from "../BattleScreen/SoundEffect/SoundEffect"; // Import SoundEffect
+import SoundEffect from "../BattleScreen/SoundEffect/SoundEffect";
 
 function GameboyOverlay() {
   const [ledOn, setLedOn] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [appStarted, setAppStarted] = useState(false);
   const [preloaded, setPreloaded] = useState(false);
-  const [titleMusicPlaying, setTitleMusicPlaying] = useState(false); // Zustand für das Abspielen der Titelmusik hinzufügen
+  const [titleMusicPlaying, setTitleMusicPlaying] = useState(false);
   const videoRef = useRef(null);
-  const [playSound, stopSound] = SoundEffect(); // SoundEffect verwenden
-  const [inBattle, setInBattle] = useState(false); // Zustand für das Erkennen, ob sich der Benutzer im Kampf befindet
+  const [playSound, stopSound] = SoundEffect();
+  const [inBattle, setInBattle] = useState(false);
 
   useEffect(() => {
     if (ledOn) {
@@ -42,7 +42,7 @@ function GameboyOverlay() {
 
   const onVideoEnded = () => {
     setVideoPlaying(false);
-    setTitleMusicPlaying(true); // Titelmusik starten, wenn das Video beendet ist
+    setTitleMusicPlaying(true);
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function GameboyOverlay() {
             onEnded={onVideoEnded}
           />
         ) : (
-          <BattleScreen setInBattle={setInBattle} /> // Füge setInBattle als Prop hinzu
+          <BattleScreen setInBattle={setInBattle} />
         )}
       </BattleScreenWrapper>
       <OverlayImage>
