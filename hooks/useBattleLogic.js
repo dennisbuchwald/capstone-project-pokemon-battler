@@ -143,7 +143,7 @@ export function useBattleLogic(
     }
     setPotionCount(potionCount - 1);
     setPlayerHealth((prevHealth) =>
-      Math.min(prevHealth + healthToRestore, 120)
+      Math.min(prevHealth + healthToRestore, 180)
     );
     setIsDisabled(true);
     playHealthSound("healSound");
